@@ -1,0 +1,91 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+body {
+	background: #f5f5f5;
+}
+
+
+.father {
+	width: 362px;
+	background: rgb(255,255,255,0.8);
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%,-50%);
+	border-radius: 4px;
+}
+@media(max-width: 768px){
+	.father {
+		width: 100%;
+	}
+}
+.tab-content {
+	padding: 20px 10px;
+}
+@media(min-width: 768px){
+	.tab-content{
+		padding: 40px 10px;
+	}
+}
+.tab-content>.tab-pane {
+    display: none;
+}
+.tab-content>.active{
+	display: block;
+}
+#login {
+	width: 80%;
+	margin: 0 auto;
+}
+#register{
+	width: 80%;
+	margin: 0 auto;
+}
+input {
+	position: relative;
+}
+.form-group {
+	position: relative;
+}
+.form-control {
+	height: 34px;
+}
+#login input{
+	text-indent: 2em;
+}
+.username::before{
+	width: 20px;
+    height: 20px;
+    content: '\f007';
+    font-size: 16px;
+    font-family: 'FontAwesome';
+    position: absolute;
+    left: 10px;
+    top: 6px;
+    z-index: 10;
+}
+.password::before {
+	width: 20px;
+    height: 20px;
+    content: '\f13e';
+    font-size: 16px;
+    font-family: 'FontAwesome';
+    position: absolute;
+    left: 10px;
+    top: 6px;
+    z-index: 10;
+}
+.submit {
+	height: 40px;
+	text-indent: 0!important;
+	background-color: #0ae;
+	margin: 0 auto;
+}
+.form-group label{
+	line-height: 34px;
+}
+.form-group span{
+	color: #a94442;
+}
