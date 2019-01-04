@@ -1,6 +1,7 @@
 package web;
 
 import dao.iml.AdminDaoIml;
+import dao.iml.UserDaoIml;
 import domain.Admin;
 import domain.User;
 
@@ -11,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 @WebServlet(name = "SignServlet",urlPatterns = "/sign")
 public class SignServlet extends HttpServlet {
@@ -39,6 +41,7 @@ public class SignServlet extends HttpServlet {
             AdminDaoIml adminDaoIml = new AdminDaoIml();
             adminDaoIml.add(admin);
             printWriter.println("<script>alert('注册成功，请等待管理员审核！');hostory.go(-1);</script>");
+            response.sendRedirect("/dormitory/login");
         }else {
             String _class = request.getParameter("class");
             String nickname = request.getParameter("name");
@@ -50,12 +53,18 @@ public class SignServlet extends HttpServlet {
             user.setNickname(nickname);
             user.set_class(_class);
             user.setDormitory_id(Integer.parseInt(dormitory_id));
+            user.setRoom(Integer.parseInt(room));
+            UserDaoIml userDaoIml  = new UserDaoIml();
+            userDaoIml.add(user);
+            printWriter.println("<script>alert('注册成功，请登录！');hostory.go(-1);</script>");
+            response.sendRedirect("/dormitory/login");
         }
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        doPost(request, response);
+        response.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset=utf-8");
     }
 
 }

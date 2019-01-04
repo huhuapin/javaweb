@@ -11,6 +11,6 @@ public interface UserDao {
     public User find(int id);        //根据用户id找到用户
     public User find(String username, String password); //根据用户名和密码找到用户
     public List<User> findAll(int dormitory_id);        //根据宿舍号返回所有用户
-    public int sum(int dormitory_id);//根据宿舍号返回用户总数
+    public long sum(int dormitory_id);//根据宿舍号返回用户总数
 
 }

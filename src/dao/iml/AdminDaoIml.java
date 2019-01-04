@@ -104,9 +104,4 @@ public class AdminDaoIml implements AdminDao {
         }
     }
 
-    public static void main(String[] args) {
-        AdminDaoIml test = new AdminDaoIml();
-        System.out.println(test.sum());
-    }
-
 }

@@ -72,11 +72,11 @@ public class NoticeDaoIml implements NoticeDao {
     }
 
     @Override
-    public int sum(int dormitory_id) {
+    public long sum(int dormitory_id) {
         try{
             QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
             String sql = "select count(*) from notice";
-            return (int) runner.query(sql, new ScalarHandler());
+            return (long) runner.query(sql, new ScalarHandler());
         } catch(Exception e){
             throw new RuntimeException(e);
         }
