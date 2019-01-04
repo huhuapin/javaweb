@@ -26,6 +26,18 @@ public class NoticeDaoIml implements NoticeDao {
     }
 
     @Override
+    public void modify(Notice notice) {
+        try{
+            QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
+            String sql = "update notice set title=?,content=?,created_at=? where id=?";
+            Object params[] = {notice.getTitle(),notice.getContent(),notice.getId()};
+            runner.update(sql, params);
+        } catch(Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
     public void delete(int id) {
         try{
             QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());

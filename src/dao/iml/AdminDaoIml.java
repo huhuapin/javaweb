@@ -11,8 +11,6 @@ import org.apache.commons.dbutils.handlers.BeanListHandler;
 
 import java.util.List;
 
-import javax.management.Query;
-
 public class AdminDaoIml implements AdminDao {
 
     @Override
@@ -22,6 +20,17 @@ public class AdminDaoIml implements AdminDao {
             String sql = "insert into admin(username,password,name,dormitory_id,user_id) values(?,?,?,?,?)";
             Object params[] = {admin.getUsername(),admin.getPassword(),admin.getName(),admin.getDormitory_id(),admin.getStatus()};
             runner.update(sql, params);
+        } catch(Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void modify(int id, String password) {
+        try{
+            QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
+            String sql = "update admin set password=? where id=?";
+            runner.update(sql, password, id);
         } catch(Exception e){
             throw new RuntimeException(e);
         }
@@ -79,6 +88,17 @@ public class AdminDaoIml implements AdminDao {
             QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
             String sql = "select count(*) from admin";
             return (int) runner.query(sql, new ScalarHandler());
+        } catch(Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public String show(int dormitory_id) {
+        try{
+            QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
+            String sql = "select description from dormitory where id=?";
+            return (String) runner.query(sql, dormitory_id, new ScalarHandler());
         } catch(Exception e){
             throw new RuntimeException(e);
         }
