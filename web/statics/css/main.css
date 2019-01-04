@@ -1,0 +1,81 @@
+.brand {
+    height: 60px;
+    float: left;
+    padding: 0 20px;
+    line-height: 60px;
+    font-size: 24px;
+    color: #fff;
+}
+.layui-header {
+    background-color: #393D49;
+}
+
+.layui-header {
+    height: 60px;
+}
+@media (max-width: 480px) {
+    .layui-header {
+        height: 120px;
+    }
+}
+.layui-nav {
+    float: left;
+}
+.userinfo {
+    float: right;
+}
+.layui-container {
+    background-color: #F2F2F2;;
+}
+.message {
+    padding: 30px 20px;
+}
+.sidebar {
+    padding: 30px 20px;
+}
+.card-footer {
+    position: relative;
+    height: 42px;
+    line-height: 42px;
+    padding: 0 15px;
+    border-top: 1px solid #f6f6f6;
+    color: #333;
+    border-radius: 2px 2px 0 0;
+    font-size: 14px;
+}
+.layui-card-body {
+    text-indent: 2em;
+}
+.card-footer-left {
+    float: left;
+}
+.card-footer-right {
+    float: right;
+    height: 42px;
+    line-height: 42px;
+}
+.card-footer-right button {
+    margin-top: 2px;
+}
+.praise-active {
+    color: #5FB878;
+}
+.praise-active i {
+    color: #5FB878;
+}
+.sidebar .layui-table td, .sidebar .layui-table th {
+    padding-left: 0;
+    padding-right: 0;
+    text-align: center;
+    text-indent: 0;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+}
+.layui-table-page {
+    margin-top: 30px;
+    padding: 7px 0;
+}
+.layui-table-page > div {
+    background: #fff;
+}
