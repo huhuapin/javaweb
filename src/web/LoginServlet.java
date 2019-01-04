@@ -13,11 +13,14 @@ import javax.servlet.http.*;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-@WebServlet(name = "IndexServlet",urlPatterns = "/dormitory/login")
+@WebServlet(name = "IndexServlet",urlPatterns = "/login")
 public class LoginServlet extends HttpServlet {
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset=utf-8");
+        PrintWriter printWriter = response.getWriter();
         HttpSession session = request.getSession();
         if (session.getAttribute("admin") == null) {
             //查询数据库并设置session
@@ -31,18 +34,30 @@ public class LoginServlet extends HttpServlet {
                 if (admin == null) {
 
                     //登录失败
-                    PrintWriter printWriter = response.getWriter();
-                    printWriter.println("<script>alter('用户名密码错误');hostory.go(-1);</script>");
+                    printWriter.println("<script>alert('用户名密码错误');hostory.go(-1);</script>");
                 }else {
-                    session.setAttribute("admin",1);
-                    session.setAttribute("user",admin);
+                    //查找到管理员
+                    if (admin.getStatus() == 1) {
+                        //通过审核
+                        session.setAttribute("admin", 1);
+                        session.setAttribute("user", admin);
+                        response.sendRedirect("/dormitory/admin/index");
+                    }else{
+                        printWriter.println("<script>alert('请等待其他管理员的审核');hostory.go(-1);</script>");
+                    }
                 }
             }else {
                 session.setAttribute("admin",0);
                 session.setAttribute("user",user);
+                response.sendRedirect("/dormitory/user/index");
             }
         }else {
             int admin = (int) (session.getAttribute("admin"));
+            if (admin == 1) {
+                response.sendRedirect("/dormitory/admin/index");
+            }else {
+                response.sendRedirect("/dormitory/user/index");
+            }
         }
     }
 

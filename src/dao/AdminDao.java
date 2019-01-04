@@ -12,7 +12,7 @@ public interface AdminDao {
     public Admin find(int id);      //根据id找到管理员
     public Admin find(String username, String password); //根据用户名和密码找到管理员
     public List<Admin> getAll();    //返回所有管理员
-    public int sum();               //返回所有管理员的数量
+    public long sum();               //返回所有管理员的数量
     public String show(int dormitory_id);//返回管理员所在的宿舍楼
 
 }

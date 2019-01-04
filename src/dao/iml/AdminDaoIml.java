@@ -83,11 +83,11 @@ public class AdminDaoIml implements AdminDao {
     }
 
     @Override
-    public int sum() {
+    public long sum() {
         try{
             QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
             String sql = "select count(*) from admin";
-            return (int) runner.query(sql, new ScalarHandler());
+            return (long) runner.query(sql, new ScalarHandler());
         } catch(Exception e){
             throw new RuntimeException(e);
         }
@@ -103,4 +103,10 @@ public class AdminDaoIml implements AdminDao {
             throw new RuntimeException(e);
         }
     }
+
+    public static void main(String[] args) {
+        AdminDaoIml test = new AdminDaoIml();
+        System.out.println(test.sum());
+    }
+
 }

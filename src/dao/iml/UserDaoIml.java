@@ -17,8 +17,8 @@ public class UserDaoIml implements UserDao {
     public void add(User user) {
         try{
             QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
-            String sql = "insert into user(username,password,nickname,image,_class,dormitory_id,room) values(?,?,?,?,?,?,?)";
-            Object params[] = {user.getUsername(),user.getPassword(),user.getNickname(),user.getImage(),user.get_class(),user.getDormitory_id(),user.getRoom()};
+            String sql = "insert into user(username,password,name,nickname,image,_class,dormitory_id,room) values(?,?,?,?,?,?,?,?)";
+            Object params[] = {user.getUsername(),user.getPassword(),user.getName(),user.getNickname(),user.getImage(),user.get_class(),user.getDormitory_id(),user.getRoom()};
             runner.update(sql, params);
         } catch(Exception e){
             throw new RuntimeException(e);
@@ -29,7 +29,7 @@ public class UserDaoIml implements UserDao {
     public void update(User user) {
         try{
             QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
-            String sql = "update user set password=?,nickname=?,image=?,_class=?,dormitory_id=?,room=? where id=?;";
+            String sql = "update user set password=?,,nickname=?,image=?,_class=?,dormitory_id=?,room=? where id=?;";
             Object params[] = {user.getPassword(),user.getNickname(),user.getImage(),user.get_class(),user.getDormitory_id(),user.getRoom(),user.getId()};
             runner.update(sql, params);
         } catch(Exception e){

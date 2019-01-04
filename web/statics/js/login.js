@@ -118,7 +118,7 @@ $('#email').blur(function(){
 $('#register').children('form').submit(function(){
     var inp = $(this).find('input');
     console.log(inp.length);
-    for(let i=0;i<inp.length;i++){
+    for(var i=0;i<inp.length;i++){
         if(i<=3){
             if(!yanzheng[i]){
                 var inputname = $(inp[i]).parent().prev().text();
