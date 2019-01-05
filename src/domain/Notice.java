@@ -1,5 +1,6 @@
 package domain;
 
+
 import java.sql.Timestamp;
 
 public class Notice {
@@ -58,4 +59,5 @@ public class Notice {
     public void setCreated_at(Timestamp created_at) {
         this.created_at = created_at;
     }
+
 }

@@ -11,7 +11,7 @@
         <h1 class="brand">宿舍管理系统</h1>
         <ul class="layui-nav userinfo">
             <li class="layui-nav-item">
-                <a href="javascript:;">胡华聘</a>
+                <a href="javascript:;">${user.name}</a>
                 <dl class="layui-nav-child">
                     <dd><a href="/dormitory/user/password.jsp">修改密码</a></dd>
                     <dd><a href="/dormitory/user/user.jsp">个人信息</a></dd>
@@ -20,7 +20,7 @@
             </li>
         </ul>
         <ul class="layui-nav">
-            <li class="layui-nav-item"><a href="/dormitory/user/index.jsp">首页</a></li>
+            <li class="layui-nav-item"><a href="/dormitory/user/index">首页</a></li>
             <li class="layui-nav-item"><a href="/dormitory/user/notice.jsp">公告</a></li>
             <li class="layui-nav-item"><a href="/dormitory/user/service.jsp">功能</a></li>
         </ul>

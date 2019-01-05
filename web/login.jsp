@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
@@ -30,7 +31,7 @@
             </form>
         </div>
         <div class="tab-pane fade" id="register">
-            <form action="/jsp/register" class="form-horizontal" method="post">
+            <form action="/dormitory/sign" class="form-horizontal" method="post">
                 <div class="form-group">
                     <label for="" class="label-control col-md-4">用户名</label>
                     <div class="col-md-8">
@@ -53,13 +54,20 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <label for="" class="label-control col-md-4">姓名</label>
+                    <div class="col-md-8">
+                        <input type="text" name="name" class="form-control" id="name" placeholder="请输入姓名">
+                        <span></span>
+                    </div>
+                </div>
+                <div class="form-group">
                     <label for="" class="col-md-4 label-control">宿舍楼</label>
                     <div class="col-md-8">
                         <select name="dormitory" id="dormiroty" class="form-control">
                             <option selected="" value="" disabled>请选择...</option>
-                            <option>1号公寓楼</option>
-                            <option>21号公寓楼</option>
-                            <option>3号公寓楼</option>
+                            <c:forEach items="${dormitories}" var="dormitory">
+                                <option value="${dormitory.id}">${dormitory.description}</option>
+                            </c:forEach>
                         </select>
                     </div>
                 </div>
@@ -90,7 +98,7 @@
                     <div class="form-group">
                         <label for="room" class="label-control col-md-4">房间号</label>
                         <div class="col-md-8">
-                        <input type="text" name="class" class="form-control" id="room" placeholder="请输入房间号">
+                        <input type="text" name="room" class="form-control" id="room" placeholder="请输入房间号">
                         </div>
                     </div>
                 </div>
