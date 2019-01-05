@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -37,17 +38,19 @@
                             </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>16111101135</td>
-                                    <td>胡华聘</td>
-                                    <td>计科1604</td>
-                                    <td>531</td>
-                                    <td>
-                                        <a href="/dormitory/admin/user_edit.jsp"><button class="btn btn-sm btn-primary"> 编辑 </button></a>
-                                        <button data-toggle="button" class="btn btn-sm btn-warning"> 删除 </button>
-                                    </td>
-                                </tr>
+                                <c:forEach var="user" items="${userList}">
+                                    <tr>
+                                        <td>${user.getId()}</td>
+                                        <td>${user.getUsername()}</td>
+                                        <td>${user.getName()}</td>
+                                        <td>${user.get_class()}</td>
+                                        <td>${user.getRoom()}</td>
+                                        <td>
+                                            <a href="/dormitory/admin/user_edit.jsp"><button class="btn btn-sm btn-primary"> 编辑 </button></a>
+                                            <a href="/dormitory/admin/DelStudentServlet?id=${user.getId()}"></a> <button data-toggle="button" class="btn btn-sm btn-warning"> 删除 </button></a>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
                             </tbody>
                         </table>
                     </div>

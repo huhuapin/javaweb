@@ -36,6 +36,19 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+                                    <c:forEach var="admin" items="${adminList}">
+                                        <tr>
+                                            <td>${admin.getId()}</td>
+                                            <td>${admin.getUsername()}</td>
+                                            <td>${admin.getName()}</td>
+                                            <td>${user.get_class()}</td>
+                                            <td>${user.getRoom()}</td>
+                                            <td>
+                                                <a href="/dormitory/admin/user_edit.jsp"><button class="btn btn-sm btn-primary"> 编辑 </button></a>
+                                                <a href="/dormitory/admin/DelStudentServlet?id=${user.getId()}"></a> <button data-toggle="button" class="btn btn-sm btn-warning"> 删除 </button></a>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
                                 <tr>
                                     <td>1</td>
                                     <td>admin</td>
@@ -44,7 +57,6 @@
                                     <td>已通过</td>
                                     <td>
                                         <button class="btn btn-sm btn-primary"> 通过审核 </button>
-                                        <button data-toggle="button" class="btn btn-sm btn-warning"> 删除 </button>
                                     </td>
                                 </tr>
                                 </tbody>

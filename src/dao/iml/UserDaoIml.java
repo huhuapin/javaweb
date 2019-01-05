@@ -38,6 +38,17 @@ public class UserDaoIml implements UserDao {
     }
 
     @Override
+    public void delete(int id) {
+        try{
+            QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
+            String sql = "delete user where id=?;";
+            runner.update(sql, id);
+        } catch(Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
     public User find(int id) {
         try{
             QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
@@ -73,11 +84,11 @@ public class UserDaoIml implements UserDao {
     }
 
     @Override
-    public int sum(int dormitory_id) {
+    public long sum(int dormitory_id) {
         try{
             QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
             String sql = "select count(*) from user where dormitory_id=?";
-            return (int) runner.query(sql, dormitory_id, new ScalarHandler());
+            return (long) runner.query(sql, dormitory_id, new ScalarHandler());
         } catch(Exception e){
             throw new RuntimeException(e);
         }

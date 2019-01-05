@@ -22,7 +22,7 @@
             <a href="/dormitory/admin/index.jsp">宿舍管理系统</a>
         </div>
         <ul class="nav navbar-nav navbar-right  hidden-xs">
-            <li class="dropdown user  hidden-xs"> <a data-toggle="dropdown" class="dropdown-toggle" href="#"> <i class="icon-male"></i> <span class="username">John Doe</span> <i class="icon-caret-down small"></i> </a>
+            <li class="dropdown user  hidden-xs"> <a data-toggle="dropdown" class="dropdown-toggle" href="#"> <i class="icon-male"></i> <span class="username">${sessionScope.user.getName()}</span> <i class="icon-caret-down small"></i> </a>
                 <ul class="dropdown-menu">
                     <li><a href="user_profile.html"><i class="icon-user"></i> 修改密码</a></li>
                     <li class="divider"></li>
@@ -36,12 +36,12 @@
     <div class="left-nav">
         <div id="side-nav">
             <ul id="nav">
-                <li class="current"> <a href="/dormitory/admin/index.jsp"> <i class="icon-desktop"></i> 首页</a></li>
+                <li class="current"> <a href="/dormitory/admin/index"> <i class="icon-desktop"></i> 首页</a></li>
                 <li> <a href="/dormitory/admin/notice——.jsp"> <i class="icon-edit"></i> 公告管理 </a></li>
                 <li> <a href="#"> <i class="icon-table"></i> 人员管理 <i class="arrow icon-angle-left"></i></a>
                     <ul class="sub-menu">
-                        <li> <a href="/dormitory/admin/user_list.jsp"> <i class="icon-angle-right"></i> 学生信息修改 </a> </li>
-                        <li> <a href="/dormitory/admin/admin_list.jsp"> <i class="icon-angle-right"></i> 管理员信息审核 </a> </li>
+                        <li> <a href="/dormitory/admin/user_list"> <i class="icon-angle-right"></i> 学生信息修改 </a> </li>
+                        <li> <a href="/dormitory/admin/admin_list"> <i class="icon-angle-right"></i> 管理员信息审核 </a> </li>
                     </ul>
                 </li>
             </ul>

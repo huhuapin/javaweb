@@ -25,21 +25,21 @@
                         <div class="col-md-3 col-xs-12 col-sm-6"> <a href="#" class="stats-container">
                             <div class="stats-heading">宿舍楼</div>
                             <div class="stats-body-alt">
-                                <div class="text-center">研究生公寓南楼</div>
+                                <div class="text-center">${description}</div>
                             </div>
                             <div class="stats-footer">more info</div>
                         </a> </div>
                         <div class="col-md-3 col-xs-12 col-sm-6"> <a href="#" class="stats-container">
                             <div class="stats-heading">公告数量</div>
                             <div class="stats-body-alt">
-                                <div class="text-center">85</div>
+                                <div class="text-center">${noticeSum}</div>
                             </div>
                             <div class="stats-footer">go to account</div>
                         </a> </div>
                         <div class="col-md-3 col-xs-12 col-sm-6"> <a href="#" class="stats-container">
                             <div class="stats-heading">公寓学生数</div>
                             <div class="stats-body-alt">
-                                <div class="text-center">207</div>
+                                <div class="text-center">${userSum}</div>
                             </div>
                             <div class="stats-footer">manage members</div>
                         </a> </div>
@@ -47,7 +47,7 @@
                             <div class="stats-heading">管理员数</div>
                             <div class="stats-body-alt">
 
-                                <div class="text-center">345</div>
+                                <div class="text-center">${adminSum}</div>
                             </div>
                             <div class="stats-footer">manage orders</div>
                         </a> </div>
