@@ -28,7 +28,6 @@ public class SignServlet extends HttpServlet {
         String password = request.getParameter("password");
         String password_cofirmation = request.getParameter("password_confirmation");
         String name = request.getParameter("name");
-//        System.out.println(name);
         String dormitory_id = request.getParameter("dormitory");
         printWriter.println(request.getParameter("admin"));
         if (!password.equals(password_cofirmation)) {
@@ -37,6 +36,7 @@ public class SignServlet extends HttpServlet {
         }
         if (request.getParameter("admin").equals("1")) {
             Admin admin = new Admin();
+            admin.setUsername(username);
             admin.setName(name);
             admin.setDormitory_id(Integer.parseInt(dormitory_id));
             admin.setPassword(password);

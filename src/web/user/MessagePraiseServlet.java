@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-@WebServlet(name = "MessagePraiseServlet",urlPatterns = "user/praise")
+@WebServlet(name = "MessagePraiseServlet",urlPatterns = "/user/praise")
 public class MessagePraiseServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request,response);
@@ -43,6 +43,7 @@ public class MessagePraiseServlet extends HttpServlet {
                 map.put("status","OK");
             }
         }
+
         response.getWriter().println();
     }
 }
