@@ -51,7 +51,6 @@ public class IndexServlet extends HttpServlet {
         MessageDao messageDao = new MessageDaoIml();
         List<Message> messages = messageDao.findAll(user.getDormitory_id());
         request.setAttribute("messages",messages);
-        System.out.println("50---------------");
         request.getRequestDispatcher("/user/index.jsp").forward(request,response);
     }
 }

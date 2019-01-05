@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: hasee
@@ -24,22 +25,12 @@
     <div class="layui-row main">
     <div class="layui-col-md8 notice">
         <div class="layui-collapse " lay-accordion>
+            <c:forEach items="${notices}" var="notice">
             <div class="layui-colla-item">
-                <h2 class="layui-colla-title">这是一条通知公告 <span class="title-time">2018-01-01 20:20:00</span></h2>
-                <div class="layui-colla-content">内容区域啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</div>
+                <h2 class="layui-colla-title">${notice.title} <span class="title-time">${notice.created_at}</span></h2>
+                <div class="layui-colla-content">${notice.content}</div>
             </div>
-            <div class="layui-colla-item">
-                <h2 class="layui-colla-title">李清照啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</h2>
-                <div class="layui-colla-content">内容区域无限长内容区域无限长内容区域无限长内容区域无限长内容区域无限长内容区域无限长内容区域无限长内容区域无限长内容区域无限长内容区域无限长z
-                    内容区域无限长内容区域无限长内容区域无限长内容区域无限长内容区域无限长内容区域无限长内容区域无限长内容区域无限长内容区域无限长内容区域无限长内容区域无限长内容区域无限长内容区域无限长
-                    内容区域无限长内容区域无限长内容区域无限长内容区域无限长内容区域无限长内容区域无限长内容区域无限长内容区域无限长内容区域无限长内容区域无限长内容区域无限长
-                    内容区域无限长内容区域无限长内容区域无限长内容区域无限长内容区域无限长内容区域无限长内容区域无限长内容区域无限长内容区域无限长内容区域无限长内容区域无限长内容区域无限长内容区域无限长v
-                    内容区域无限长内容区域无限长内容区域无限长内容区域无限长内容区域无限长内容区域无限长内容区域无限长</div>
-            </div>
-            <div class="layui-colla-item">
-                <h2 class="layui-colla-title">鲁迅</h2>
-                <div class="layui-colla-content">内容区域</div>
-            </div>
+            </c:forEach>
         </div>
         <div class="layui-table-page">
             <div>
