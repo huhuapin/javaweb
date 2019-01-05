@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <html>
 <head>
     <title>管理员审核</title>
@@ -41,24 +43,18 @@
                                             <td>${admin.getId()}</td>
                                             <td>${admin.getUsername()}</td>
                                             <td>${admin.getName()}</td>
-                                            <td>${user.get_class()}</td>
-                                            <td>${user.getRoom()}</td>
-                                            <td>
-                                                <a href="/dormitory/admin/user_edit.jsp"><button class="btn btn-sm btn-primary"> 编辑 </button></a>
-                                                <a href="/dormitory/admin/DelStudentServlet?id=${user.getId()}"></a> <button data-toggle="button" class="btn btn-sm btn-warning"> 删除 </button></a>
-                                            </td>
+                                            <td>${admin.getDescription()}</td>
+                                            <c:if test="${admin.getStatus() == 1}">
+                                                <td>已审核</td>
+                                            </c:if>
+                                            <c:if test="${admin.getStatus() == 0}">
+                                                <td>未审核</td>
+                                                <td>
+                                                    <a href="/dormitory/admin/AdminCheckServlet?id=${admin.getId()}"><button class="btn btn-sm btn-primary"> 通过审核 </button></a>
+                                                </td>
+                                            </c:if>
                                         </tr>
                                     </c:forEach>
-                                <tr>
-                                    <td>1</td>
-                                    <td>admin</td>
-                                    <td>胡华聘</td>
-                                    <td>研究生公寓南楼</td>
-                                    <td>已通过</td>
-                                    <td>
-                                        <button class="btn btn-sm btn-primary"> 通过审核 </button>
-                                    </td>
-                                </tr>
                                 </tbody>
                             </table>
                         </div>
