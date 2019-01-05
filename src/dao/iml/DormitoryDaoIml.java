@@ -25,11 +25,11 @@ public class DormitoryDaoIml implements DormitoryDao {
     }
 
     @Override
-    public String getElec_name(int id) {
+    public Dormitory find(int id) {
         try{
             QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
-            String sql = "select elec_name from dormitory where id=?";
-            return (String) runner.query(sql, id, new ScalarHandler());
+            String sql = "select * from dormitory where id=?";
+            return (Dormitory) runner.query(sql, id, new BeanHandler(Dormitory.class));
         } catch(Exception e){
             throw new RuntimeException(e);
         }

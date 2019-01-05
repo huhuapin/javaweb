@@ -93,4 +93,16 @@ public class UserDaoIml implements UserDao {
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public List<User> getRoommate(User user) {
+        try {
+            QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
+            String sql = "select * from user where dormitory_id = ? and room = ?";
+            Object params[] = {user.getDormitory_id(),user.getRoom()};
+            return (List<User>) runner.query(sql,params,new BeanListHandler(User.class));
+        }catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

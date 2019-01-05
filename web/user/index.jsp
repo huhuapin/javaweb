@@ -31,52 +31,31 @@
                 </div>
             </div>
             <div class="message-content">
+                <c:forEach items="${messages}" var="message">
                 <div class="layui-card">
                     <div class="layui-card-header">
-                        <img src="../statics/images/user.jpg" alt="" class="layui-nav-img">
-                        姜新宇
+                        <c:choose>
+                            <c:when test="${message.getUser().image}"><img src="/dormitory/${user.image}" alt="" class="layui-nav-img"></c:when>
+                            <c:otherwise><img src="../statics/images/user.jpg" alt="" class="layui-nav-img"></c:otherwise>
+                        </c:choose>
+                        ${message.getUser().nickname}
                     </div>
                     <div class="layui-card-body">
-                        卡片式面板面板通常用于非白色背景色的主体内
-                        <p>今天又是元气满满的一天呦</p>
-                        <div>2019，你好</div>
-                        从而映衬出边框投影
+                        ${message.content}
                     </div>
                     <div class="card-footer">
                         <div class="card-footer-left">
-                            2019-01-01 20:00:00
+                            ${message.created_at}
                         </div>
                         <div class="card-footer-right">
                             <button class="layui-btn layui-btn-radius btn-praise layui-btn-primary">
                                 <i class="layui-icon layui-icon-praise"></i>
-                                <span>122</span>
+                                <span>${message.praise}</span>
                             </button>
                         </div>
                     </div>
                 </div>
-                <div class="layui-card">
-                    <div class="layui-card-header">
-                        <img src="../statics/images/user.jpg" alt="" class="layui-nav-img">
-                        姜新宇
-                    </div>
-                    <div class="layui-card-body">
-                        卡片式面板面板通常用于非白色背景色的主体内
-                        <p>今天又是元气满满的一天呦</p>
-                        <div>2019，你好</div>
-                        从而映衬出边框投影
-                    </div>
-                    <div class="card-footer">
-                        <div class="card-footer-left">
-                            2019-01-01 20:00:00
-                        </div>
-                        <div class="card-footer-right">
-                            <button class="layui-btn layui-btn-radius layui-btn-primary btn-praise">
-                                <i class="layui-icon layui-icon-praise "></i>
-                                <span>123</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
+                </c:forEach>
             </div>
             <div class="layui-table-page">
                 <div>

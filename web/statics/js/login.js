@@ -100,26 +100,11 @@ $('input:radio').click(function () {
     }
 })
 
-$('#email').blur(function(){
-    var v = this.value;
-    var reg = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$/;
-    if(reg.test(v)){
-        yanzheng[3] = true;
-        $('#email').next().text("");
-        $('#email').parent().addClass("has-success");
-        $('#email').parent().removeClass("has-error")
-    }else{
-        yanzheng[3] = false;
-        $('#email').next().text("邮箱格式不正确！");
-        $('#email').parent().addClass("has-error");
-        $('#email').parent().removeClass("has-success")
-    }
-});
 $('#register').children('form').submit(function(){
     var inp = $(this).find('input');
     console.log(inp.length);
     for(var i=0;i<inp.length;i++){
-        if(i<=3){
+        if(i<3){
             if(!yanzheng[i]){
                 var inputname = $(inp[i]).parent().prev().text();
                 alert(inputname+" 不符合规则");

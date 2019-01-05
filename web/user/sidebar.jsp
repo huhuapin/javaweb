@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: hasee
@@ -21,21 +22,13 @@
                 </tr>
                 </thead>
                 <tbody>
+                <c:forEach items="${roommates}" var="roommate">
                 <tr>
-                    <td>计科1604</td>
-                    <td>胡华聘</td>
-                    <td>墨染堇年</td>
+                    <td>${roommate._class}</td>
+                    <td>${roommate.name}</td>
+                    <td>${roommate.nickname}</td>
                 </tr>
-                <tr>
-                    <td>计科1602</td>
-                    <td>李皓伟</td>
-                    <td>冰凉凉绿绿</td>
-                </tr>
-                <tr>
-                    <td>电科本1605</td>
-                    <td>董骁</td>
-                    <td>人间喜剧</td>
-                </tr>
+                </c:forEach>
                 </tbody>
             </table>
         </div>
@@ -45,14 +38,14 @@
             <h2>宿舍楼公告</h2>
         </div>
         <div class="layui-card-body">
-            这里是公告这里是公告这里是公告这里是公告这里是公告这里是公告这里是公告这里是公告这里是公告这里是公告这里是公告这里是公告这里是公告这里是公告这里是公告这里是公告这里是公告这里是公告这里是公告这里是公告这里是公告这里是公告这里是公告这里是公告这里是公告这里是公告这里是公告这里是公告这里是公告这里是公告这里是公告这里是公告这里是公告这里是公告
+            ${firstNotice.content}
         </div>
         <div class="card-footer">
             <div class="card-footer-left">
-                2019-01-01 20:00:00
+                ${firstNotice.created_at}
             </div>
             <div class="card-footer-right">
-                <a href="">查看历史公告 >></a>
+                <a href="/dormitory/user/notice">查看历史公告 >></a>
             </div>
         </div>
     </div>

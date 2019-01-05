@@ -1,8 +1,10 @@
 package web;
 
 import dao.iml.AdminDaoIml;
+import dao.iml.DormitoryDaoIml;
 import dao.iml.UserDaoIml;
 import domain.Admin;
+import domain.Dormitory;
 import domain.User;
 
 import javax.servlet.ServletException;
@@ -20,16 +22,17 @@ public class SignServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setCharacterEncoding("UTF-8");
-        response.setContentType("text/html;charset=utf-8");
+        request.setCharacterEncoding("UTF-8");
         PrintWriter printWriter = response.getWriter();
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String password_cofirmation = request.getParameter("password_confirmation");
         String name = request.getParameter("name");
+//        System.out.println(name);
         String dormitory_id = request.getParameter("dormitory");
         printWriter.println(request.getParameter("admin"));
         if (!password.equals(password_cofirmation)) {
-            printWriter.println("<script>alert('用户名密码错误');hostory.go(-1);</script>");
+            printWriter.println("<script>alert('两次密码输入不一致');hostory.go(-1);</script>");
             return;
         }
         if (request.getParameter("admin").equals("1")) {
@@ -44,7 +47,7 @@ public class SignServlet extends HttpServlet {
             response.sendRedirect("/dormitory/login");
         }else {
             String _class = request.getParameter("class");
-            String nickname = request.getParameter("name");
+            String nickname = request.getParameter("nickname");
             String room = request.getParameter("room");
             User user  = new User();
             user.setUsername(username);
@@ -65,7 +68,11 @@ public class SignServlet extends HttpServlet {
             throws ServletException, IOException {
         doPost(request, response);
         response.setCharacterEncoding("UTF-8");
-        response.setContentType("text/html;charset=utf-8");
+        request.setCharacterEncoding("UTF-8");
+        DormitoryDaoIml dormitoryDaoIml = new DormitoryDaoIml();
+        List<Dormitory> dormitories = dormitoryDaoIml.getAll();
+        request.setAttribute("dormitories",dormitories);
+        request.getRequestDispatcher("/login.jsp").forward(request,response);
     }
 
 }

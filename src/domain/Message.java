@@ -1,5 +1,7 @@
 package domain;
 
+import dao.iml.UserDaoIml;
+
 import java.sql.Timestamp;
 
 public class Message {
@@ -57,5 +59,10 @@ public class Message {
 
     public void setCreated_at(Timestamp created_at) {
         this.created_at = created_at;
+    }
+
+    public User getUser() {
+        UserDaoIml userDaoIml = new UserDaoIml();
+        return userDaoIml.find(this.id);
     }
 }

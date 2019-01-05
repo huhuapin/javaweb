@@ -63,7 +63,8 @@ public class LoginServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        doPost(request, response);
+        SignServlet signServlet = new SignServlet();
+        signServlet.doGet(request,response);
     }
 
 }
