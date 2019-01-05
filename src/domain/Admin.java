@@ -1,5 +1,8 @@
 package domain;
 
+import dao.DormitoryDao;
+import dao.iml.DormitoryDaoIml;
+
 public class Admin {
 
     private int id;
@@ -56,4 +59,10 @@ public class Admin {
     public void setStatus(int status) {
         this.status = status;
     }
+
+    public String getDescription() {
+        DormitoryDao dormitoryDao = new DormitoryDaoIml();
+        return dormitoryDao.find(dormitory_id).getDescription();
+    }
+
 }

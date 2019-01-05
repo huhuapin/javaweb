@@ -2,17 +2,16 @@ package web.admin;
 
 import dao.AdminDao;
 import dao.iml.AdminDaoIml;
-import domain.Admin;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.*;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.*;
 
-@WebServlet(name = "AdminInfoServlet", urlPatterns = "/admin/admin_list")
-public class AdminInfoServlet extends HttpServlet {
+@WebServlet(name = "AdminCheckServlet", urlPatterns = "/admin/admincheck")
+public class AdminCheckServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
@@ -20,11 +19,9 @@ public class AdminInfoServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        int id = (int) request.getAttribute("id");
         AdminDao adminDao = new AdminDaoIml();
-        List<Admin> list = new ArrayList<>();
-        list = adminDao.getAll();
-        request.setAttribute("adminList", list);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/admin_list.jsp");
-        dispatcher.forward(request, response);
+        adminDao.status(id);
+        response.sendRedirect("/dormitory/admin/admin_list");
     }
 }
