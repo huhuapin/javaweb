@@ -17,7 +17,7 @@ public class AdminDaoIml implements AdminDao {
     public void add(Admin admin) {
         try{
             QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
-            String sql = "insert into admin(username,password,name,dormitory_id,user_id) values(?,?,?,?,?)";
+            String sql = "insert into admin(username,password,name,dormitory_id,status) values(?,?,?,?,?)";
             Object params[] = {admin.getUsername(),admin.getPassword(),admin.getName(),admin.getDormitory_id(),admin.getStatus()};
             runner.update(sql, params);
         } catch(Exception e){
