@@ -46,8 +46,8 @@
                                         <td>${user.get_class()}</td>
                                         <td>${user.getRoom()}</td>
                                         <td>
-                                            <a href="/dormitory/admin/user_edit.jsp"><button class="btn btn-sm btn-primary"> 编辑 </button></a>
-                                            <a href="/dormitory/admin/DelStudentServlet?id=${user.getId()}"></a> <button data-toggle="button" class="btn btn-sm btn-warning"> 删除 </button></a>
+                                            <a href="/dormitory/admin/showinfo?id=${user.getId()}&username=${user.getUsername()}&name=${user.getName()}&_class=${user.get_class()}&room=${user.getRoom()}"><button class="btn btn-sm btn-primary"> 编辑 </button></a>
+                                            <a href="/dormitory/admin/userlist?id=${user.getId()}"><button  class="btn btn-sm btn-warning"> 删除 </button></a>
                                         </td>
                                     </tr>
                                 </c:forEach>

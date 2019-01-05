@@ -40,7 +40,7 @@
                                             <label for="name" class="control-label">姓名</label>
                                         </div>
                                         <div class="col-md-6">
-                                                <input type="text" placeholder="请输入姓名" class="form-control" id="name">
+                                                <input type="text" placeholder="请输入姓名" class="form-control" disabled id="name">
                                         </div>
                                     </div>
                                     <div class="form-group">

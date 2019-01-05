@@ -50,7 +50,7 @@
                                             <c:if test="${admin.getStatus() == 0}">
                                                 <td>未审核</td>
                                                 <td>
-                                                    <a href="/dormitory/admin/AdminCheckServlet?id=${admin.getId()}"><button class="btn btn-sm btn-primary"> 通过审核 </button></a>
+                                                    <a href="/dormitory/admin/admincheck?id=${admin.getId()}"><button class="btn btn-sm btn-primary"> 通过审核 </button></a>
                                                 </td>
                                             </c:if>
                                         </tr>

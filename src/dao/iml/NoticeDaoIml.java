@@ -41,7 +41,7 @@ public class NoticeDaoIml implements NoticeDao {
     public void delete(int id) {
         try{
             QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
-            String sql = "delete notice where id=?";
+            String sql = "delete from notice where id=?";
             runner.update(sql, id);
         } catch(Exception e){
             throw new RuntimeException(e);

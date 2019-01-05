@@ -41,7 +41,7 @@ public class UserDaoIml implements UserDao {
     public void delete(int id) {
         try{
             QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
-            String sql = "delete user where id=?;";
+            String sql = "delete from user where id=?;";
             runner.update(sql, id);
         } catch(Exception e){
             throw new RuntimeException(e);
