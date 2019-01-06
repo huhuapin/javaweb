@@ -42,7 +42,7 @@ public class LoginServlet extends HttpServlet {
                         session.setAttribute("user", admin);
                         response.sendRedirect("/dormitory/admin/index");
                     }else{
-                        printWriter.println("<script>alert('请等待其他管理员的审核');hostory.go(-1);</script>");
+                        printWriter.println("<script>alert('请等待其他管理员的审核');location.href='/dormitory/login';</script>");
                     }
                 }
             }else {

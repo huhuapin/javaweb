@@ -30,12 +30,12 @@ public class DeleteMessageServlet extends HttpServlet {
             Message message = messageDao.find(id);
             if (message!=null && message.getUser_id() == user.getId()) {
                 messageDao.delete(id);
-                printWriter.println("删除成功");
+                printWriter.println("<script>location.href='/dormitory/user/index';</script>");
             }else {
-                printWriter.println("删除失败！您没有该权限或留言已删除");
+                printWriter.println("<script>alert('删除失败！您没有该权限或留言已删除');location.href='/dormitory/user/index';</script>");
             }
         }else{
-            printWriter.println("删除失败！，参数错误");
+            printWriter.println("<script>alert('删除失败！，参数错误');location.href='/dormitory/user/index';</script>");
         }
     }
 }

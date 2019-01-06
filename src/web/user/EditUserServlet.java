@@ -22,7 +22,7 @@ public class EditUserServlet extends HttpServlet {
         String image = request.getParameter("image");
         PrintWriter printWriter = response.getWriter();
         if (nickname == null) {
-            printWriter.println("昵称不能为空");
+            printWriter.println("<script>alert('昵称不能为空');location.href='/dormitory/user/user';</script>");
         }
         user.setNickname(nickname);
         if (image!=null) {
@@ -31,7 +31,7 @@ public class EditUserServlet extends HttpServlet {
         UserDao userDao = new UserDaoIml();
         userDao.update(user);
         request.getSession().setAttribute("user",user);
-        printWriter.println("修改成功！");
+        printWriter.println("<script>location.href='/dormitory/user/index';</script>");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
