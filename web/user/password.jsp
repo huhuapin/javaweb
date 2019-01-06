@@ -1,18 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: hasee
-  Date: 2019/1/3
-  Time: 15:36
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%--
-  Created by IntelliJ IDEA.
-  User: hasee
-  Date: 2019/1/2
-  Time: 8:22
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -25,7 +10,7 @@
 </head>
 <body>
 <%--头部导航栏--%>
-<jsp:include page="header.jsp"/>
+<jsp:include page="layout/header.jsp"/>
 
 <%--主体内容--%>
 <div class="layui-container">
@@ -58,7 +43,7 @@
                 </div>
             </form>
         </div>
-        <jsp:include page="sidebar.jsp"/>
+        <jsp:include page="layout/sidebar.jsp"/>
     </div>
 </div>
 

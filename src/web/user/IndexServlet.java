@@ -45,7 +45,7 @@ public class IndexServlet extends HttpServlet {
         Notice firstNotice = (Notice) session.getAttribute("firstNotice");
         if (firstNotice == null ){
             NoticeDaoIml noticeDaoIml = new NoticeDaoIml();
-            firstNotice = noticeDaoIml.getFirst();
+            firstNotice = noticeDaoIml.getFirst(dormitory.getId());
             session.setAttribute("firstNotice",firstNotice);
         }
         MessageDao messageDao = new MessageDaoIml();

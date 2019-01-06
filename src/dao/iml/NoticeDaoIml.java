@@ -82,11 +82,11 @@ public class NoticeDaoIml implements NoticeDao {
         }
     }
     @Override
-    public Notice getFirst() {
+    public Notice getFirst(int dormitory_id) {
         try{
             QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
-            String sql = "select * from notice order by created_at desc limit 1";
-            return (Notice) runner.query(sql, new BeanHandler(Notice.class));
+            String sql = "select * from notice where dormitory_id = ? order by created_at desc limit 1";
+            return (Notice) runner.query(sql,dormitory_id, new BeanHandler(Notice.class));
         } catch(Exception e){
             throw new RuntimeException(e);
         }

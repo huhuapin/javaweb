@@ -4,6 +4,7 @@ import com.mysql.cj.xdevapi.JsonArray;
 import dao.MessageDao;
 import dao.iml.MessageDaoIml;
 import domain.Message;
+import net.sf.json.JSONObject;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,15 +22,15 @@ public class MessagePraiseServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("utf-8");
         request.setCharacterEncoding("UTF-8");
-        Map<String,String> map = new HashMap<String, String>();
-        if (request.getAttribute("id") == null) {
+        Map<String,String> map = new HashMap<>();
+        if (request.getParameter("id") == null) {
             map.put("code","-1");
             map.put("message","参数无效");
             map.put("status","PARAM_ERR");
         }else {
-            int id = (int)request.getAttribute("id");
+            int id = Integer.parseInt(request.getParameter("id"));
             MessageDao messageDao = new MessageDaoIml();
             Message message = messageDao.find(id);
             if (message == null) {
@@ -43,7 +44,7 @@ public class MessagePraiseServlet extends HttpServlet {
                 map.put("status","OK");
             }
         }
-
-        response.getWriter().println();
+        JSONObject jsonObject = JSONObject.fromObject(map);
+        response.getWriter().println(jsonObject);
     }
 }

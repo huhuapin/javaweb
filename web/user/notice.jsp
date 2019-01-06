@@ -7,6 +7,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!Doctype html>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -18,7 +19,7 @@
 </head>
 <body>
 <%--头部导航栏--%>
-<jsp:include page="header.jsp"/>
+<jsp:include page="layout/header.jsp"/>
 
 <%--主体内容--%>
 <div class="layui-container">
@@ -66,62 +67,9 @@
             </div>
         </div>
     </div>
-    <jsp:include page="sidebar.jsp"/>
+    <jsp:include page="layout/sidebar.jsp"/>
 </div>
 </div>
-
-
-<script src="./statics/layui.js"></script>
-<script>
-    //注意：导航 依赖 element 模块，否则无法进行功能性操作
-    layui.use('element', function(){
-        var element = layui.element;
-
-        //…
-    });
-    layui.use('carousel', function(){
-        var carousel = layui.carousel;
-        //建造实例
-        carousel.render({
-            elem: '#test1'
-            ,width: '100%' //设置容器宽度
-            ,arrow: 'always' //始终显示箭头
-            //,anim: 'updown' //切换动画方式
-        });
-    });
-    layui.use(['jquery', 'layer'], function(){
-        var $ = layui.$ //重点处
-            ,layer = layui.layer;
-        $('.btn-praise').click(function (e) {
-            var flag = $(this).context.classList[5] == "layui-btn-disabled";
-            if (flag)
-            {
-                return;
-            }
-            //发送ajax请求
-            $(this).find('span').text(function (i,old) {
-                return Number(old) + 1;
-            });
-            $(this).addClass("praise-active layui-btn-disabled");
-        })
-        //屏幕宽度太小时，将导航栏高度变为原来两倍
-        function mobileNav() {
-            var nav = $("#nav").children();
-            var sum = 0;
-            for(var i = 0;i<nav.length;i++) {
-                sum += nav[i].clientWidth;
-            }
-            var width = sum + 30;
-            if (width>$(window).width()) {
-                $('.layui-header').css("height","120px");
-            } else {
-                $('.layui-header').css("height","60px")
-            }
-        }
-        mobileNav();
-        $(window).resize(mobileNav)
-    });
-
-</script>
+<jsp:include page="layout/script.jsp"/>
 </body>
 </html>

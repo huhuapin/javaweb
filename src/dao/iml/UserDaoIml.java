@@ -29,7 +29,7 @@ public class UserDaoIml implements UserDao {
     public void update(User user) {
         try{
             QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
-            String sql = "update user set password=?,,nickname=?,image=?,_class=?,dormitory_id=?,room=? where id=?;";
+            String sql = "update user set password=?,nickname=?,image=?,_class=?,dormitory_id=?,room=? where id=?;";
             Object params[] = {user.getPassword(),user.getNickname(),user.getImage(),user.get_class(),user.getDormitory_id(),user.getRoom(),user.getId()};
             runner.update(sql, params);
         } catch(Exception e){

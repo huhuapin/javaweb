@@ -42,7 +42,7 @@
         </div>
         <div class="card-footer">
             <div class="card-footer-left">
-                ${firstNotice.created_at}
+                <span class="date">${firstNotice.created_at}</span>
             </div>
             <div class="card-footer-right">
                 <a href="/dormitory/user/notice">查看历史公告 >></a>

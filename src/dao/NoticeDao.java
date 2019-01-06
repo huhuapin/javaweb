@@ -12,5 +12,5 @@ public interface NoticeDao {
     public Notice find(int id);         //根据公告id找到一条公告
     public List<Notice> findAll(int dormitory_id); //根据宿舍楼号返回所有公告
     public long sum(int dormitory_id);   //根据宿舍楼号返回所有公告数量
-    public Notice getFirst();    //获取最新公告
+    public Notice getFirst(int dormitory_id);    //获取最新公告
 }

@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!Doctype html>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -18,7 +19,7 @@
 <body>
 <%--头部导航栏--%>
 
-<jsp:include page="header.jsp"/>
+<jsp:include page="layout/header.jsp"/>
 <%--主体内容--%>
 <div class="layui-container">
     <div class="layui-row main">
@@ -70,10 +71,10 @@
 
 
         <%--侧边栏--%>
-        <jsp:include page="sidebar.jsp"/>
+        <jsp:include page="layout/sidebar.jsp"/>
         </div>
 </div>
-<script src="./statics/layui.js"></script>
+<jsp:include page="layout/script.jsp"/>
 <%--模板标签--%>
 <script id="grade" type="text/html">
     {{#
@@ -111,12 +112,6 @@
         </tr>
 </script>
 <script>
-    //注意：导航 依赖 element 模块，否则无法进行功能性操作
-    layui.use('element', function(){
-        var element = layui.element;
-
-        //…
-    });
     function Message(message) {
         //弹出一个公告层
         layer.open({
@@ -135,11 +130,11 @@
     layui.use(['jquery', 'layer','laytpl'], function(){
         var laytpl = layui.laytpl;
         var $ = layui.$ //重点处
-            layer = layui.layer;
+        var layer = layui.layer;
         $(function () {
             var index1 = layer.load(2, {time: 3*1000});
             //查询卫生成绩
-            var url = "https://api.youthol.cn/api/service/hygiene?dormitory=Y1H&room=531";
+            var url = "https://api.youthol.cn/api/service/hygiene?dormitory=${dormitory.name}&room=${user.room}";
             $.ajax({
                 url : url,
                 type: 'GET',
@@ -154,15 +149,15 @@
                     Message(message);
                 }
             })//查询卫生结束
-
+            //查询电费
             var url = "https://api.youthol.cn/api/service/elec";
             $.ajax({
                 url: url,
                 type: 'GET',
                 data: {
-                    school: '1',
-                    dormitory: '研女#',
-                    room: '531',
+                    school: '${dormitory.school}',
+                    dormitory: '${dormitory.elec_name}',
+                    room: '${user.room}',
                 },
                 success: function (data,status) {
                     console.log(data);
@@ -181,26 +176,9 @@
                 complete: function () {
                     layer.close(index1);
                 }
-            })
-        })
-        //屏幕宽度太小时，将导航栏高度变为原来两倍
-        function mobileNav() {
-            var nav = $("#nav").children();
-            var sum = 0;
-            for(var i = 0;i<nav.length;i++) {
-                sum += nav[i].clientWidth;
-            }
-            var width = sum + 30;
-            if (width>$(window).width()) {
-                $('.layui-header').css("height","120px");
-            } else {
-                $('.layui-header').css("height","60px")
-            }
-        }
-        mobileNav();
-        $(window).resize(mobileNav)
+            });//查询电费结束
+        });
     });
-
 </script>
 </body>
 </html>

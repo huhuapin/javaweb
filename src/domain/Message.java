@@ -63,6 +63,6 @@ public class Message {
 
     public User getUser() {
         UserDaoIml userDaoIml = new UserDaoIml();
-        return userDaoIml.find(this.id);
+        return userDaoIml.find(this.user_id);
     }
 }

@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!Doctype html>
 <html>
 <head>
     <meta charset="UTF-8">
@@ -17,7 +18,7 @@
     <link rel="stylesheet" href="./statics/css/main.css">
 </head>
 <body>
-<jsp:include page="header.jsp" />
+<jsp:include page="layout/header.jsp" />
 <div class="layui-container">
     <div class="layui-row main">
         <div class="layui-col-md8 message">
@@ -35,20 +36,21 @@
                 <div class="layui-card">
                     <div class="layui-card-header">
                         <c:choose>
-                            <c:when test="${message.getUser().image}"><img src="/dormitory/${user.image}" alt="" class="layui-nav-img"></c:when>
+                            <c:when test="${message.getUser().image}"><img src="${message.getUser.image}" alt="" class="layui-nav-img"></c:when>
                             <c:otherwise><img src="../statics/images/user.jpg" alt="" class="layui-nav-img"></c:otherwise>
                         </c:choose>
                         ${message.getUser().nickname}
+                        <c:if test="${message.user_id == user.id}">
+                        <a href="/dormitory/user/message/delete?id=${message.id}" class="close"><i class="layui-icon layui-icon-close"></i></a>
+                        </c:if>
                     </div>
                     <div class="layui-card-body">
                         ${message.content}
                     </div>
                     <div class="card-footer">
-                        <div class="card-footer-left">
-                            ${message.created_at}
-                        </div>
+                        <div class="card-footer-left"><span class="date">${message.created_at}</span></div>
                         <div class="card-footer-right">
-                            <button class="layui-btn layui-btn-radius btn-praise layui-btn-primary">
+                            <button class="layui-btn layui-btn-radius btn-praise layui-btn-primary" data-id = "${message.id}">
                                 <i class="layui-icon layui-icon-praise"></i>
                                 <span>${message.praise}</span>
                             </button>
@@ -92,17 +94,14 @@
                 </div>
             </div>
             <div class="new-message">
-                <form action="" class="layui-form">
+                <form action="/dormitory/user/message/create" class="layui-form" method="POST">
                     <div class="layui-row">
                         <div class="layui-col-md1">
                             <img class="layui-nav-img" src="../statics/images/user.jpg" alt="">
                         </div>
                         <div class="layui-col-md11">
-                            <textarea name="message" class="layui-textarea">
-
-                            </textarea>
+                            <textarea name="content" class="layui-textarea" id="message"></textarea>
                             <div class="writer">
-                                <button class="layui-btn layui-btn-primary">取消</button>
                                 <button type="submit" class="layui-btn">留言</button>
                             </div>
                         </div>
@@ -111,17 +110,11 @@
             </div>
         </div>
 
-        <jsp:include page="sidebar.jsp"/>
+        <jsp:include page="layout/sidebar.jsp"/>
     </div>
 </div>
-<script src="../statics/layui.js"></script>
+<jsp:include page="layout/script.jsp"/>
 <script>
-    //注意：导航 依赖 element 模块，否则无法进行功能性操作
-    layui.use('element', function(){
-        var element = layui.element;
-
-        //…
-    });
     layui.use('carousel', function(){
         var carousel = layui.carousel;
         //建造实例
@@ -142,29 +135,36 @@
                 return;
             }
             //发送ajax请求
-            $(this).find('span').text(function (i,old) {
-                return Number(old) + 1;
-            });
-            $(this).addClass("praise-active layui-btn-disabled");
-        })
-        //屏幕宽度太小时，将导航栏高度变为原来两倍
-        function mobileNav() {
-            var nav = $("#nav").children();
-            var sum = 0;
-            for(var i = 0;i<nav.length;i++) {
-                sum += nav[i].clientWidth;
-            }
-            var width = sum + 30;
-            if (width>$(window).width()) {
-                $('.layui-header').css("height","120px");
-            } else {
-                $('.layui-header').css("height","60px")
-            }
-        }
-        mobileNav();
-        $(window).resize(mobileNav)
+            var id = $(this).data("id");
+            var url = "${pageContext.request.contextPath}" + "/user/praise?id=" + id;
+            var that = $(this);
+            $.get(url,function (data) {
+                var data = JSON.parse(data);
+                if (data.code == 0){
+                    console.log(data);
+                    //code为0  点赞成功
+                    that.addClass("praise-active layui-btn-disabled");
+                    that.find('span').text(function (i,old) {
+                        return Number(old) + 1;
+                    })
+                    layer.msg(data.message,{icon:1});
+                }else {
+                    console.log(data);
+                    layer.errorMessage(data.message)
+                    layer.msg(data.message,{icon:2});
+                }
+            })
+        });
     });
-
+    layui.use('layedit',function () {
+        var layedit = layui.layedit;
+        layedit.build('message',{
+            uploadImage : {
+                url:"${pageContext.request.contextPath}/images/upload",
+                type: "POST",
+            }
+        }); //建立编辑器
+    });
 </script>
 </body>
 </html>

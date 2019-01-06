@@ -1,9 +1,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <html>
 <head>
-    <title>Title</title>
+    <title>用户登录</title>
 
     <link rel="stylesheet" href="./statics/css/bootstrap.css">
     <link rel="stylesheet" href="./statics/css/font-awesome.min.css">
@@ -111,9 +112,9 @@
 </div>
 <script src="./statics/js/jquery-3.3.1.min.js"></script>
 <script src="./statics/js/bootstrap.js"></script>
-<script src="./statics/js/three.min.js"></script>
-<script src="./statics/js/three-waves.min.js"></script>
-<script src="./statics/js/canvas-nest.js"></script>
+<%--<script src="./statics/js/three.min.js"></script>--%>
+<%--<script src="./statics/js/three-waves.min.js"></script>--%>
+<%--<script src="./statics/js/canvas-nest.js"></script>--%>
 <script src="./statics/js/login.js"></script>
 </body>
 </html>

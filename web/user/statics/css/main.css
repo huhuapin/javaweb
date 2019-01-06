@@ -40,9 +40,6 @@
     border-radius: 2px 2px 0 0;
     font-size: 14px;
 }
-.layui-card-body {
-    text-indent: 2em;
-}
 .card-footer-left {
     float: left;
 }
@@ -110,8 +107,18 @@
     margin-bottom: 30px;
 }
 .password {
-    margin-top: 140px;
+    margin-top: 40px;
+    padding: 0 30px;
 }
 .layui-form-label span {
     color: red;
+}
+.close {
+    float: right;
+}
+img{
+    max-width: 100%;
+}
+.layui-upload-img {
+    width: 48px;
 }
