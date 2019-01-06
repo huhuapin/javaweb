@@ -14,6 +14,12 @@
 <link href="css/font-awesome.css" rel="stylesheet" media="screen">
 <link href="style/style.css" rel="stylesheet">
 <link href="style/dashboard.css" rel="stylesheet">
+<style>
+    .pagination > li {
+        display: inline;
+        line-height: 34px;
+    }
+</style>
 </head>
 <body>
 <div class="container">

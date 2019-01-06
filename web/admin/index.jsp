@@ -11,7 +11,7 @@
 <head>
     <title>Thin Admin</title>
     <jsp:include page="header.jsp"/>
-
+    ${}
     <div class="page-content">
         <div class="content container">
             <div class="row">
