@@ -38,7 +38,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                    <c:forEach var="admin" items="${adminList}">
+                                    <c:forEach var="admin" items="${list_page}">
                                         <tr>
                                             <td>${admin.getId()}</td>
                                             <td>${admin.getUsername()}</td>
@@ -50,13 +50,30 @@
                                             <c:if test="${admin.getStatus() == 0}">
                                                 <td>未审核</td>
                                                 <td>
-                                                    <a href="/dormitory/admin/AdminCheckServlet?id=${admin.getId()}"><button class="btn btn-sm btn-primary"> 通过审核 </button></a>
+                                                    <a href="/dormitory/admin/admincheck?id=${admin.getId()}"><button class="btn btn-sm btn-primary"> 通过审核 </button></a>
                                                 </td>
                                             </c:if>
                                         </tr>
                                     </c:forEach>
                                 </tbody>
                             </table>
+                            <div class="clearfix">
+                                <ul class="pagination no-margin">
+                                    <%--
+                                    <li class="disabled"><a href="#">Prev</a></li>
+                                    <li class="active"><a href="#">1</a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#">Next</a></li>
+                                    --%>
+                                    <li><a href="/dormitory/admin/admin_list?page=${page.index-1}">&lt;&lt; 首页 </a></li>
+                                    <li><a href="/dormitory/admin/admin_list?page=${page.page-1 }"> &lt; 上一页 </a></li>
+                                    <li >第${page.page+1}页/共${page.pageNum}页</li>
+                                    <li><a href="/dormitory/admin/admiin_list?page=${page.page+1}">下一页 &gt;</a></li>
+                                    <li><a href="/dormitory/admin/admin_list?page=${page.pageNum-1}">末页 &gt;&gt;</a></li>
+
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>

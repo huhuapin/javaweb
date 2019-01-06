@@ -26,7 +26,7 @@
                 <ul class="dropdown-menu">
                     <li><a href="user_profile.html"><i class="icon-user"></i> 修改密码</a></li>
                     <li class="divider"></li>
-                    <li><a href="login.html"><i class="icon-key"></i> 登出</a></li>
+                    <li><a href="/dormitory/logout"><i class="icon-key"></i> 登出</a></li>
                 </ul>
             </li>
         </ul>
@@ -37,7 +37,7 @@
         <div id="side-nav">
             <ul id="nav">
                 <li class="current"> <a href="/dormitory/admin/index"> <i class="icon-desktop"></i> 首页</a></li>
-                <li> <a href="/dormitory/admin/notice——.jsp"> <i class="icon-edit"></i> 公告管理 </a></li>
+                <li> <a href="/dormitory/admin/notice_list"> <i class="icon-edit"></i> 公告管理 </a></li>
                 <li> <a href="#"> <i class="icon-table"></i> 人员管理 <i class="arrow icon-angle-left"></i></a>
                     <ul class="sub-menu">
                         <li> <a href="/dormitory/admin/user_list"> <i class="icon-angle-right"></i> 学生信息修改 </a> </li>

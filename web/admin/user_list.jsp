@@ -38,7 +38,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                                <c:forEach var="user" items="${userList}">
+                                <c:forEach var="user" items="${list_page}">
                                     <tr>
                                         <td>${user.getId()}</td>
                                         <td>${user.getUsername()}</td>
@@ -46,13 +46,30 @@
                                         <td>${user.get_class()}</td>
                                         <td>${user.getRoom()}</td>
                                         <td>
-                                            <a href="/dormitory/admin/user_edit.jsp"><button class="btn btn-sm btn-primary"> 编辑 </button></a>
-                                            <a href="/dormitory/admin/DelStudentServlet?id=${user.getId()}"></a> <button data-toggle="button" class="btn btn-sm btn-warning"> 删除 </button></a>
+                                            <a href="/dormitory/admin/showinfo?id=${user.getId()}&username=${user.getUsername()}&name=${user.getName()}&_class=${user.get_class()}&dormitory_id=${user.getDormitory_id()}&room=${user.getRoom()}"><button class="btn btn-sm btn-primary"> 编辑 </button></a>
+                                            <a href="/dormitory/admin/userlist?id=${user.getId()}"><button  class="btn btn-sm btn-warning"> 删除 </button></a>
                                         </td>
                                     </tr>
                                 </c:forEach>
                             </tbody>
                         </table>
+                        <div class="clearfix">
+                            <ul class="pagination no-margin">
+                                <%--
+                                <li class="disabled"><a href="#">Prev</a></li>
+                                <li class="active"><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">Next</a></li>
+                                --%>
+                                <li><a href="/dormitory/admin/user_list?page=${page.index-1}">&lt;&lt; 首页 </a></li>
+                                <li><a href="/dormitory/admin/user_list?page=${page.page-1 }"> &lt; 上一页 </a></li>
+                                <li >第${page.page+1}页/共${page.pageNum}页</li>
+                                <li><a href="/dormitory/admin/user_list?page=${page.page+1}">下一页 &gt;</a></li>
+                                <li><a href="/dormitory/admin/user_list?page=${page.pageNum-1}">末页 &gt;&gt;</a></li>
+
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>

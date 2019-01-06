@@ -24,7 +24,8 @@
                             <h3> Notice</h3>
                         </div>
                         <div class="widget-content">
-                            <form data-validate="parsley" novalidate method="post" class="form-horizontal">
+                            <form data-validate="parsley" novalidate method="post" action="/dormitory/admin/modifynotice" class="form-horizontal">
+                                <input type="hidden" value="${id}" name="id">
                                 <fieldset>
                                     <div class="control-group">
                                         <div class="col-md-3">
@@ -32,7 +33,7 @@
                                         </div>
                                         <div class="col-md-9">
                                             <div class="form-group">
-                                                <input type="text" required class="form-control parsley-validated" name="title" id="title">
+                                                <input type="text" value="${title}" required class="form-control parsley-validated" name="title" id="title">
                                             </div>
                                         </div>
                                     </div>
@@ -45,7 +46,7 @@
                                                 <textarea class="form-control" name="text" rows="10" id="text" style="display: none;"></textarea>
                                                 <input type="hidden" name="_wysihtml5_mode" value="1">
                                                 <div class="form-group">
-                                                    <textarea id="text" rows="10" name="text" class="form-control"></textarea>
+                                                    <textarea id="content" rows="10" name="content" class="form-control">${content}</textarea>
                                                 </div>
                                             </div>
                                         </div>
@@ -54,7 +55,7 @@
                                 </fieldset>
                                 <div class="form-actions">
                                     <button class="btn btn-success" type="submit">Submit</button>
-                                    <button class="btn btn-default" type="button">Cancel</button>
+                                    <a href="/dormitory/admin/notice_list"><button class="btn btn-default" type="button">Cancel</button></a>
                                 </div>
                             </form>
                         </div>

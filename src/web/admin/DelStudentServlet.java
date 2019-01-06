@@ -12,6 +12,7 @@ import java.io.IOException;
 
 @WebServlet(name = "DelStudentServlet", urlPatterns = "/admin/userlist")
 public class DelStudentServlet extends HttpServlet {
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
@@ -19,9 +20,13 @@ public class DelStudentServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int id = (int) request.getAttribute("id");
-        UserDao userDao = new UserDaoIml();
-        userDao.delete(id);
-        response.sendRedirect("/dormitory/admin/user_list");
+        String temp = request.getParameter("id");
+        if(temp != null) {
+            int id = Integer.parseInt(temp);
+            UserDao userDao = new UserDaoIml();
+            userDao.delete(id);
+            response.sendRedirect("/dormitory/admin/user_list");
+        }
+
     }
 }

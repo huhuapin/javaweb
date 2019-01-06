@@ -1,21 +1,20 @@
 package web.admin;
 
-import dao.UserDao;
-import dao.iml.UserDaoIml;
+import dao.NoticeDao;
+import dao.iml.NoticeDaoIml;
 import domain.Admin;
+import domain.Notice;
 import domain.Page;
-import domain.User;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
-@WebServlet(name = "StudentInfoServlet", urlPatterns = "/admin/user_list")
-public class StudentInfoServlet extends HttpServlet {
+@WebServlet(name = "NoticeServlet", urlPatterns = "/admin/notice_list")
+public class NoticeServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
@@ -25,9 +24,9 @@ public class StudentInfoServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         Admin admin = (Admin) session.getAttribute("user");
-        UserDao userDao = new UserDaoIml();
-        List<User> list = new ArrayList<>();
-        list = userDao.findAll(admin.getDormitory_id());
+        List<Notice> list = new ArrayList<>();
+        NoticeDao noticeDao = new NoticeDaoIml();
+        list = noticeDao.findAll(admin.getDormitory_id());
         //页面当前页
         int curPage = 0;
         //jsp传过来的当前页
@@ -45,12 +44,12 @@ public class StudentInfoServlet extends HttpServlet {
             }
         }
         page.setPage(curPage);
-        List<User> list_page = new ArrayList<>();
+        List<Notice> list_page = new ArrayList<>();
         for(int i = page.getPage() * page.getPageSize(); i <(page.getPage()+1)*page.getPageSize() && i < list.size(); i++)
             list_page.add(list.get(i));
         request.setAttribute("page", page);
         request.setAttribute("list_page", list_page);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/user_list.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/notice_list.jsp");
         dispatcher.forward(request, response);
     }
 }

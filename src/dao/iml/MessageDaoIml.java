@@ -28,7 +28,7 @@ public class MessageDaoIml implements MessageDao {
     public void delete(int id) {
         try{
             QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
-            String sql = "delete message where id=?";
+            String sql = "delete from message where id=?";
             runner.update(sql, id);
         } catch(Exception e){
             throw new RuntimeException(e);

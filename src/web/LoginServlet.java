@@ -32,9 +32,8 @@ public class LoginServlet extends HttpServlet {
                 AdminDao adminDao = new AdminDaoIml();
                 Admin admin = adminDao.find(username,password);
                 if (admin == null) {
-
                     //登录失败
-                    printWriter.println("<script>alert('用户名密码错误');hostory.go(-1);</script>");
+                    printWriter.println("<script>alert('用户名密码错误');location.href='/dormitory/login';</script>");
                 }else {
                     //查找到管理员
                     if (admin.getStatus() == 1) {

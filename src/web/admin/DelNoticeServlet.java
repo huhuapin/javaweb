@@ -1,7 +1,7 @@
 package web.admin;
 
-import dao.AdminDao;
-import dao.iml.AdminDaoIml;
+import dao.NoticeDao;
+import dao.iml.NoticeDaoIml;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "AdminCheckServlet", urlPatterns = "/admin/admincheck")
-public class AdminCheckServlet extends HttpServlet {
+@WebServlet(name = "DelNoticeServlet", urlPatterns = "/admin/delnotice")
+public class DelNoticeServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
@@ -20,12 +20,11 @@ public class AdminCheckServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String temp = request.getParameter("id");
-        if (temp != null) {
+        if(temp != null) {
             int id = Integer.parseInt(temp);
-            AdminDao adminDao = new AdminDaoIml();
-            adminDao.status(id);
-            response.sendRedirect("/dormitory/admin/admin_list");
+            NoticeDao noticeDao = new NoticeDaoIml();
+            noticeDao.delete(id);
+            response.sendRedirect("/dormitory/admin/notice_list");
         }
-
     }
 }
