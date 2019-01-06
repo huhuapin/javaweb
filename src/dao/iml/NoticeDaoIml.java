@@ -30,7 +30,7 @@ public class NoticeDaoIml implements NoticeDao {
         try{
             QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
             String sql = "update notice set title=?,content=?,created_at=? where id=?";
-            Object params[] = {notice.getTitle(),notice.getContent(),notice.getId()};
+            Object params[] = {notice.getTitle(),notice.getContent(),notice.getCreated_at(),notice.getId()};
             runner.update(sql, params);
         } catch(Exception e){
             throw new RuntimeException(e);

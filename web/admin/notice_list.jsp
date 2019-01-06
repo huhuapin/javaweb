@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -36,46 +37,34 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>这是一个标题</td>
-                                    <td> 2018-12-13 </td>
-                                    <td class="hidden-xs"><button class="btn btn-sm btn-primary"> 编辑 </button>
-                                        <button data-toggle="button" class="btn btn-sm btn-warning"> 删除 </button></td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>这是一个标题</td>
-                                    <td> 2018-12-13 </td>
-                                    <td class="hidden-xs"><button class="btn btn-sm btn-primary"> 编辑 </button>
-                                        <button data-toggle="button" class="btn btn-sm btn-warning"> 删除 </button></td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>这是一个标题</td>
-                                    <td> 2018-12-13 </td>
-                                    <td class="hidden-xs"><button class="btn btn-sm btn-primary"> 编辑 </button>
-                                        <button data-toggle="button" class="btn btn-sm btn-warning"> 删除 </button></td>
-                                </tr>
-                                <tr>
-                                    <td>1</td>
-                                    <td>这是一个标题</td>
-                                    <td> 2018-12-13 </td>
-                                    <td class="hidden-xs">
-                                        <button class="btn btn-sm btn-primary"> 编辑 </button>
-                                        <button data-toggle="button" class="btn btn-sm btn-warning"> 删除 </button>
-                                    </td>
-                                </tr>
-
+                                    <c:forEach var="notice" items="${list_page}">
+                                        <tr>
+                                            <td>${notice.getId()}</td>
+                                            <td>${notice.getTitle()}</td>
+                                            <td>${notice.getCreated_at()}</td>
+                                            <td>
+                                                <a href="/dormitory/admin/shownotice?id=${notice.getId()}"><button class="btn btn-sm btn-primary"> 编辑 </button></a>
+                                                <a href="/dormitory/admin/delnotice?id=${notice.getId()}"><button  class="btn btn-sm btn-warning"> 删除 </button></a>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
                                 </tbody>
                             </table>
                             <div class="clearfix">
                                 <ul class="pagination no-margin">
+                                    <%--
                                     <li class="disabled"><a href="#">Prev</a></li>
                                     <li class="active"><a href="#">1</a></li>
                                     <li><a href="#">2</a></li>
                                     <li><a href="#">3</a></li>
                                     <li><a href="#">Next</a></li>
+                                    --%>
+                                        <li><a href="/dormitory/admin/notice_list?page=${page.index-1}">&lt;&lt; 首页 </a></li>
+                                        <li><a href="/dormitory/admin/notice_list?page=${page.page-1 }"> &lt; 上一页 </a></li>
+                                        <li >第${page.page+1}页/共${page.pageNum}页</li>
+                                        <li><a href="/dormitory/admin/notice_list?page=${page.page+1}">下一页 &gt;</a></li>
+                                        <li><a href="/dormitory/admin/notice_list?page=${page.pageNum-1}">末页 &gt;&gt;</a></li>
+
                                 </ul>
                             </div>
                         </div>
