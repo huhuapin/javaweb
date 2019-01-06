@@ -24,7 +24,7 @@
         <ul class="nav navbar-nav navbar-right  hidden-xs">
             <li class="dropdown user  hidden-xs"> <a data-toggle="dropdown" class="dropdown-toggle" href="#"> <i class="icon-male"></i> <span class="username">${sessionScope.user.getName()}</span> <i class="icon-caret-down small"></i> </a>
                 <ul class="dropdown-menu">
-                    <li><a href="user_profile.html"><i class="icon-user"></i> 修改密码</a></li>
+                    <li><a href= "#" data-target="#myModal" data-toggle="modal"><i class="icon-user"></i> 修改密码</a></li>
                     <li class="divider"></li>
                     <li><a href="/dormitory/logout"><i class="icon-key"></i> 登出</a></li>
                 </ul>
