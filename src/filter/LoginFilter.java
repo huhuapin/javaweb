@@ -20,7 +20,7 @@ public class LoginFilter implements Filter{
         HttpSession session = request.getSession();
         if(session.getAttribute("admin") == null) {
             //未登录，跳转到登录页面
-            response.sendRedirect("/dormitory/login.jsp");
+            response.sendRedirect("/dormitory/login");
         }else {
             //已经登陆,继续此次请求
             filterChain.doFilter(request, response);

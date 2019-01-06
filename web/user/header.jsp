@@ -15,7 +15,7 @@
                 <dl class="layui-nav-child">
                     <dd><a href="/dormitory/user/password.jsp">修改密码</a></dd>
                     <dd><a href="/dormitory/user/user.jsp">个人信息</a></dd>
-                    <dd><a href="">登出</a></dd>
+                    <dd><a href="/dormitory/logout">登出</a></dd>
                 </dl>
             </li>
         </ul>
