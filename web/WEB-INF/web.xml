@@ -4,7 +4,7 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
 
-    <!-- 配置过滤器-->
+    <!-- session过滤器-->
     <filter>
         <filter-name>AdminFilter</filter-name>
         <filter-class>filter.AdminFilter</filter-class>
@@ -13,9 +13,10 @@
         <filter-name>UserFilter</filter-name>
         <filter-class>filter.UserFilter</filter-class>
     </filter>
+    <!-- SQL注入过滤器-->
     <filter>
-        <filter-name>HtmlFilter</filter-name>
-        <filter-class>filter.HtmlFilter</filter-class>
+        <filter-name>SqlFilter</filter-name>
+        <filter-class>filter.SqlFilter</filter-class>
     </filter>
 
     <filter-mapping>
@@ -27,7 +28,7 @@
         <url-pattern>/admin/*</url-pattern>
     </filter-mapping>
     <filter-mapping>
-        <filter-name>HtmlFilter</filter-name>
+        <filter-name>SqlFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
