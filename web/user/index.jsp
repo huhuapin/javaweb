@@ -64,7 +64,7 @@
                     <div class="layui-box layui-laypage layui-laypage-default">
                         <%--上一页--%>
                         <c:if test="${page.page >0}">
-                        <a href="/dormitory/user/index?page=${page-1}" class="layui-laypage-prev layui-disabled">
+                        <a href="/dormitory/user/index?page=${page.page-1}" class="layui-laypage-prev layui-disabled">
                             <i class="layui-icon"></i>
                         </a>
                         </c:if>
