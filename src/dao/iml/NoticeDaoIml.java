@@ -63,7 +63,7 @@ public class NoticeDaoIml implements NoticeDao {
     public List<Notice> findAll(int dormitory_id) {
         try{
             QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
-            String sql = "select * from notice where dormitory_id=?";
+            String sql = "select * from notice where dormitory_id=? order by created_at desc";
             List<Notice> list = (List<Notice>) runner.query(sql, dormitory_id, new BeanListHandler(Notice.class));
             return list;
         } catch(Exception e){

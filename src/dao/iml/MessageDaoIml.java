@@ -61,7 +61,7 @@ public class MessageDaoIml implements MessageDao {
     public List<Message> findAll(int dormitory_id) {
         try{
             QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
-            String sql = "select * from message where dormitory_id=?";
+            String sql = "select * from message where dormitory_id=? order by created_at desc";
             List<Message> list = (List<Message>) runner.query(sql, dormitory_id, new BeanListHandler(Message.class));
             return list;
         } catch(Exception e){

@@ -122,3 +122,13 @@ img{
 .layui-upload-img {
     width: 48px;
 }
+.layui-layedit {
+    background: #fff;
+}
+.layui-disabled {
+    cursor: not-allowed!important;
+    pointer-events: none;
+}
+.layui-table-page > div {
+    padding: 7px 0;
+}

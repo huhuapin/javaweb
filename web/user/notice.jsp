@@ -37,32 +37,20 @@
             <div>
                 <div class="layui-box layui-laypage layui-laypage-default">
                     <%--上一页--%>
-                    <a href="/dormitory/user/notice?page=${page.page-1}" class="layui-laypage-prev layui-disabled">
+                        <a href="/dormitory/user/notice?page=${page.page-1}" class="layui-laypage-prev <c:if test="${page.page <=0}"> layui-disabled  </c:if>">
                         <i class="layui-icon"></i>
-                    </a>
-                        <%--当前页--%>
-                        <span class="layui-laypage-curr">
-                            <em class="layui-laypage-em"></em>
-                            <em>1</em>
-                        </span>
-
-
-                    <a href="">2</a>
-                    <a href="">3</a>
-                    <a href="" class="layui-laypage-last" >100</a>
-                    <%--下一页--%>
-                    <a href="" class="layui-laypage-next">
-                        <i class="layui-icon"></i>
-                    </a>
-                    <%--跳转到第X页--%>
-                    <span class="layui-laypage-skip">
-                                到第
-                                <select name="" id="">
-                                    <option value="1">1</option>
-                                </select>
-                                页
-                                <button type="button" class="layui-laypage-btn">确定</button>
+                        </a>
+                    <%--当前页--%>
+                    <span class="layui-laypage-curr">
+                                <em class="layui-laypage-em">
+                                </em>
+                                <em>${page.page+1}</em>
                             </span>
+
+                    <%--下一页--%>
+                        <a href="/dormitory/user/index?page=${page.page+1}" class="layui-laypage-next <c:if test="${page.page+1 >= page.pageNum}"> layui-disabled  </c:if>">
+                        <i class="layui-icon"></i>
+                        </a>
                 </div>
             </div>
         </div>

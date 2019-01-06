@@ -63,44 +63,30 @@
                 <div>
                     <div class="layui-box layui-laypage layui-laypage-default">
                         <%--上一页--%>
-                        <c:if test="${page.page >0}">
-                        <a href="/dormitory/user/index?page=${page.page-1}" class="layui-laypage-prev layui-disabled">
+
+                        <a href="/dormitory/user/index?page=${page.page-1}" class="layui-laypage-prev <c:if test="${page.page <=0}"> layui-disabled  </c:if>">
                             <i class="layui-icon"></i>
                         </a>
-                        </c:if>
                             <%--当前页--%>
                             <span class="layui-laypage-curr">
                                 <em class="layui-laypage-em">
                                 </em>
                                 <em>${page.page+1}</em>
                             </span>
-
-                            <%--<a href="" class="layui-laypage-last" >100</a>--%>
                             <%--下一页--%>
-                            <c:if test="${page.page+1 < page.pageNum}">
-                            <a href="/dormitory/user/index?page=${page.page+1}" class="layui-laypage-next">
+                            <a href="/dormitory/user/index?page=${page.page+1}" class="layui-laypage-next <c:if test="${page.page+1 >= page.pageNum}"> layui-disabled  </c:if>">
                                 <i class="layui-icon"></i>
                             </a>
-                            </c:if>
-                            <%--跳转到第X页--%>
-                            <%--<span class="layui-laypage-skip">--%>
-                                <%--到第--%>
-                                <%--<select name="" id="">--%>
-                                    <%--<option value="1">1</option>--%>
-                                <%--</select>--%>
-                                <%--页--%>
-                                <%--<button type="button" class="layui-laypage-btn" >确定</button>--%>
-                            <%--</span>--%>
                     </div>
                 </div>
             </div>
             <div class="new-message">
                 <form action="/dormitory/user/message/create" class="layui-form" method="POST">
                     <div class="layui-row">
-                        <div class="layui-col-md1">
+                        <div class="layui-col-md1 layui-col-sm1 layui-hide-xs">
                             <img class="layui-nav-img" src="../statics/images/user.jpg" alt="">
                         </div>
-                        <div class="layui-col-md11">
+                        <div class="layui-col-md11 layui-col-sm11">
                             <textarea name="content" class="layui-textarea" id="message"></textarea>
                             <div class="writer">
                                 <button type="submit" class="layui-btn">留言</button>
