@@ -5,7 +5,7 @@ import javax.servlet.http.*;
 import java.io.IOException;
 
 
-public class LoginFilter implements Filter{
+public class AdminFilter implements Filter{
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -18,7 +18,7 @@ public class LoginFilter implements Filter{
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         HttpSession session = request.getSession();
-        if(session.getAttribute("admin") == null) {
+        if(session.getAttribute("admin") == null || (int)session.getAttribute("admin")!=1) {
             //未登录，跳转到登录页面
             response.sendRedirect("/dormitory/login");
         }else {

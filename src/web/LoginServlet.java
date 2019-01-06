@@ -22,41 +22,32 @@ public class LoginServlet extends HttpServlet {
         response.setContentType("text/html;charset=utf-8");
         PrintWriter printWriter = response.getWriter();
         HttpSession session = request.getSession();
-        if (session.getAttribute("admin") == null) {
-            //查询数据库并设置session
-            String username = request.getParameter("username");
-            String password = request.getParameter("password");
-            UserDao userDao = new UserDaoIml();
-            User user = userDao.find(username,password);
-            if (user == null) {
-                AdminDao adminDao = new AdminDaoIml();
-                Admin admin = adminDao.find(username,password);
-                if (admin == null) {
-                    //登录失败
-                    printWriter.println("<script>alert('用户名密码错误');location.href='/dormitory/login';</script>");
-                }else {
-                    //查找到管理员
-                    if (admin.getStatus() == 1) {
-                        //通过审核
-                        session.setAttribute("admin", 1);
-                        session.setAttribute("user", admin);
-                        response.sendRedirect("/dormitory/admin/index");
-                    }else{
-                        printWriter.println("<script>alert('请等待其他管理员的审核');location.href='/dormitory/login';</script>");
-                    }
-                }
+        //查询数据库并设置session
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        UserDao userDao = new UserDaoIml();
+        User user = userDao.find(username,password);
+        if (user == null) {
+            AdminDao adminDao = new AdminDaoIml();
+            Admin admin = adminDao.find(username,password);
+            if (admin == null) {
+                //登录失败
+                printWriter.println("<script>alert('用户名密码错误');location.href='/dormitory/login';</script>");
             }else {
-                session.setAttribute("admin",0);
-                session.setAttribute("user",user);
-                response.sendRedirect("/dormitory/user/index");
+                //查找到管理员
+                if (admin.getStatus() == 1) {
+                    //通过审核
+                    session.setAttribute("admin", 1);
+                    session.setAttribute("user", admin);
+                    response.sendRedirect("/dormitory/admin/index");
+                }else{
+                    printWriter.println("<script>alert('请等待其他管理员的审核');location.href='/dormitory/login';</script>");
+                }
             }
         }else {
-            int admin = (int) (session.getAttribute("admin"));
-            if (admin == 1) {
-                response.sendRedirect("/dormitory/admin/index");
-            }else {
-                response.sendRedirect("/dormitory/user/index");
-            }
+            session.setAttribute("admin",0);
+            session.setAttribute("user",user);
+            response.sendRedirect("/dormitory/user/index");
         }
     }
 

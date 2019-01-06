@@ -6,8 +6,12 @@
 
     <!-- 配置过滤器-->
     <filter>
-        <filter-name>LoginFilter</filter-name>
-        <filter-class>filter.LoginFilter</filter-class>
+        <filter-name>AdminFilter</filter-name>
+        <filter-class>filter.AdminFilter</filter-class>
+    </filter>
+    <filter>
+        <filter-name>UserFilter</filter-name>
+        <filter-class>filter.UserFilter</filter-class>
     </filter>
     <filter>
         <filter-name>HtmlFilter</filter-name>
@@ -15,12 +19,12 @@
     </filter>
 
     <filter-mapping>
-        <filter-name>LoginFilter</filter-name>
-        <url-pattern>/admin/*</url-pattern>
+        <filter-name>UserFilter</filter-name>
+        <url-pattern>/user/*</url-pattern>
     </filter-mapping>
     <filter-mapping>
-        <filter-name>LoginFilter</filter-name>
-        <url-pattern>/user/*</url-pattern>
+        <filter-name>AdminFilter</filter-name>
+        <url-pattern>/admin/*</url-pattern>
     </filter-mapping>
     <filter-mapping>
         <filter-name>HtmlFilter</filter-name>

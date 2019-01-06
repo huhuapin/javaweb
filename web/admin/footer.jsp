@@ -102,7 +102,7 @@
     });
 </script>
 <script src="js/bootstrap.min.js"></script>
-<%--<script type="text/javascript" src="js/smooth-sliding-menu.js"></script>--%>
+<script type="text/javascript" src="js/smooth-sliding-menu.js"></script>
 <%--<script class="include" type="text/javascript" src="javascript/jquery191.min.js"></script>--%>
 <%--<script class="include" type="text/javascript" src="javascript/jquery.jqplot.min.js"></script>--%>
 <%--<script src="assets/sparkline/jquery.sparkline.js" type="text/javascript"></script>--%>
@@ -112,8 +112,8 @@
 <%--<script src="js/select-checkbox.js"></script>--%>
 <%--<script src="js/to-do-admin.js"></script>--%>
 
-<%--<script src="assets/switcher/switcher.js"></script>--%>
-<%--<script src="assets/switcher/moderziner.custom.js"></script>--%>
+<script src="assets/switcher/switcher.js"></script>
+<script src="assets/switcher/moderziner.custom.js"></script>
 <link href="assets/switcher/switcher.css" rel="stylesheet">
 <link href="assets/switcher/switcher-defult.css" rel="stylesheet">
 

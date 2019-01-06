@@ -32,11 +32,11 @@
                 </div>
             </div>
             <div class="message-content">
-                <c:forEach items="${messages}" var="list_page">
+                <c:forEach items="${list_page}" var="message">
                 <div class="layui-card">
                     <div class="layui-card-header">
                         <c:choose>
-                            <c:when test="${message.getUser().image}"><img src="${message.getUser.image}" alt="" class="layui-nav-img"></c:when>
+                            <c:when test="${message.getUser().image}"><img src="${message.getUser().image}" alt="" class="layui-nav-img"></c:when>
                             <c:otherwise><img src="../statics/images/user.jpg" alt="" class="layui-nav-img"></c:otherwise>
                         </c:choose>
                         ${message.getUser().nickname}
@@ -63,33 +63,34 @@
                 <div>
                     <div class="layui-box layui-laypage layui-laypage-default">
                         <%--上一页--%>
-                        <a href="" class="layui-laypage-prev layui-disabled">
+                        <c:if test="${page.page >0}">
+                        <a href="/dormitory/user/index?page=${page-1}" class="layui-laypage-prev layui-disabled">
                             <i class="layui-icon"></i>
                         </a>
+                        </c:if>
                             <%--当前页--%>
                             <span class="layui-laypage-curr">
                                 <em class="layui-laypage-em">
                                 </em>
-                                <em>1</em>
+                                <em>${page.page+1}</em>
                             </span>
 
-
-                            <a href="">2</a>
-                            <a href="">3</a>
-                            <a href="" class="layui-laypage-last" >100</a>
+                            <%--<a href="" class="layui-laypage-last" >100</a>--%>
                             <%--下一页--%>
-                            <a href="" class="layui-laypage-next">
+                            <c:if test="${page.page+1 < page.pageNum}">
+                            <a href="/dormitory/user/index?page=${page.page+1}" class="layui-laypage-next">
                                 <i class="layui-icon"></i>
                             </a>
+                            </c:if>
                             <%--跳转到第X页--%>
-                            <span class="layui-laypage-skip">
-                                到第
-                                <select name="" id="">
-                                    <option value="1">1</option>
-                                </select>
-                                页
-                                <button type="button" class="layui-laypage-btn">确定</button>
-                            </span>
+                            <%--<span class="layui-laypage-skip">--%>
+                                <%--到第--%>
+                                <%--<select name="" id="">--%>
+                                    <%--<option value="1">1</option>--%>
+                                <%--</select>--%>
+                                <%--页--%>
+                                <%--<button type="button" class="layui-laypage-btn" >确定</button>--%>
+                            <%--</span>--%>
                     </div>
                 </div>
             </div>
