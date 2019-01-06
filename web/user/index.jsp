@@ -32,7 +32,7 @@
                 </div>
             </div>
             <div class="message-content">
-                <c:forEach items="${messages}" var="message">
+                <c:forEach items="${messages}" var="list_page">
                 <div class="layui-card">
                     <div class="layui-card-header">
                         <c:choose>

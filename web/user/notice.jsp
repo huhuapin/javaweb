@@ -26,7 +26,7 @@
     <div class="layui-row main">
     <div class="layui-col-md8 notice">
         <div class="layui-collapse " lay-accordion>
-            <c:forEach items="${notices}" var="notice">
+            <c:forEach items="${list_page}" var="notice">
             <div class="layui-colla-item">
                 <h2 class="layui-colla-title">${notice.title} <span class="title-time">${notice.created_at}</span></h2>
                 <div class="layui-colla-content">${notice.content}</div>
@@ -37,7 +37,7 @@
             <div>
                 <div class="layui-box layui-laypage layui-laypage-default">
                     <%--上一页--%>
-                    <a href="" class="layui-laypage-prev layui-disabled">
+                    <a href="/dormitory/user/notice?page=${page.page-1}" class="layui-laypage-prev layui-disabled">
                         <i class="layui-icon"></i>
                     </a>
                         <%--当前页--%>

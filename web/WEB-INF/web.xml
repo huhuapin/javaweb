@@ -4,10 +4,14 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
 
-    <!-- 配置登陆过滤器-->
+    <!-- 配置过滤器-->
     <filter>
         <filter-name>LoginFilter</filter-name>
         <filter-class>filter.LoginFilter</filter-class>
+    </filter>
+    <filter>
+        <filter-name>HtmlFilter</filter-name>
+        <filter-class>filter.HtmlFilter</filter-class>
     </filter>
 
     <filter-mapping>
@@ -17,6 +21,10 @@
     <filter-mapping>
         <filter-name>LoginFilter</filter-name>
         <url-pattern>/user/*</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>HtmlFilter</filter-name>
+        <url-pattern>/*</url-pattern>
     </filter-mapping>
 
 </web-app>
