@@ -67,8 +67,9 @@ public class IndexServlet extends HttpServlet {
         }
         page.setPage(curPage);
         List<Message> list_page = new ArrayList<>();
-        for(int i = page.getPage() * page.getPageSize(); i <(page.getPage()+1)*page.getPageSize() && i < messages.size(); i++)
+        for(int i = page.getPage() * page.getPageSize(); i <(page.getPage()+1)*page.getPageSize() && i < messages.size(); i++) {
             list_page.add(messages.get(i));
+        }
         request.setAttribute("page", page);
         request.setAttribute("list_page", list_page);
         request.getRequestDispatcher("/user/index.jsp").forward(request,response);

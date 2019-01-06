@@ -36,7 +36,7 @@
                 <div class="layui-card">
                     <div class="layui-card-header">
                         <c:choose>
-                            <c:when test="${message.getUser().image}"><img src="${message.getUser().image}" alt="" class="layui-nav-img"></c:when>
+                            <c:when test="${message.getUser().image!=null}"><img src="${message.getUser().image}" alt="" class="layui-nav-img"></c:when>
                             <c:otherwise><img src="../statics/images/user.jpg" alt="" class="layui-nav-img"></c:otherwise>
                         </c:choose>
                         ${message.getUser().nickname}

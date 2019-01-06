@@ -20,9 +20,9 @@ public class CreateMessageServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setCharacterEncoding("UTF-8");
         request.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset=utf-8");
         User user = (User) request.getSession().getAttribute("user");
         String content = request.getParameter("content");
-//        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH::mm::ss");
         Date currentTime = new Date();
         Timestamp timestamp = new Timestamp(currentTime.getTime());
         Message message = new Message();
@@ -33,7 +33,7 @@ public class CreateMessageServlet extends HttpServlet {
         message.setUser_id(user.getId());
         MessageDao messageDao = new MessageDaoIml();
         messageDao.add(message);
-        response.getWriter().println("<script>alert('添加成功！');location.href = '/dormitory/user/index';</script>");
+        response.getWriter().println("location.href = '/dormitory/user/index';</script>");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
