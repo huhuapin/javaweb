@@ -43,8 +43,6 @@
                                         </div>
                                         <div class="col-md-9">
                                             <div class="form-group">
-                                                <textarea class="form-control" name="text" rows="10" id="text" style="display: none;"></textarea>
-                                                <input type="hidden" name="_wysihtml5_mode" value="1">
                                                 <div class="form-group">
                                                     <textarea id="content" rows="10" name="content" class="form-control">${content}</textarea>
                                                 </div>

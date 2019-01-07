@@ -38,11 +38,10 @@
                                     </div>
                                     <div class="control-group">
                                         <div class="col-md-3">
-                                            <label class="control-label" for="text">Content</label>
+                                            <label class="control-label" for="text">Content <span class="required">*</span></label>
                                         </div>
                                         <div class="col-md-9">
                                             <div class="form-group">
-                                                <textarea class="form-control" name="text" rows="10" id="text" style="display: none;"></textarea>
                                                 <div class="form-group">
                                                     <textarea id="content" rows="10" name="content" class="form-control"></textarea>
                                                 </div>
