@@ -17,6 +17,9 @@
     .layui-header {
         height: 120px;
     }
+    .layui-nav {
+        padding: 0;
+    }
 }
 .layui-nav {
     float: left;
@@ -32,6 +35,9 @@
 }
 .main > div {
     padding: 30px 15px;
+}
+.layui-carousel {
+    margin-bottom: 20px;
 }
 .card-footer {
     position: relative;

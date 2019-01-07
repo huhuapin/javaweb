@@ -24,11 +24,8 @@
         <div class="layui-col-md8 message">
             <div class="layui-carousel" id="test1">
                 <div carousel-item>
-                    <div><img src="../statics/images/1.jpg" alt="" class="layui-nav-img"></div>
-                    <div><img src="../statics/images/2.jpg" alt="" class="layui-nav-img"></div>
-                    <div><img src="../statics/images/3.jpg" alt="" class="layui-nav-img"></div>
-                    <div><img src="../statics/images/4.jpg" alt="" class="layui-nav-img"></div>
-                    <div>条目5</div>
+                    <div><img src="/dormitory/user/statics/images/1.png" alt=""></div>
+                    <div><img src="/dormitory/user/statics/images/2.png" alt=""></div>
                 </div>
             </div>
             <div class="message-content">
@@ -112,12 +109,15 @@
             elem: '#test1'
             ,width: '100%' //设置容器宽度
             ,arrow: 'always' //始终显示箭头
+            ,height: '100%'
             //,anim: 'updown' //切换动画方式
         });
     });
     layui.use(['jquery', 'layer'], function(){
         var $ = layui.$ //重点处
             ,layer = layui.layer;
+        var bannerH = $('.layui-carousel img').height();
+        $('.layui-carousel').css('height',bannerH+'px');
         $('.btn-praise').click(function (e) {
             var flag = $(this).context.classList[5] == "layui-btn-disabled";
             if (flag)
