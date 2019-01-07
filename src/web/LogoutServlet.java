@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.Enumeration;
 
 @WebServlet(name = "LogoutServlet", urlPatterns = "/logout")
 public class LogoutServlet extends HttpServlet {
@@ -22,9 +23,10 @@ public class LogoutServlet extends HttpServlet {
             response.sendRedirect("/dormitory/login");
             return;
         }
-        session.removeAttribute("admin");
-        session.removeAttribute("user");
-        session.removeAttribute("dormitory");
+        Enumeration em = request.getSession().getAttributeNames();
+        while(em.hasMoreElements()){
+            request.getSession().removeAttribute(em.nextElement().toString());
+        }
         response.sendRedirect("/dormitory/login");
     }
 }

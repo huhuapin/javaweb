@@ -81,7 +81,7 @@
     $('#submit').click(function () {
         var old_password = $("#old_password").val();
         var new_password = $("#new_password").val();
-        var new_password_confirmation = $("#new_password").val();
+        var new_password_confirmation = $("#new_password_confirmation").val();
         var url = "${pageContext.request.contextPath}" + "/password";
         var obj = {
             old_password:old_password,

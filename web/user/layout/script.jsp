@@ -59,7 +59,7 @@
         $('#submit').click(function () {
         var old_password = $("input[name='old_password']").val();
         var new_password = $("input[name='new_password']").val();
-        var new_password_confirmation = $("input[name='new_password']").val();
+        var new_password_confirmation = $("input[name='new_password_confirmation']").val();
         var url = "${pageContext.request.contextPath}" + "/password";
         $.post(url, {
             'old_password':old_password,
@@ -96,7 +96,11 @@
         }
     }
     mobileNav();
-    $(window).resize(mobileNav);
+    $(window).resize(function() {
+        mobileNav();
+    var bannerH = $('.layui-this img').height();
+    $('.layui-carousel').css('height',bannerH+'px');
+    });
 
     });
     </script>
