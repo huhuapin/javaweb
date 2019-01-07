@@ -24,7 +24,7 @@
                             <h3> Notice</h3>
                         </div>
                         <div class="widget-content">
-                            <form data-validate="parsley" novalidate method="post" action="/dormitory/admin/notice/create" class="form-horizontal">
+                            <form data-validate="parsley" novalidate method="post" action="/dormitory/admin/notice_create" class="form-horizontal">
                                 <fieldset>
                                     <div class="control-group">
                                         <div class="col-md-3">
