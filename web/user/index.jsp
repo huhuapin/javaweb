@@ -84,7 +84,10 @@
                 <form action="/dormitory/user/message/create" class="layui-form" method="POST">
                     <div class="layui-row">
                         <div class="layui-col-md1 layui-col-sm1 layui-hide-xs">
-                            <img class="layui-nav-img" src="../statics/images/user.jpg" alt="">
+                            <c:choose>
+                                <c:when test="${user.image!=null}"><img src="${user.image}" alt="" class="layui-nav-img"></c:when>
+                                <c:otherwise><img src="../statics/images/user.jpg" alt="" class="layui-nav-img"></c:otherwise>
+                            </c:choose>
                         </div>
                         <div class="layui-col-md11 layui-col-sm11">
                             <textarea name="content" class="layui-textarea" id="message"></textarea>

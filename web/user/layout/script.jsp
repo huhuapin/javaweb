@@ -23,7 +23,7 @@
     <div class="layui-form-item">
     <label class="layui-form-label">确认密码<span>*</span></label>
     <div class="layui-input-block">
-    <input type="text" name="new_password_confirmation" required  lay-verify="required" placeholder="请再次输入" autocomplete="off" class="layui-input"   >
+    <input type="password" name="new_password_confirmation" required  lay-verify="required" placeholder="请再次输入" autocomplete="off" class="layui-input"   >
     </div>
     </div>
     <div class="layui-form-item">

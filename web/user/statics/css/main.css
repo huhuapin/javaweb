@@ -121,6 +121,7 @@ img{
 }
 .layui-upload-img {
     width: 48px;
+    height: 48px;
 }
 .layui-layedit {
     background: #fff;
