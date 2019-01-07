@@ -70,7 +70,20 @@ public class UserDaoIml implements UserDao {
             throw new RuntimeException(e);
         }
     }
-
+    @Override
+    public boolean existUser(String username) {
+        try {
+            QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
+            String sql = "select * from user where username=?";
+            User user = (User) runner.query(sql,username,new BeanHandler<>(User.class));
+            if (user == null) {
+                return false;
+            }
+            return true;
+        }catch (Exception e) {
+            throw  new RuntimeException(e);
+        }
+    }
     @Override
     public List<User> findAll(int dormitory_id) {
         try{

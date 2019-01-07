@@ -31,7 +31,14 @@ public class SignServlet extends HttpServlet {
         String dormitory_id = request.getParameter("dormitory");
         printWriter.println(request.getParameter("admin"));
         if (!password.equals(password_cofirmation)) {
-            printWriter.println("<script>alert('两次密码输入不一致');hostory.go(-1);</script>");
+            printWriter.println("<script>alert('两次密码输入不一致');location.href='/dormitory/sign';</script>");
+            return;
+        }
+
+        AdminDaoIml adminDaoIml = new AdminDaoIml();
+        UserDaoIml userDaoIml  = new UserDaoIml();
+        if (adminDaoIml.existAdmin(username) || userDaoIml.existUser(username)) {
+            printWriter.println("<script>alert('该用户已存在');location.href='/dormitory/sign';</script>");
             return;
         }
         if (request.getParameter("admin").equals("1")) {
@@ -41,7 +48,6 @@ public class SignServlet extends HttpServlet {
             admin.setDormitory_id(Integer.parseInt(dormitory_id));
             admin.setPassword(password);
             admin.setStatus(0);
-            AdminDaoIml adminDaoIml = new AdminDaoIml();
             adminDaoIml.add(admin);
             printWriter.println("<script>alert('注册成功，请等待管理员审核！');location.href='/dormitory/sign';</script>");
             response.sendRedirect("/dormitory/login");
@@ -57,7 +63,6 @@ public class SignServlet extends HttpServlet {
             user.set_class(_class);
             user.setDormitory_id(Integer.parseInt(dormitory_id));
             user.setRoom(Integer.parseInt(room));
-            UserDaoIml userDaoIml  = new UserDaoIml();
             userDaoIml.add(user);
             printWriter.println("<script>alert('注册成功，请登录！');location.href='/dormitory/login';</script>");
             response.sendRedirect("/dormitory/login");

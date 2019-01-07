@@ -23,6 +23,8 @@ public class LogoutServlet extends HttpServlet {
             return;
         }
         session.removeAttribute("admin");
+        session.removeAttribute("user");
+        session.removeAttribute("dormitory");
         response.sendRedirect("/dormitory/login");
     }
 }

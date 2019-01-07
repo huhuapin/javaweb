@@ -71,6 +71,20 @@ public class AdminDaoIml implements AdminDao {
     }
 
     @Override
+    public boolean existAdmin(String username) {
+        try {
+            QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
+            String sql = "select * from admin where username=?";
+            Admin admin = (Admin) runner.query(sql,username,new BeanHandler<>(Admin.class));
+            if (admin == null) {
+                return false;
+            }
+            return true;
+        }catch (Exception e) {
+            throw  new RuntimeException(e);
+        }
+    }
+    @Override
     public List<Admin> getAll() {
         try{
             QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());

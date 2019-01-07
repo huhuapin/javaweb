@@ -9,6 +9,7 @@ import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 @WebServlet(name = "ShowNoticeServlet", urlPatterns = "/admin/shownotice")
 public class ShowNoticeServlet extends HttpServlet {
@@ -19,9 +20,19 @@ public class ShowNoticeServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+
+        PrintWriter printWriter = response.getWriter();
+        if (request.getParameter("id") ==null ){
+            printWriter.println("<script>alert('您访问的公告不存在或已删除');location.href='/dormitory/admin/notice_list';</script>");
+            return;
+        }
         int id = Integer.parseInt(request.getParameter("id"));
         NoticeDao noticeDao = new NoticeDaoIml();
         Notice notice = noticeDao.find(id);
+        if (notice == null) {
+            printWriter.println("<script>alert('您访问的公告不存在或已删除');location.href='/dormitory/admin/notice_list';</script>");
+            return;
+        }
         request.setAttribute("id", notice.getId());
         request.setAttribute("title", notice.getTitle());
         request.setAttribute("content", notice.getContent());

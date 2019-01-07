@@ -23,7 +23,8 @@
             <div class="col-lg-12">
                 <div class="widget">
                     <div class="widget-header"> <i class="icon-table"></i>
-                        <h3>公告</h3>
+                        <h3>公告 </h3>
+                        <a href="/dormitory/admin/notice/create"><button  class="btn  btn-success"> 发布公告 </button></a>
                     </div>
                     <div class="widget-content">
                         <div class="body">
