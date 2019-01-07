@@ -50,7 +50,7 @@ public class SignServlet extends HttpServlet {
             admin.setStatus(0);
             adminDaoIml.add(admin);
             printWriter.println("<script>alert('注册成功，请等待管理员审核！');location.href='/dormitory/sign';</script>");
-            response.sendRedirect("/dormitory/login");
+            return;
         }else {
             String _class = request.getParameter("class");
             String nickname = request.getParameter("nickname");
@@ -65,7 +65,7 @@ public class SignServlet extends HttpServlet {
             user.setRoom(Integer.parseInt(room));
             userDaoIml.add(user);
             printWriter.println("<script>alert('注册成功，请登录！');location.href='/dormitory/login';</script>");
-            response.sendRedirect("/dormitory/login");
+            return;
         }
     }
 
