@@ -44,7 +44,7 @@
                             <a class="layui-btn" id="test1">上传头像</a>
                             <div class="layui-upload-list">
                                 <c:choose>
-                                    <c:when test="${user.image}">
+                                    <c:when test="${user.image != null}">
                                         <input type="hidden" name="image" class="layui-upload-file" value="${user.image}">
                                         <img class="layui-upload-img" id="demo1" src="${user.image}">
                                     </c:when>

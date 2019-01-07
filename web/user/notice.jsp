@@ -28,7 +28,7 @@
         <div class="layui-collapse " lay-accordion>
             <c:forEach items="${list_page}" var="notice">
             <div class="layui-colla-item">
-                <h2 class="layui-colla-title">${notice.title} <span class="title-time">${notice.created_at}</span></h2>
+                <h2 class="layui-colla-title">${notice.title} <span class="title-time date">${notice.created_at}</span></h2>
                 <div class="layui-colla-content">${notice.content}</div>
             </div>
             </c:forEach>
