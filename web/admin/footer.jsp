@@ -61,7 +61,7 @@
                     </fieldset>
                     <%--<div class="form-actions">--%>
                     <%--<button class="btn btn-success" type="submit">Submit</button>--%>
-                    <%--<a href="/dormitory/admin/notice_list"><button class="btn btn-default" type="button">Cancel</button></a>--%>
+                    <%--<a href="notice_list"><button class="btn btn-default" type="button">Cancel</button></a>--%>
                     <%--</div>--%>
                 </div>
             </div>
@@ -75,7 +75,7 @@
     <!-- /.modal-dialog -->
 </div>
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="/dormitory/admin/js/jquery.js"></script>
+<script src="js/jquery.js"></script>
 <%--<script src="js/jquery-3.3.1.min.js"></script>--%>
 <script>
     $('#submit').click(function () {
@@ -100,9 +100,13 @@
                 }
             });
     });
+    $('.date').each(function () {
+        var s = this.innerHTML;
+        this.innerHTML = s.trim().substring(0,s.length-2);
+    });
 </script>
-<script src="/admin/js/bootstrap.min.js"></script>
-<script type="/admin/text/javascript" src="js/smooth-sliding-menu.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/smooth-sliding-menu.js"></script>
 <%--<script class="include" type="text/javascript" src="javascript/jquery191.min.js"></script>--%>
 <%--<script class="include" type="text/javascript" src="javascript/jquery.jqplot.min.js"></script>--%>
 <%--<script src="assets/sparkline/jquery.sparkline.js" type="text/javascript"></script>--%>
@@ -112,21 +116,21 @@
 <%--<script src="js/select-checkbox.js"></script>--%>
 <%--<script src="js/to-do-admin.js"></script>--%>
 
-<script src="/dormitory/admin/switcher/switcher.js"></script>
-<script src="/dormitory/admin/switcher/moderziner.custom.js"></script>
-<link href="/dormitory/admin/switcher/switcher.css" rel="stylesheet">
-<link href="/dormitory/admin/switcher/switcher-defult.css" rel="stylesheet">
+<script src="assets/switcher/switcher.js"></script>
+<script src="assets/switcher/moderziner.custom.js"></script>
+<link href="assets/switcher/switcher.css" rel="stylesheet">
+<link href="assets/switcher/switcher-defult.css" rel="stylesheet">
 
-<link rel="alternate stylesheet" type="text/css" href="/dormitory/admin/switcher/a.css" title="a" media="all" />
-<link rel="alternate stylesheet" type="text/css" href="/dormitory/admin/switcher/b.css" title="b" media="all" />
-<link rel="alternate stylesheet" type="text/css" href="/dormitory/admin/switcher/c.css" title="c" media="all" />
-<link rel="alternate stylesheet" type="text/css" href="/dormitory/admin/switcher/d.css" title="d" media="all" />
-<link rel="alternate stylesheet" type="text/css" href="/dormitory/admin/switcher/e.css" title="e" media="all" />
-<link rel="alternate stylesheet" type="text/css" href="/dormitory/admin/switcher/f.css" title="f" media="all" />
-<link rel="alternate stylesheet" type="text/css" href="/dormitory/admin/switcher/g.css" title="g" media="all" />
-<link rel="alternate stylesheet" type="text/css" href="/dormitory/admin/switcher/h.css" title="h" media="all" />
-<link rel="alternate stylesheet" type="text/css" href="/dormitory/admin/switcher/i.css" title="i" media="all" />
-<link rel="alternate stylesheet" type="text/css" href="/dormitory/admin/switcher/j.css" title="j" media="all" />
+<link rel="alternate stylesheet" type="text/css" href="assets/switcher/a.css" title="a" media="all" />
+<link rel="alternate stylesheet" type="text/css" href="assets/switcher/b.css" title="b" media="all" />
+<link rel="alternate stylesheet" type="text/css" href="assets/switcher/c.css" title="c" media="all" />
+<link rel="alternate stylesheet" type="text/css" href="assets/switcher/d.css" title="d" media="all" />
+<link rel="alternate stylesheet" type="text/css" href="assets/switcher/e.css" title="e" media="all" />
+<link rel="alternate stylesheet" type="text/css" href="assets/switcher/f.css" title="f" media="all" />
+<link rel="alternate stylesheet" type="text/css" href="assets/switcher/g.css" title="g" media="all" />
+<link rel="alternate stylesheet" type="text/css" href="assets/switcher/h.css" title="h" media="all" />
+<link rel="alternate stylesheet" type="text/css" href="assets/switcher/i.css" title="i" media="all" />
+<link rel="alternate stylesheet" type="text/css" href="assets/switcher/j.css" title="j" media="all" />
 
 
 

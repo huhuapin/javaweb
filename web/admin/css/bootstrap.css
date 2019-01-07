@@ -1373,15 +1373,14 @@ th {
 	text-align: left;
 }
 
-.table {
-	width: 100%;
+.table {	width: 100%;
 	margin-bottom: 20px;
 }
+
 
 .table thead > tr > th, .table tbody > tr > th, .table tfoot > tr > th, .table thead > tr > td, .table tbody > tr > td, .table tfoot > tr > td {
 	padding: 8px;
 	line-height: 1.8;
-	vertical-align: top;
 	border-top:   1px solid rgba(255,255,255, 0.2);
 }
 
@@ -1442,7 +1441,7 @@ table td[class*="col-"], table th[class*="col-"] {
 
 .table > thead > tr > td.success, .table > tbody > tr > td.success, .table > tfoot > tr > td.success, .table > thead > tr > th.success, .table > tbody > tr > th.success, .table > tfoot > tr > th.success, .table > thead > tr.success > td, .table > tbody > tr.success > td, .table > tfoot > tr.success > td, .table > thead > tr.success > th, .table > tbody > tr.success > th, .table > tfoot > tr.success > th {
 	background-color:rgba(254, 182, 203, 0.15);
-	border-color: background-color:rgba(254, 182, 203, 0.5);
+	border-color:  rgba(254, 182, 203, 0.5);
 }
 
 .table-hover > tbody > tr > td.success:hover, .table-hover > tbody > tr > th.success:hover, .table-hover > tbody > tr.success:hover > td {

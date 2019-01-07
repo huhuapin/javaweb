@@ -15,14 +15,14 @@ import java.io.PrintWriter;
 import java.sql.Timestamp;
 import java.util.Date;
 
-@WebServlet(name = "CreateNoticeServlet",urlPatterns = "/admin/notice/create")
+@WebServlet(name = "CreateNoticeServlet",urlPatterns = "/admin/notice_create")
 public class CreateNoticeServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String title = request.getParameter("title");
         String content = request.getParameter("content");
         PrintWriter printWriter = response.getWriter();
         if (title ==null || content == null) {
-            printWriter.println("<script>alert('添加失败！内容必须全部填写！');location.href='/dormitory/admin/notice/create';</script>");
+            printWriter.println("<script>alert('添加失败！内容必须全部填写！');location.href='/dormitory/admin/notice_create';</script>");
         }
         Admin admin = (Admin)request.getSession().getAttribute("user");
         Notice notice  = new Notice();

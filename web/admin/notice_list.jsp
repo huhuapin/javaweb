@@ -24,7 +24,7 @@
                 <div class="widget">
                     <div class="widget-header"> <i class="icon-table"></i>
                         <h3>公告 </h3>
-                        <a href="/dormitory/admin/notice/create"><button  class="btn  btn-success"> 发布公告 </button></a>
+                        <a href="/dormitory/admin/notice_create"><button  class="btn  btn-success"> 发布公告 </button></a>
                     </div>
                     <div class="widget-content">
                         <div class="body">
@@ -42,7 +42,7 @@
                                         <tr>
                                             <td>${notice.getId()}</td>
                                             <td>${notice.getTitle()}</td>
-                                            <td>${notice.getCreated_at()}</td>
+                                            <td><span class="date">${notice.getCreated_at()}</span></td>
                                             <td>
                                                 <a href="/dormitory/admin/shownotice?id=${notice.getId()}"><button class="btn btn-sm btn-primary"> 编辑 </button></a>
                                                 <a href="/dormitory/admin/delnotice?id=${notice.getId()}"><button  class="btn btn-sm btn-warning"> 删除 </button></a>
