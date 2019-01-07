@@ -54,7 +54,7 @@ public class IndexServlet extends HttpServlet {
         //jsp传过来的当前页
         String strPage = request.getParameter("page");
         Page page = new Page();
-        page.setPageSize(10);
+        page.setPageSize(6);
         page.setCount(messages.size());
         int temp = page.getCount() / page.getPageSize();
         page.setPageNum(page.getCount() == temp * page.getPageSize() ? temp: temp + 1);

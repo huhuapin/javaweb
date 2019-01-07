@@ -24,10 +24,10 @@
         <div class="layui-col-md8 message">
             <div class="layui-carousel" id="test1">
                 <div carousel-item>
-                    <div>条目1</div>
-                    <div>条目2</div>
-                    <div>条目3</div>
-                    <div>条目4</div>
+                    <div><img src="../statics/images/1.jpg" alt="" class="layui-nav-img"></div>
+                    <div><img src="../statics/images/2.jpg" alt="" class="layui-nav-img"></div>
+                    <div><img src="../statics/images/3.jpg" alt="" class="layui-nav-img"></div>
+                    <div><img src="../statics/images/4.jpg" alt="" class="layui-nav-img"></div>
                     <div>条目5</div>
                 </div>
             </div>
