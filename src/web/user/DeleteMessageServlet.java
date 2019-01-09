@@ -25,16 +25,21 @@ public class DeleteMessageServlet extends HttpServlet {
         User user = (User) request.getSession().getAttribute("user");
         PrintWriter printWriter = response.getWriter();
         if (request.getParameter("id") != null) {
+            //参数不为空
             int id = Integer.parseInt( request.getParameter("id"));
             MessageDao messageDao = new MessageDaoIml();
+            //查找该留言
             Message message = messageDao.find(id);
             if (message!=null && message.getUser_id() == user.getId()) {
+                //如果留言者和登录用户是一个人，可以删除
                 messageDao.delete(id);
                 printWriter.println("<script>location.href='/dormitory/user/index';</script>");
             }else {
+                //否则，不允许删除
                 printWriter.println("<script>alert('删除失败！您没有该权限或留言已删除');location.href='/dormitory/user/index';</script>");
             }
         }else{
+            //没有参数 id
             printWriter.println("<script>alert('删除失败！，参数错误');location.href='/dormitory/user/index';</script>");
         }
     }

@@ -21,13 +21,16 @@ public class AdminIndexServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         Admin admin = (Admin) session.getAttribute("user");
+        //获取管理员管理的宿舍
         AdminDao adminDao = new AdminDaoIml();
-        //request.setAttribute("adminName", admin.getName());
         request.setAttribute("description", adminDao.show(admin.getDormitory_id()));
+        //获取管理员宿舍的所有公告
         NoticeDao noticeDao = new NoticeDaoIml();
         request.setAttribute("noticeSum", noticeDao.sum(admin.getDormitory_id()));
+        //获取宿舍楼的用用户数量
         UserDao userDao = new UserDaoIml();
         request.setAttribute("userSum", userDao.sum(admin.getDormitory_id()));
+        //获取全部管理员数量
         request.setAttribute("adminSum", adminDao.sum());
         RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/index.jsp");
         dispatcher.forward(request, response);

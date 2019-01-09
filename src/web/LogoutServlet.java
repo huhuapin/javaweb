@@ -23,6 +23,7 @@ public class LogoutServlet extends HttpServlet {
             response.sendRedirect("/dormitory/login");
             return;
         }
+        //获取session name
         Enumeration em = request.getSession().getAttributeNames();
         while(em.hasMoreElements()){
             request.getSession().removeAttribute(em.nextElement().toString());

@@ -28,24 +28,28 @@ public class IndexServlet extends HttpServlet {
         response.setContentType("text/html;charset=utf-8");
         HttpSession session = request.getSession();
         User user = (User)session.getAttribute("user");
+        //获取登录用户所在宿舍
         Dormitory dormitory = (Dormitory) session.getAttribute("dormitory");
         if (dormitory == null ) {
             DormitoryDaoIml dormitoryDaoIml = new DormitoryDaoIml();
             dormitory = dormitoryDaoIml.find(user.getDormitory_id());
             session.setAttribute("dormitory",dormitory);
         }
+        //获取登录用户的舍友
         List<User> roommates = (List<User>) session.getAttribute("roommates");
         if (roommates == null) {
             UserDaoIml userDaoIml = new UserDaoIml();
             roommates = userDaoIml.getRoommate(user);
             session.setAttribute("roommates",roommates);
         }
+        //获取登录用户的宿舍第一条公告
         Notice firstNotice = (Notice) session.getAttribute("firstNotice");
         if (firstNotice == null ){
             NoticeDaoIml noticeDaoIml = new NoticeDaoIml();
             firstNotice = noticeDaoIml.getFirst(dormitory.getId());
             session.setAttribute("firstNotice",firstNotice);
         }
+        //获取登录用户的宿舍的留言
         MessageDao messageDao = new MessageDaoIml();
         List<Message> messages = new ArrayList<>();
         messages = messageDao.findAll(user.getDormitory_id());

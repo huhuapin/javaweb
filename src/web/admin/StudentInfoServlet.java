@@ -27,6 +27,7 @@ public class StudentInfoServlet extends HttpServlet {
         Admin admin = (Admin) session.getAttribute("user");
         UserDao userDao = new UserDaoIml();
         List<User> list = new ArrayList<>();
+        //获取宿舍楼的全部学生
         list = userDao.findAll(admin.getDormitory_id());
         //页面当前页
         int curPage = 0;

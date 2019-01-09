@@ -24,11 +24,13 @@ public class CreateMessageServlet extends HttpServlet {
         User user = (User) request.getSession().getAttribute("user");
         String content = request.getParameter("content");
         Date currentTime = new Date();
+        //获取当前时间
         Timestamp timestamp = new Timestamp(currentTime.getTime());
         Message message = new Message();
         message.setContent(content);
         message.setCreated_at(timestamp);
         message.setDormitory_id(user.getDormitory_id());
+        //初始化点赞数为0
         message.setPraise(0);
         message.setUser_id(user.getId());
         MessageDao messageDao = new MessageDaoIml();

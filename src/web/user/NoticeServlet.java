@@ -23,6 +23,7 @@ public class NoticeServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         request.setCharacterEncoding("UTF-8");
         User user = (User) request.getSession().getAttribute("user");
+        //获取登录用户的全部公告
         NoticeDao noticeDao = new NoticeDaoIml();
         List<Notice> notices = noticeDao.findAll(user.getDormitory_id());
         //页面当前页

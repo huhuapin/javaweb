@@ -24,6 +24,7 @@ public class NoticeServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession();
         Admin admin = (Admin) session.getAttribute("user");
+        //获取公告列表
         List<Notice> list = new ArrayList<>();
         NoticeDao noticeDao = new NoticeDaoIml();
         list = noticeDao.findAll(admin.getDormitory_id());
