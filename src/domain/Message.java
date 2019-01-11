@@ -12,6 +12,14 @@ public class Message {
     private int dormitory_id;
     private int user_id;
     private Timestamp created_at;
+    private User user;
+
+    public User getUser() {
+        if (this.user == null) {
+            this.user = this.setUser();
+        }
+        return user;
+    }
 
     public int getId() {
         return id;
@@ -61,8 +69,9 @@ public class Message {
         this.created_at = created_at;
     }
 
-    public User getUser() {
+    public User setUser() {
         UserDaoIml userDaoIml = new UserDaoIml();
+        System.out.println("dao/MessageDao:56          getUserById: " + this.user_id);
         return userDaoIml.find(this.user_id);
     }
 }

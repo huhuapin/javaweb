@@ -53,6 +53,7 @@ public class IndexServlet extends HttpServlet {
         MessageDao messageDao = new MessageDaoIml();
         List<Message> messages = new ArrayList<>();
         messages = messageDao.findAll(user.getDormitory_id());
+        System.out.println("user/IndexServlet:56          getMessages");
         //页面当前页
         int curPage = 0;
         //jsp传过来的当前页
