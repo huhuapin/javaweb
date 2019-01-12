@@ -37,6 +37,29 @@ public class AdminDaoIml implements AdminDao {
     }
 
     @Override
+    public void update(Admin admin) {
+        try{
+            QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
+            String sql = "update admin set username=?,password=?,name=?,dormitory_id=?,tel=? where id=?;";
+            Object params[] = {admin.getUsername(),MD5Utils.md5(MD5Utils.md5(admin.getPassword())),admin.getName(),admin.getDormitory_id(),admin.getTel(),admin.getId()};
+            runner.update(sql, params);
+        } catch(Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public void delete(int id) {
+        try{
+            QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
+            String sql = "delete from admin where id=?;";
+            runner.update(sql, id);
+        } catch(Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
     public Admin find(int id) {
         try{
             QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
@@ -95,17 +118,6 @@ public class AdminDaoIml implements AdminDao {
             return true;
         }catch (Exception e) {
             throw  new RuntimeException(e);
-        }
-    }
-
-    @Override
-    public String show(int dormitory_id) {
-        try{
-            QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
-            String sql = "select description from dormitory where id=?";
-            return (String) runner.query(sql, dormitory_id, new ScalarHandler());
-        } catch(Exception e){
-            throw new RuntimeException(e);
         }
     }
 

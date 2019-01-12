@@ -76,7 +76,7 @@ public class NoticeDaoIml implements NoticeDao {
     public List<Notice> findAll(int dormitory_id, int page, int limit) {
         try{
             QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
-            String sql = "select * from notice where dormitory_id = ? order by created_at desc limit ?,?";
+            String sql = "select * from notice where dormitory_id = ? or dormitory_id is null order by created_at desc limit ?,?";
             Object params[] = {dormitory_id, page, limit};
             List<Notice> list = (List<Notice>) runner.query(sql, params, new BeanListHandler(Notice.class));
             return list;

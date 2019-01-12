@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: hasee
@@ -21,13 +22,15 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="row">
-                        <div class="col-md-3 col-xs-12 col-sm-6"> <a href="#" class="stats-container">
-                            <div class="stats-heading">宿舍楼</div>
-                            <div class="stats-body-alt">
-                                <div class="text-center">${description}</div>
-                            </div>
-                            <div class="stats-footer">more info</div>
-                        </a> </div>
+                        <c:if test="${identity == 1}">
+                            <div class="col-md-3 col-xs-12 col-sm-6"> <a href="#" class="stats-container">
+                                <div class="stats-heading">宿舍楼</div>
+                                <div class="stats-body-alt">
+                                    <div class="text-center">${description}</div>
+                                </div>
+                                <div class="stats-footer">more info</div>
+                            </a> </div>
+                        </c:if>
                         <div class="col-md-3 col-xs-12 col-sm-6"> <a href="/dormitory/admin/notice_list" class="stats-container">
                             <div class="stats-heading">公告数量</div>
                             <div class="stats-body-alt">

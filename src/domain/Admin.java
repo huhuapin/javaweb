@@ -11,6 +11,7 @@ public class Admin {
     private String name;
     private int dormitory_id;
     private String tel;
+    private boolean root;
 
     public int getId() {
         return id;
@@ -58,6 +59,14 @@ public class Admin {
 
     public void setTel(String tel) {
         this.tel = tel;
+    }
+
+    public boolean isRoot() {
+        return root;
+    }
+
+    public void setRoot(boolean root) {
+        this.root = root;
     }
 
     public String getDescription() {

@@ -38,21 +38,22 @@ public class LoginServlet extends HttpServlet {
                 session.setAttribute("object", user);
                 response.sendRedirect("/dormitory/user/index");
             }
-        }
-        else if(identity.equals("1")) {
+        }else {
             AdminDao adminDao = new AdminDaoIml();
             Admin admin = adminDao.find(username,password);
             if (admin == null) {
                 //登录失败
                 printWriter.println("<script>alert('用户名密码错误');location.href='/dormitory/login';</script>");
             }else {
-                session.setAttribute("identity", 1);
+                if(identity.equals("1")) {
+                    session.setAttribute("identity", 1);
+
+                }else {
+                    session.setAttribute("identity", 2);
+                }
                 session.setAttribute("object", admin);
                 response.sendRedirect("/dormitory/admin/index");
             }
-        }
-        else {
-            //系统管理员
         }
     }
 
