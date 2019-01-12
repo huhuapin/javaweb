@@ -14,8 +14,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>宿舍管理系统</title>
-    <link rel="stylesheet" href="./statics/css/layui.css">
-    <link rel="stylesheet" href="./statics/css/main.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/user/statics/css/layui.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/user/statics/css/main.css">
 </head>
 <body>
 <jsp:include page="layout/header.jsp" />
