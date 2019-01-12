@@ -42,7 +42,7 @@
                 <tbody>
                 <c:forEach items="${repairs}" var="repair">
                     <tr>
-                        <td>${repair.created_at}</td>
+                        <td><span class="date">${repair.created_at}</span></td>
                         <td>${repair.reason}</td>
                         <td>
                             <c:choose>
@@ -58,9 +58,9 @@
                             </c:choose>
                         </td>
                         <td>
-                            <a class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+                            <a href="${pageContext.request.contextPath}/user/repair/detail?id=${repair.id}" class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
                             <c:if test="${repair.status ==0}">
-                                <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+                                <a href="${pageContext.request.contextPath}/user/repair/endit?id=${repair.id}" class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
                             </c:if>
                             <c:if test="${repair.status == 2}">
                                 <a class="layui-btn layui-btn-xs" lay-event="edit">评分</a>

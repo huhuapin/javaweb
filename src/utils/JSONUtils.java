@@ -1,8 +1,8 @@
-package common;
+package utils;
 
 import net.sf.json.JSONArray;
 
-public class JSON {
+public class JSONUtils {
     public static String[] toStringArray(String string) {
         JSONArray jsonArray = JSONArray.fromObject(string);
         String[] arr = new String[jsonArray.size()];

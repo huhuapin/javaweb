@@ -11,4 +11,5 @@ public interface RepairDao {
     public int deleteRepair(int id);     //通过id删除报修信息
     public int addRepair(Repair repair);  //添加报修信息
     public List<Repair> findByUserId(int user_id,int page,int limit); //获取指定用户的报修记录
+    public Repair find(int id);//根据id查询记录
 }

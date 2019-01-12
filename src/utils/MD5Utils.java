@@ -1,7 +1,10 @@
 package utils;
 
+import dao.AdminDao;
 import dao.UserDao;
+import dao.iml.AdminDaoIml;
 import dao.iml.UserDaoIml;
+import domain.Admin;
 import domain.User;
 
 import java.math.BigInteger;
@@ -34,11 +37,10 @@ public class MD5Utils {
     }
 
     public static void main(String[] args) {
-        UserDao userDao = new UserDaoIml();
-        List<User> users = userDao.findAll(0,100);
-        for (User user:users) {
-            user.setPassword(md5(user.getPassword()));
-            userDao.update(user);
+        AdminDao adminDao = new AdminDaoIml();
+        List<Admin> users = adminDao.findAll(0,100);
+        for (Admin user:users) {
+            adminDao.modify(user.getId(),user.getPassword());
         }
     }
 

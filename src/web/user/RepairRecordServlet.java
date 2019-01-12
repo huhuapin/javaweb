@@ -22,7 +22,7 @@ public class RepairRecordServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         User user = (User)request.getSession().getAttribute("object");
         RepairDao repairDao = new RepairDaoIml();
-        List<Repair> repairs = repairDao.findByUserId(user.getId(),1,10);
+        List<Repair> repairs = repairDao.findByUserId(user.getId(),0,10);
         request.setAttribute("repairs",repairs);
         request.getRequestDispatcher("/user/repair_list.jsp").forward(request,response);
     }

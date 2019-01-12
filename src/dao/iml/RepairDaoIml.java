@@ -5,6 +5,7 @@ import domain.Repair;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import utils.JdbcUtils;
 
@@ -58,6 +59,17 @@ public class RepairDaoIml implements RepairDao {
     }
 
     @Override
+    public Repair find(int id) {
+        try {
+            QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
+            String sql = "select * from repair where id = ?";
+            return runner.query(sql,new BeanHandler<Repair>(Repair.class),id);
+        }catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
     public int addRepair(Repair repair) {
         try {
             QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
@@ -76,7 +88,6 @@ public class RepairDaoIml implements RepairDao {
         try {
             QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
             String sql = "select * from repair where user_id = ? order by updated_at desc limit ?,?";
-            System.out.println(sql);
             return runner.query(sql,new BeanListHandler<Repair>(Repair.class),user_id,page,limit);
         }catch (Exception e) {
             throw new RuntimeException(e);
