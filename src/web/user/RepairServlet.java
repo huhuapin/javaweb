@@ -1,12 +1,9 @@
 package web.user;
 
-import com.mysql.cj.xdevapi.JsonArray;
-import common.JSON;
 import dao.RepairDao;
 import dao.iml.RepairDaoIml;
 import domain.Repair;
 import domain.User;
-import net.sf.json.JSONArray;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

@@ -1,10 +1,8 @@
 package domain;
 
-import common.JSON;
-import net.sf.json.JSONArray;
+import utils.JSONUtils;
 
 import java.sql.Timestamp;
-import java.util.List;
 
 public class Repair {
     private int id;  //自增id，主键
@@ -38,7 +36,7 @@ public class Repair {
     }
 
     public void setImage(String image) {
-        this.image = JSON.toStringArray(image);
+        this.image = JSONUtils.toStringArray(image);
     }
 
     public void setDetail(String detail) {
