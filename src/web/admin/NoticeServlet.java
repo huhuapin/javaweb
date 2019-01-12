@@ -14,6 +14,7 @@ import java.util.*;
 
 @WebServlet(name = "NoticeServlet", urlPatterns = "/admin/notice_list")
 public class NoticeServlet extends HttpServlet {
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
@@ -26,9 +27,14 @@ public class NoticeServlet extends HttpServlet {
         NoticeDao noticeDao = new NoticeDaoIml();
         List<Notice> list_page = new ArrayList<>();
         int page = 0;    //待显示页面
-        int count = (int) noticeDao.sum(admin.getDormitory_id()); //数据总条数
+        int count = 0;   //数据总条数
         int pageSum = 0; //页面总数
         int limit = 10;  //每页显示的数据条数
+        if((int) session.getAttribute("identity") == 1) {
+            count = (int) noticeDao.sum(admin.getDormitory_id());
+        }else {
+            count = (int) noticeDao.sum();
+        }
         //由记录总数除以每页记录数得出总页数
         pageSum = (int) Math.ceil(count / (limit * 1.0));
         //获取跳页时传进来的当前页面参数
@@ -46,7 +52,11 @@ public class NoticeServlet extends HttpServlet {
             if(page > pageSum) page = pageSum;
         }
         //由(page-1)*limit算出当前页面第一条记录，由limit查询limit条记录，得出当前页面的记录
-        list_page = noticeDao.findAll(admin.getDormitory_id(), limit * (page - 1), limit);
+        if((int) session.getAttribute("identity") == 1) {
+            list_page = noticeDao.findAll(admin.getDormitory_id(), limit * (page - 1), limit);
+        }else {
+            list_page = noticeDao.findAll(limit * (page - 1), limit);
+        }
         request.setAttribute("page", page);
         request.setAttribute("pageSum", pageSum);
         request.setAttribute("list_page", list_page);
