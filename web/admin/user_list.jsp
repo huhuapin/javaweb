@@ -33,6 +33,7 @@
                                 <th>学号</th>
                                 <th>姓名</th>
                                 <th>班级</th>
+                                <c:if test="${identity == 2}"><th>宿舍楼</th></c:if>
                                 <th>房间号</th>
                                 <th></th>
                             </tr>
@@ -44,6 +45,7 @@
                                         <td>${user.getUsername()}</td>
                                         <td>${user.getName()}</td>
                                         <td>${user.get_class()}</td>
+                                        <c:if test="${identity == 2}"><td>${user.getDescription()}</td></c:if>
                                         <td>${user.getRoom()}</td>
                                         <td>
                                             <a href="/dormitory/admin/showinfo?id=${user.getId()}&username=${user.getUsername()}&name=${user.getName()}&_class=${user.get_class()}&dormitory_id=${user.getDormitory_id()}&room=${user.getRoom()}"><button class="btn btn-sm btn-primary"> 编辑 </button></a>

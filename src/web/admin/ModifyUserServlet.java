@@ -9,8 +9,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import java.io.IOException;
 
-@WebServlet(name = "ModifyInfoServlet", urlPatterns = "/admin/modifyinfo")
-public class ModifyInfoServlet extends HttpServlet {
+@WebServlet(name = "ModifyUserServlet", urlPatterns = "/admin/modifyinfo")
+public class ModifyUserServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
@@ -19,6 +19,9 @@ public class ModifyInfoServlet extends HttpServlet {
         if(temp != null){
             //修改用户信息
             User user = userDao.find(Integer.parseInt(temp));
+            if((int) request.getSession().getAttribute("identity") == 2) {
+                user.setName(request.getParameter("name"));
+            }
             user.set_class(request.getParameter("_class"));
             user.setDormitory_id(Integer.parseInt(request.getParameter("dormitory")));
             user.setRoom(Integer.parseInt(request.getParameter("room")));

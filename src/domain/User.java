@@ -1,5 +1,8 @@
 package domain;
 
+import dao.DormitoryDao;
+import dao.iml.DormitoryDaoIml;
+
 public class User {
 
     private int id;
@@ -84,4 +87,8 @@ public class User {
         this.room = room;
     }
 
+    public String getDescription() {
+        DormitoryDao dormitoryDao = new DormitoryDaoIml();
+        return dormitoryDao.find(dormitory_id).getDescription();
+    }
 }

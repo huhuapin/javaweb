@@ -1,6 +1,9 @@
 package domain;
 
 
+import dao.DormitoryDao;
+import dao.iml.DormitoryDaoIml;
+
 import java.sql.Timestamp;
 
 public class Notice {
@@ -60,4 +63,8 @@ public class Notice {
         this.created_at = created_at;
     }
 
+    public String description() {
+        DormitoryDao dormitoryDao = new DormitoryDaoIml();
+        return dormitoryDao.find(dormitory_id).getDescription();
+    }
 }

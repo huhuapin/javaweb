@@ -20,11 +20,10 @@ public class AdminInfoServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //获取全部管理员
         AdminDao adminDao = new AdminDaoIml();
         List<Admin> list_page = new ArrayList<>();
         int page = 0;    //待显示页面
-        int count = (int) adminDao.sum(); //数据总条数
+        int count = (int) adminDao.sum();  //数据总条数
         int pageSum = 0; //页面总数
         int limit = 10;  //每页显示的数据条数
         //由记录总数除以每页记录数得出总页数
