@@ -22,7 +22,7 @@ public class DeleteMessageServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setCharacterEncoding("UTF-8");
         request.setCharacterEncoding("UTF-8");
-        User user = (User) request.getSession().getAttribute("user");
+        User user = (User) request.getSession().getAttribute("object");
         PrintWriter printWriter = response.getWriter();
         if (request.getParameter("id") != null) {
             int id = Integer.parseInt( request.getParameter("id"));

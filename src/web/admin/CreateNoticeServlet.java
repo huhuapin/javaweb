@@ -24,7 +24,7 @@ public class CreateNoticeServlet extends HttpServlet {
         if (title ==null || content == null) {
             printWriter.println("<script>alert('添加失败！内容必须全部填写！');location.href='/dormitory/admin/notice_create';</script>");
         }
-        Admin admin = (Admin)request.getSession().getAttribute("user");
+        Admin admin = (Admin)request.getSession().getAttribute("object");
         Notice notice  = new Notice();
         notice.setTitle(title);
         notice.setContent(content);

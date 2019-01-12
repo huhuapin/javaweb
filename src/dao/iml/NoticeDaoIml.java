@@ -60,11 +60,25 @@ public class NoticeDaoIml implements NoticeDao {
     }
 
     @Override
-    public List<Notice> findAll(int dormitory_id) {
+    public List<Notice> findAll(int page, int limit) {
         try{
             QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
-            String sql = "select * from notice where dormitory_id=? order by created_at desc";
-            List<Notice> list = (List<Notice>) runner.query(sql, dormitory_id, new BeanListHandler(Notice.class));
+            String sql = "select * from notice order by created_at desc limit ?,?";
+            Object params[] = {page, limit};
+            List<Notice> list = (List<Notice>) runner.query(sql, params, new BeanListHandler(Notice.class));
+            return list;
+        } catch(Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public List<Notice> findAll(int dormitory_id, int page, int limit) {
+        try{
+            QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
+            String sql = "select * from notice where dormitory_id = ? order by created_at desc limit ?,?";
+            Object params[] = {dormitory_id, page, limit};
+            List<Notice> list = (List<Notice>) runner.query(sql, params, new BeanListHandler(Notice.class));
             return list;
         } catch(Exception e){
             throw new RuntimeException(e);
@@ -75,12 +89,24 @@ public class NoticeDaoIml implements NoticeDao {
     public long sum(int dormitory_id) {
         try{
             QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
+            String sql = "select count(*) from notice where dormitory_id = ?";
+            return (long) runner.query(sql, dormitory_id, new ScalarHandler());
+        } catch(Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public long sum() {
+        try{
+            QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
             String sql = "select count(*) from notice";
             return (long) runner.query(sql, new ScalarHandler());
         } catch(Exception e){
             throw new RuntimeException(e);
         }
     }
+
     @Override
     public Notice getFirst(int dormitory_id) {
         try{

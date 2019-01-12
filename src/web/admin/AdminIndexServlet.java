@@ -20,9 +20,8 @@ public class AdminIndexServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        Admin admin = (Admin) session.getAttribute("user");
+        Admin admin = (Admin) session.getAttribute("object");
         AdminDao adminDao = new AdminDaoIml();
-        //request.setAttribute("adminName", admin.getName());
         request.setAttribute("description", adminDao.show(admin.getDormitory_id()));
         NoticeDao noticeDao = new NoticeDaoIml();
         request.setAttribute("noticeSum", noticeDao.sum(admin.getDormitory_id()));

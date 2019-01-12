@@ -2,7 +2,7 @@ package dao.iml;
 
 import dao.UserDao;
 import domain.User;
-import utils.JdbcUtils;
+import utils.*;
 
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
@@ -18,7 +18,7 @@ public class UserDaoIml implements UserDao {
         try{
             QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
             String sql = "insert into user(username,password,name,nickname,image,_class,dormitory_id,room) values(?,?,?,?,?,?,?,?)";
-            Object params[] = {user.getUsername(),user.getPassword(),user.getName(),user.getNickname(),user.getImage(),user.get_class(),user.getDormitory_id(),user.getRoom()};
+            Object params[] = {user.getUsername(),MD5Utils.md5(user.getPassword()),user.getName(),user.getNickname(),user.getImage(),user.get_class(),user.getDormitory_id(),user.getRoom()};
             runner.update(sql, params);
         } catch(Exception e){
             throw new RuntimeException(e);
@@ -30,7 +30,7 @@ public class UserDaoIml implements UserDao {
         try{
             QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
             String sql = "update user set password=?,nickname=?,image=?,_class=?,dormitory_id=?,room=? where id=?;";
-            Object params[] = {user.getPassword(),user.getNickname(),user.getImage(),user.get_class(),user.getDormitory_id(),user.getRoom(),user.getId()};
+            Object params[] = {MD5Utils.md5(user.getPassword()),user.getNickname(),user.getImage(),user.get_class(),user.getDormitory_id(),user.getRoom(),user.getId()};
             runner.update(sql, params);
         } catch(Exception e){
             throw new RuntimeException(e);
@@ -64,35 +64,51 @@ public class UserDaoIml implements UserDao {
         try{
             QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
             String sql = "select * from user where username=? and password=?";
-            Object params[] = {username, password};
+            Object params[] = {username, MD5Utils.md5(password)};
             return (User) runner.query(sql, params, new BeanHandler(User.class));
         } catch(Exception e){
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public List<User> findAll(int dormitory_id, int page, int limit) {
+        try{
+            QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
+            String sql = "select * from user where dormitory_id=? order by id limit ?,?";
+            Object params[] = {dormitory_id, page, limit};
+            List<User> list = (List<User>) runner.query(sql, params, new BeanListHandler(User.class));
+            return list;
+        } catch(Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public List<User> findAll(int page, int limit) {
+        try{
+            QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
+            String sql = "select * from user order by id limit ?,?";
+            Object params[] = {page, limit};
+            List<User> list = (List<User>) runner.query(sql, params, new BeanListHandler(User.class));
+            return list;
+        } catch(Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
     @Override
     public boolean existUser(String username) {
         try {
             QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
             String sql = "select * from user where username=?";
-            User user = (User) runner.query(sql,username,new BeanHandler<>(User.class));
+            User user = (User) runner.query(sql,username,new BeanHandler(User.class));
             if (user == null) {
                 return false;
             }
             return true;
         }catch (Exception e) {
             throw  new RuntimeException(e);
-        }
-    }
-    @Override
-    public List<User> findAll(int dormitory_id) {
-        try{
-            QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
-            String sql = "select * from user where dormitory_id=?;";
-            List<User> list = (List<User>) runner.query(sql, dormitory_id, new BeanListHandler(User.class));
-            return list;
-        } catch(Exception e){
-            throw new RuntimeException(e);
         }
     }
 
@@ -102,6 +118,17 @@ public class UserDaoIml implements UserDao {
             QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
             String sql = "select count(*) from user where dormitory_id=?";
             return (long) runner.query(sql, dormitory_id, new ScalarHandler());
+        } catch(Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public long sum() {
+        try{
+            QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
+            String sql = "select count(*) from user";
+            return (long) runner.query(sql, new ScalarHandler());
         } catch(Exception e){
             throw new RuntimeException(e);
         }

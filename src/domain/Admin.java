@@ -10,7 +10,7 @@ public class Admin {
     private String password;
     private String name;
     private int dormitory_id;
-    private int status;
+    private String tel;
 
     public int getId() {
         return id;
@@ -52,12 +52,12 @@ public class Admin {
         this.dormitory_id = dormitory_id;
     }
 
-    public int getStatus() {
-        return status;
+    public String getTel() {
+        return tel;
     }
 
-    public void setStatus(int status) {
-        this.status = status;
+    public void setTel(String tel) {
+        this.tel = tel;
     }
 
     public String getDescription() {

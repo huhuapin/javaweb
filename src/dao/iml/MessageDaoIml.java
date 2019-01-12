@@ -2,6 +2,7 @@ package dao.iml;
 
 import dao.MessageDao;
 import domain.Message;
+import org.apache.commons.dbutils.handlers.ScalarHandler;
 import utils.JdbcUtils;
 
 import org.apache.commons.dbutils.QueryRunner;
@@ -58,12 +59,24 @@ public class MessageDaoIml implements MessageDao {
     }
 
     @Override
-    public List<Message> findAll(int dormitory_id) {
+    public List<Message> findAll(int dormitory_id, int page, int limit) {
         try{
             QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
-            String sql = "select * from message where dormitory_id=? order by created_at desc";
-            List<Message> list = (List<Message>) runner.query(sql, dormitory_id, new BeanListHandler(Message.class));
+            String sql = "select * from message where dormitory_id = ? order by created_at desc limit ?,?";
+            Object params[] = {dormitory_id, page, limit};
+            List<Message> list = (List<Message>) runner.query(sql, params, new BeanListHandler(Message.class));
             return list;
+        } catch(Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public long sum(int dormitory_id) {
+        try{
+            QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
+            String sql = "select count(*) from message where dormitory_id = ?";
+            return (long) runner.query(sql, dormitory_id, new ScalarHandler());
         } catch(Exception e){
             throw new RuntimeException(e);
         }

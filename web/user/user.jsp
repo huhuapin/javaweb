@@ -22,19 +22,19 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">学号</label>
                     <div class="layui-input-block">
-                        <input type="text" name="sdut_id" required  lay-verify="required" disabled autocomplete="off" class="layui-input" value="${user.username}">
+                        <input type="text" name="sdut_id" required  lay-verify="required" disabled autocomplete="off" class="layui-input" value="${object.username}">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">姓名</label>
                     <div class="layui-input-block">
-                        <input type="text" name="name" required  lay-verify="required" placeholder="请输入姓名" autocomplete="off" disabled class="layui-input" value="${user.name}">
+                        <input type="text" name="name" required  lay-verify="required" placeholder="请输入姓名" autocomplete="off" disabled class="layui-input" value="${object.name}">
                     </div>
                 </div>
                 <div class="layui-form-item">
                     <label class="layui-form-label">昵称 <span>*</span></label>
                     <div class="layui-input-block">
-                        <input type="text" name="nickname" required  lay-verify="required" placeholder="请输入昵称" autocomplete="off" class="layui-input" value="${user.nickname}">
+                        <input type="text" name="nickname" required  lay-verify="required" placeholder="请输入昵称" autocomplete="off" class="layui-input" value="${object.nickname}">
                     </div>
                 </div>
                 <div class="layui-form-item">
@@ -44,9 +44,9 @@
                             <a class="layui-btn" id="test1">上传头像</a>
                             <div class="layui-upload-list">
                                 <c:choose>
-                                    <c:when test="${user.image != null}">
-                                        <input type="hidden" name="image" class="layui-upload-file" value="${user.image}">
-                                        <img class="layui-upload-img" id="demo1" src="${user.image}">
+                                    <c:when test="${object.image != null}">
+                                        <input type="hidden" name="image" class="layui-upload-file" value="${object.image}">
+                                        <img class="layui-upload-img" id="demo1" src="${object.image}">
                                     </c:when>
                                     <c:otherwise>
                                         <input type="hidden" name="image" class="layui-upload-file" value="/dormitory/user/statics/images/user.jpg">
@@ -62,7 +62,7 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">班级</label>
                     <div class="layui-input-inline">
-                        <input type="text" name="class" required lay-verify="required" placeholder="请输入班级" disabled autocomplete="off" class="layui-input" value="${user._class}">
+                        <input type="text" name="class" required lay-verify="required" placeholder="请输入班级" disabled autocomplete="off" class="layui-input" value="${object._class}">
                     </div>
                 </div>
                 <div class="layui-form-item">
@@ -76,7 +76,7 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">房间号</label>
                     <div class="layui-input-inline">
-                        <input type="text" name="room" required lay-verify="required|number" disabled  placeholder="请输入房间号" autocomplete="off" class="layui-input" value="${user.room}" >
+                        <input type="text" name="room" required lay-verify="required|number" disabled  placeholder="请输入房间号" autocomplete="off" class="layui-input" value="${object.room}" >
                     </div>
                 </div>
                 <div class="layui-form-item">

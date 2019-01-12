@@ -10,7 +10,9 @@ public interface NoticeDao {
     public void modify(Notice notice);  //修改公告
     public void delete(int id);         //根据公告id删除一条公告
     public Notice find(int id);         //根据公告id找到一条公告
-    public List<Notice> findAll(int dormitory_id); //根据宿舍楼号返回所有公告
-    public long sum(int dormitory_id);   //根据宿舍楼号返回所有公告数量
-    public Notice getFirst(int dormitory_id);    //获取最新公告
+    public List<Notice> findAll(int page, int limit);                   //得到指定页数的所有公告(系统管理员权限)
+    public List<Notice> findAll(int dormitory_id, int page, int limit); //根据宿舍楼号返回指定页数的公告
+    public long sum();                        //返回所有的公告数
+    public long sum(int dormitory_id);        //根据宿舍楼号返回所有公告数量
+    public Notice getFirst(int dormitory_id); //获取最新公告
 }
