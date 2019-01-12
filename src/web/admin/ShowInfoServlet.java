@@ -22,10 +22,12 @@ public class ShowInfoServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        //获取传来的用户信息
         request.setAttribute("id", request.getParameter("id"));
         request.setAttribute("username", request.getParameter("username"));
         request.setAttribute("name", request.getParameter("name"));
         request.setAttribute("_class", request.getParameter("_class"));
+        //获取宿舍列表
         DormitoryDao dormitoryDao = new DormitoryDaoIml();
         int id = Integer.parseInt(request.getParameter("dormitory_id"));
         request.setAttribute("description", dormitoryDao.find(id).getDescription());

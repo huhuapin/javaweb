@@ -29,15 +29,18 @@ public class PasswordServlet extends HttpServlet {
         String new_password_cofirmation = request.getParameter("new_password_confirmation");
         String new_password = request.getParameter("new_password");
         Map<String,String> map = new HashMap<String,String>();
+        //参数不完整
         if (old_password == null || new_password_cofirmation == null || new_password == null) {
             map.put("code","-2");
             map.put("status","PARAM_ERR");
             map.put("message","参数不完整");
         }else if (!new_password.equals(new_password_cofirmation)) {
+            //密码不一致
             map.put("code","-1");
             map.put("status","VALIDATE_ERR");
             map.put("message","两次密码输入不一致");
         }else if (session.getAttribute("admin") != null) {
+            //已登录
             int admin = (int) session.getAttribute("admin");
             if (admin == 1) {
                 //管理员

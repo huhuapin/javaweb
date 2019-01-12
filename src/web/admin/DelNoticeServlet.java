@@ -21,6 +21,7 @@ public class DelNoticeServlet extends HttpServlet {
             throws ServletException, IOException {
         String temp = request.getParameter("id");
         if(temp != null) {
+            //删除公告
             int id = Integer.parseInt(temp);
             NoticeDao noticeDao = new NoticeDaoIml();
             noticeDao.delete(id);

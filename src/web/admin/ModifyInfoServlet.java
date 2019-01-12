@@ -17,6 +17,7 @@ public class ModifyInfoServlet extends HttpServlet {
         UserDao userDao = new UserDaoIml();
         String temp = request.getParameter("id");
         if(temp != null){
+            //修改用户信息
             User user = userDao.find(Integer.parseInt(temp));
             user.set_class(request.getParameter("_class"));
             user.setDormitory_id(Integer.parseInt(request.getParameter("dormitory")));

@@ -31,18 +31,21 @@ public class IndexServlet extends HttpServlet {
             dormitory = dormitoryDaoIml.find(user.getDormitory_id());
             session.setAttribute("dormitory",dormitory);
         }
+        //获取登录用户的舍友
         List<User> roommates = (List<User>) session.getAttribute("roommates");
         if (roommates == null) {
             UserDaoIml userDaoIml = new UserDaoIml();
             roommates = userDaoIml.getRoommate(user);
             session.setAttribute("roommates",roommates);
         }
+        //获取登录用户的宿舍第一条公告
         Notice firstNotice = (Notice) session.getAttribute("firstNotice");
         if (firstNotice == null ){
             NoticeDaoIml noticeDaoIml = new NoticeDaoIml();
             firstNotice = noticeDaoIml.getFirst(dormitory.getId());
             session.setAttribute("firstNotice",firstNotice);
         }
+        //获取登录用户的宿舍的留言
         MessageDao messageDao = new MessageDaoIml();
         List<Message> list_page = new ArrayList<>();
         int page = 0;    //待显示页面

@@ -18,6 +18,7 @@ public class ModifyNoticeServlet extends HttpServlet {
         NoticeDao noticeDao = new NoticeDaoIml();
         String temp = request.getParameter("id");
         if(temp != null){
+            //修改公告
             Notice notice = noticeDao.find(Integer.parseInt(temp));
             notice.setTitle(request.getParameter("title"));
             notice.setContent(request.getParameter("content"));

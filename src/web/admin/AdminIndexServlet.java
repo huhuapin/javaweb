@@ -23,10 +23,13 @@ public class AdminIndexServlet extends HttpServlet {
         Admin admin = (Admin) session.getAttribute("object");
         AdminDao adminDao = new AdminDaoIml();
         request.setAttribute("description", adminDao.show(admin.getDormitory_id()));
+        //获取管理员宿舍的所有公告
         NoticeDao noticeDao = new NoticeDaoIml();
         request.setAttribute("noticeSum", noticeDao.sum(admin.getDormitory_id()));
+        //获取宿舍楼的用用户数量
         UserDao userDao = new UserDaoIml();
         request.setAttribute("userSum", userDao.sum(admin.getDormitory_id()));
+        //获取全部管理员数量
         request.setAttribute("adminSum", adminDao.sum());
         RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/index.jsp");
         dispatcher.forward(request, response);

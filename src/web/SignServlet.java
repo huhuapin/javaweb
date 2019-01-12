@@ -51,7 +51,6 @@ public class SignServlet extends HttpServlet {
         user.setRoom(Integer.parseInt(room));
         userDaoIml.add(user);
         printWriter.println("<script>alert('注册成功，请登录！');location.href='/dormitory/login';</script>");
-        return;
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

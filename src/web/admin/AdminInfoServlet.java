@@ -20,6 +20,7 @@ public class AdminInfoServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        //获取全部管理员
         AdminDao adminDao = new AdminDaoIml();
         List<Admin> list_page = new ArrayList<>();
         int page = 0;    //待显示页面

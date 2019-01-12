@@ -52,7 +52,8 @@ public class MessageDaoIml implements MessageDao {
         try{
             QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
             String sql = "select * from message where id=?";
-            return (Message) runner.query(sql, id, new BeanHandler(Message.class));
+            return (Message) runner.query(sql,new BeanHandler<Message>(Message.class),id);
+//            return (Message) runner.query(sql, id, new BeanHandler(Message.class));
         } catch(Exception e){
             throw new RuntimeException(e);
         }

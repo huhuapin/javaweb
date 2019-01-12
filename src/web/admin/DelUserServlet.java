@@ -22,6 +22,7 @@ public class DelUserServlet extends HttpServlet {
             throws ServletException, IOException {
         String temp = request.getParameter("id");
         if(temp != null) {
+            //删除用户
             int id = Integer.parseInt(temp);
             UserDao userDao = new UserDaoIml();
             userDao.delete(id);
