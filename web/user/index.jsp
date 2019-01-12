@@ -37,7 +37,7 @@
                             <c:otherwise><img src="../statics/images/user.jpg" alt="" class="layui-nav-img"></c:otherwise>
                         </c:choose>
                         ${message.getUser().nickname}
-                        <c:if test="${message.user_id == user.id}">
+                        <c:if test="${message.user_id == object.id}">
                         <a href="/dormitory/user/message/delete?id=${message.id}" class="close"><i class="layui-icon layui-icon-close"></i></a>
                         </c:if>
                     </div>
@@ -61,17 +61,17 @@
                     <div class="layui-box layui-laypage layui-laypage-default">
                         <%--上一页--%>
 
-                        <a href="/dormitory/user/index?page=${page.page-1}" class="layui-laypage-prev <c:if test="${page.page <=0}"> layui-disabled  </c:if>">
-                            <i class="layui-icon"></i>
+                        <a href="/dormitory/user/index?page=${(page<1)? page:(page-1)}" class="layui-laypage-prev <c:if test="${page <= 1}"> layui-disabled  </c:if>">
+                            <i class="layui-icon"><</i>
                         </a>
                             <%--当前页--%>
                             <span class="layui-laypage-curr">
                                 <em class="layui-laypage-em">
                                 </em>
-                                <em>${page.page+1}</em>
+                                <em>${page}</em>
                             </span>
                             <%--下一页--%>
-                            <a href="/dormitory/user/index?page=${page.page+1}" class="layui-laypage-next <c:if test="${page.page+1 >= page.pageNum}"> layui-disabled  </c:if>">
+                            <a href="/dormitory/user/index?page=${(page>=pageSum)? pageSum:(page+1)}" class="layui-laypage-next <c:if test="${page >= pageSum}"> layui-disabled  </c:if>">
                                 <i class="layui-icon"></i>
                             </a>
                     </div>

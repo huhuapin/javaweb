@@ -20,8 +20,7 @@ public class AdminIndexServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         HttpSession session = request.getSession();
-        Admin admin = (Admin) session.getAttribute("user");
-        //获取管理员管理的宿舍
+        Admin admin = (Admin) session.getAttribute("object");
         AdminDao adminDao = new AdminDaoIml();
         request.setAttribute("description", adminDao.show(admin.getDormitory_id()));
         //获取管理员宿舍的所有公告

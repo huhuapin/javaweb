@@ -134,7 +134,7 @@
         $(function () {
             var index1 = layer.load(2, {time: 3*1000});
             //查询卫生成绩
-            var url = "https://api.youthol.cn/api/service/hygiene?dormitory=${dormitory.name}&room=${user.room}";
+            var url = "https://api.youthol.cn/api/service/hygiene?dormitory=${dormitory.name}&room=${object.room}";
             $.ajax({
                 url : url,
                 type: 'GET',
@@ -157,7 +157,7 @@
                 data: {
                     school: '${dormitory.school}',
                     dormitory: '${dormitory.elec_name}',
-                    room: '${user.room}',
+                    room: '${object.room}',
                 },
                 success: function (data,status) {
                     console.log(data);

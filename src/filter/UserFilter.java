@@ -16,7 +16,7 @@ public class UserFilter implements Filter {
         HttpServletRequest request = (HttpServletRequest) req;
         HttpServletResponse response = (HttpServletResponse) resp;
         HttpSession session = request.getSession();
-        if(session.getAttribute("admin") == null || (int)session.getAttribute("admin")!=0) {
+        if(session.getAttribute("identity") == null || (int)session.getAttribute("identity") != 0) {
             //未登录，跳转到登录页面
             response.sendRedirect("/dormitory/login");
         }else {

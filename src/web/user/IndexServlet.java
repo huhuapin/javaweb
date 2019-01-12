@@ -9,10 +9,7 @@ import domain.*;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,8 +24,7 @@ public class IndexServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=utf-8");
         HttpSession session = request.getSession();
-        User user = (User)session.getAttribute("user");
-        //获取登录用户所在宿舍
+        User user = (User)session.getAttribute("object");
         Dormitory dormitory = (Dormitory) session.getAttribute("dormitory");
         if (dormitory == null ) {
             DormitoryDaoIml dormitoryDaoIml = new DormitoryDaoIml();
@@ -51,31 +47,31 @@ public class IndexServlet extends HttpServlet {
         }
         //获取登录用户的宿舍的留言
         MessageDao messageDao = new MessageDaoIml();
-        List<Message> messages = new ArrayList<>();
-        messages = messageDao.findAll(user.getDormitory_id());
-        System.out.println("user/IndexServlet:56          getMessages");
-        //页面当前页
-        int curPage = 0;
-        //jsp传过来的当前页
-        String strPage = request.getParameter("page");
-        Page page = new Page();
-        page.setPageSize(6);
-        page.setCount(messages.size());
-        int temp = page.getCount() / page.getPageSize();
-        page.setPageNum(page.getCount() == temp * page.getPageSize() ? temp: temp + 1);
-        if(strPage != null) {
-            int pag = Integer.parseInt(strPage);
-            if(pag >= 0) {
-                curPage = pag;
-                if(pag >= page.getPageNum()) curPage = pag - 1;
-            }
-        }
-        page.setPage(curPage);
         List<Message> list_page = new ArrayList<>();
-        for(int i = page.getPage() * page.getPageSize(); i <(page.getPage()+1)*page.getPageSize() && i < messages.size(); i++) {
-            list_page.add(messages.get(i));
+        int page = 0;    //待显示页面
+        int count = (int) messageDao.sum(user.getDormitory_id()); //数据总条数
+        int pageSum = 0; //页面总数
+        int limit = 6;  //每页显示的数据条数
+        //由记录总数除以每页记录数得出总页数
+        pageSum = (int) Math.ceil(count / (limit * 1.0));
+        //获取跳页时传进来的当前页面参数
+        String strPage = request.getParameter("page");
+        ///判断当前页面参数的合法性并处理非法页号（为空或小于0显示第一页，大于总页数显示最后一页）
+        if (strPage == null) {
+            page = 1;
+        } else {
+            try {
+                page = Integer.parseInt(strPage);
+            } catch (Exception e) {
+                page = 1;
+            }
+            if(page < 1) page = 1;
+            if(page > pageSum) page = pageSum;
         }
+        //由(page-1)*limit算出当前页面第一条记录，由limit查询limit条记录，得出当前页面的记录
+        list_page = messageDao.findAll(user.getDormitory_id(), limit * (page - 1), limit);
         request.setAttribute("page", page);
+        request.setAttribute("pageSum", pageSum);
         request.setAttribute("list_page", list_page);
         request.getRequestDispatcher("/user/index.jsp").forward(request,response);
     }

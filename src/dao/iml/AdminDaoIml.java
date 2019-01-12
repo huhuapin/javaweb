@@ -2,7 +2,7 @@ package dao.iml;
 
 import dao.AdminDao;
 import domain.Admin;
-import utils.JdbcUtils;
+import utils.*;
 
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
@@ -17,8 +17,8 @@ public class AdminDaoIml implements AdminDao {
     public void add(Admin admin) {
         try{
             QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
-            String sql = "insert into admin(username,password,name,dormitory_id,status) values(?,?,?,?,?)";
-            Object params[] = {admin.getUsername(),admin.getPassword(),admin.getName(),admin.getDormitory_id(),admin.getStatus()};
+            String sql = "insert into admin(username,password,name,dormitory_id,tel) values(?,?,?,?,?)";
+            Object params[] = {admin.getUsername(),MD5Utils.md5(admin.getPassword()),admin.getName(),admin.getDormitory_id(),admin.getTel()};
             runner.update(sql, params);
         } catch(Exception e){
             throw new RuntimeException(e);
@@ -30,18 +30,7 @@ public class AdminDaoIml implements AdminDao {
         try{
             QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
             String sql = "update admin set password=? where id=?";
-            runner.update(sql, password, id);
-        } catch(Exception e){
-            throw new RuntimeException(e);
-        }
-    }
-
-    @Override
-    public void status(int id) {
-        try{
-            QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
-            String sql = "update admin set status=1 where id=?";
-            runner.update(sql, id);
+            runner.update(sql, MD5Utils.md5(password), id);
         } catch(Exception e){
             throw new RuntimeException(e);
         }
@@ -63,8 +52,32 @@ public class AdminDaoIml implements AdminDao {
         try{
             QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
             String sql = "select * from admin where username=? and password=?";
-            Object params[] = {username, password};
+            Object params[] = {username, MD5Utils.md5(password)};
             return (Admin) runner.query(sql, params, new BeanHandler(Admin.class));
+        } catch(Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public List<Admin> findAll(int page, int limit) {
+        try{
+            QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
+            String sql = "select * from admin order by id limit ?,?";
+            Object params[] = {page, limit};
+            List<Admin> list = (List<Admin>) runner.query(sql, params, new BeanListHandler(Admin.class));
+            return list;
+        } catch(Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public long sum() {
+        try{
+            QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
+            String sql = "select count(*) from admin";
+            return (long) runner.query(sql, new ScalarHandler());
         } catch(Exception e){
             throw new RuntimeException(e);
         }
@@ -82,28 +95,6 @@ public class AdminDaoIml implements AdminDao {
             return true;
         }catch (Exception e) {
             throw  new RuntimeException(e);
-        }
-    }
-    @Override
-    public List<Admin> getAll() {
-        try{
-            QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
-            String sql = "select * from admin;";
-            List<Admin> list = (List<Admin>) runner.query(sql, new BeanListHandler(Admin.class));
-            return list;
-        } catch(Exception e){
-            throw new RuntimeException(e);
-        }
-    }
-
-    @Override
-    public long sum() {
-        try{
-            QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
-            String sql = "select count(*) from admin";
-            return (long) runner.query(sql, new ScalarHandler());
-        } catch(Exception e){
-            throw new RuntimeException(e);
         }
     }
 

@@ -18,7 +18,7 @@ public class AdminFilter implements Filter{
         HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         HttpSession session = request.getSession();
-        if(session.getAttribute("admin") == null || (int)session.getAttribute("admin")!=1) {
+        if(session.getAttribute("identity") == null || (int)session.getAttribute("identity") != 1) {
             //未登录，跳转到登录页面
             response.sendRedirect("/dormitory/login");
         }else {

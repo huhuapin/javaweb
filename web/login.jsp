@@ -28,6 +28,19 @@
                     <input type="password" name="password" class="form-control">
                 </div>
                 <div class="form-group">
+                    <div>
+                        <label class="radio-inline">
+                            <input type="radio" name="identity" id="inlineRadio0" value="0" checked> 学生
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="identity" id="inlineRadio1" value="1"> 宿舍管理员
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="identity" id="inlineRadio2" value="2"> 系统管理员
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group">
                     <input type="submit" value="登录" class="form-control submit">
                 </div>
             </form>
@@ -35,35 +48,47 @@
         <div class="tab-pane fade" id="register">
             <form action="/dormitory/sign" class="form-horizontal" method="post">
                 <div class="form-group">
-                    <label for="" class="label-control col-md-4">用户名</label>
+                    <label for="nickname" class="label-control col-md-4">昵称</label>
+                    <div class="col-md-8">
+                        <input type="text" name="nickname" class="form-control" placeholder="请输入昵称" id="nickname">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="username" class="label-control col-md-4">用户名</label>
                     <div class="col-md-8">
                         <input type="text" name="username" class="form-control" id="username" placeholder="学生注册请填写学号">
                         <span></span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="" class="label-control col-md-4">密码</label>
+                    <label for="password" class="label-control col-md-4">密码</label>
                     <div class="col-md-8">
                         <input type="password" name="password" class="form-control" id="password" placeholder="请填写密码">
                         <span></span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="" class="label-control col-md-4">确认密码</label>
+                    <label for="password-confirmed" class="label-control col-md-4">确认密码</label>
                     <div class="col-md-8">
-                        <input type="password" name="password_confirmation" class="form-control" id="password-confirmed" placeholder="请再次输入密码">
+                        <input type="password" name="password_confirmed" class="form-control" id="password-confirmed" placeholder="请再次输入密码">
                         <span></span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="" class="label-control col-md-4">姓名</label>
+                    <label for="name" class="label-control col-md-4">姓名</label>
                     <div class="col-md-8">
                         <input type="text" name="name" class="form-control" id="name" placeholder="请输入姓名">
                         <span></span>
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="" class="col-md-4 label-control">宿舍楼</label>
+                    <label for="class" class="label-control col-md-4">班级</label>
+                    <div class="col-md-8">
+                        <input type="text" name="class" class="form-control" id="class" placeholder="请输入班级">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="dormiroty" class="col-md-4 label-control">宿舍楼</label>
                     <div class="col-md-8">
                         <select name="dormitory" id="dormiroty" class="form-control">
                             <option selected="" value="" disabled>请选择...</option>
@@ -74,34 +99,9 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="" class="label-control col-md-4">身份</label>
+                    <label for="room" class="label-control col-md-4">房间号</label>
                     <div class="col-md-8">
-                        <label class="radio-inline">
-                            <input type="radio" name="admin" id="inlineRadio2" value="1" checked> 管理员
-                        </label>
-                        <label class="radio-inline">
-                            <input type="radio" name="admin" id="inlineRadio3" value="0"> 学生
-                        </label>
-                    </div>
-                </div>
-                <div id="student" style="display: none">
-                <div class="form-group">
-                    <label for="" class="label-control col-md-4">昵称</label>
-                    <div class="col-md-8">
-                        <input type="text" name="nickname" class="form-control" placeholder="请输入昵称">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="class" class="label-control col-md-4">班级</label>
-                    <div class="col-md-8">
-                    <input type="text" name="class" class="form-control" id="class" placeholder="请输入班级">
-                    </div>
-                </div>
-                    <div class="form-group">
-                        <label for="room" class="label-control col-md-4">房间号</label>
-                        <div class="col-md-8">
                         <input type="text" name="room" class="form-control" id="room" placeholder="请输入房间号">
-                        </div>
                     </div>
                 </div>
                 <div class="form-group">

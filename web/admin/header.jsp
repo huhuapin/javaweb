@@ -29,7 +29,7 @@
             <a href="/dormitory/admin/index.jsp">宿舍管理系统</a>
         </div>
         <ul class="nav navbar-nav navbar-right  hidden-xs">
-            <li class="dropdown user  hidden-xs"> <a data-toggle="dropdown" class="dropdown-toggle" href="#"> <i class="icon-male"></i> <span class="username">${sessionScope.user.getName()}</span> <i class="icon-caret-down small"></i> </a>
+            <li class="dropdown user  hidden-xs"> <a data-toggle="dropdown" class="dropdown-toggle" href="#"> <i class="icon-male"></i> <span class="username">${sessionScope.object.getName()}</span> <i class="icon-caret-down small"></i> </a>
                 <ul class="dropdown-menu">
                     <li><a href= "#" data-target="#myModal" data-toggle="modal"><i class="icon-user"></i> 修改密码</a></li>
                     <li class="divider"></li>

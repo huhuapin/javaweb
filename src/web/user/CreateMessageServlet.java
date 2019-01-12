@@ -21,7 +21,7 @@ public class CreateMessageServlet extends HttpServlet {
         response.setCharacterEncoding("UTF-8");
         request.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=utf-8");
-        User user = (User) request.getSession().getAttribute("user");
+        User user = (User) request.getSession().getAttribute("object");
         String content = request.getParameter("content");
         Date currentTime = new Date();
         //获取当前时间

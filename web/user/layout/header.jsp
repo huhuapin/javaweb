@@ -15,10 +15,10 @@
             <li class="layui-nav-item">
                 <a href="javascript:;">
     <c:choose>
-        <c:when test="${user.image!=null}"><img src="${user.image}" alt="" class="layui-nav-img"></c:when>
+        <c:when test="${user.image!=null}"><img src="${object.image}" alt="" class="layui-nav-img"></c:when>
         <c:otherwise><img src="${pageContext.request.contextPath}/statics/images/user.jpg" alt="" class="layui-nav-img"></c:otherwise>
     </c:choose>
-    ${user.name}
+    ${object.name}
     </a>
                 <dl class="layui-nav-child">
                     <dd><a href="javascript:;" id="openModal">修改密码</a></dd>
