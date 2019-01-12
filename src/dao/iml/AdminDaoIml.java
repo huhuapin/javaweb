@@ -18,7 +18,7 @@ public class AdminDaoIml implements AdminDao {
         try{
             QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
             String sql = "insert into admin(username,password,name,dormitory_id,tel) values(?,?,?,?,?)";
-            Object params[] = {admin.getUsername(),MD5Utils.md5(admin.getPassword()),admin.getName(),admin.getDormitory_id(),admin.getTel()};
+            Object params[] = {admin.getUsername(),MD5Utils.md5(MD5Utils.md5(admin.getPassword())),admin.getName(),admin.getDormitory_id(),admin.getTel()};
             runner.update(sql, params);
         } catch(Exception e){
             throw new RuntimeException(e);
@@ -30,7 +30,7 @@ public class AdminDaoIml implements AdminDao {
         try{
             QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
             String sql = "update admin set password=? where id=?";
-            runner.update(sql, MD5Utils.md5(password), id);
+            runner.update(sql, MD5Utils.md5(MD5Utils.md5(password)), id);
         } catch(Exception e){
             throw new RuntimeException(e);
         }
@@ -52,7 +52,7 @@ public class AdminDaoIml implements AdminDao {
         try{
             QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
             String sql = "select * from admin where username=? and password=?";
-            Object params[] = {username, MD5Utils.md5(password)};
+            Object params[] = {username, MD5Utils.md5(MD5Utils.md5(password))};
             return (Admin) runner.query(sql, params, new BeanHandler(Admin.class));
         } catch(Exception e){
             throw new RuntimeException(e);

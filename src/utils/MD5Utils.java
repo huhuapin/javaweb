@@ -1,8 +1,13 @@
 package utils;
 
+import dao.UserDao;
+import dao.iml.UserDaoIml;
+import domain.User;
+
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 
 public class MD5Utils {
 
@@ -29,8 +34,12 @@ public class MD5Utils {
     }
 
     public static void main(String[] args) {
-        String str = "jiang123";
-        System.out.println(md5(str));
+        UserDao userDao = new UserDaoIml();
+        List<User> users = userDao.findAll(0,100);
+        for (User user:users) {
+            user.setPassword(md5(user.getPassword()));
+            userDao.update(user);
+        }
     }
 
 }

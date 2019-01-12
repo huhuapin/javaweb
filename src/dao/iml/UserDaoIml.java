@@ -18,7 +18,7 @@ public class UserDaoIml implements UserDao {
         try{
             QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
             String sql = "insert into user(username,password,name,nickname,image,_class,dormitory_id,room) values(?,?,?,?,?,?,?,?)";
-            Object params[] = {user.getUsername(),MD5Utils.md5(user.getPassword()),user.getName(),user.getNickname(),user.getImage(),user.get_class(),user.getDormitory_id(),user.getRoom()};
+            Object params[] = {user.getUsername(),MD5Utils.md5(MD5Utils.md5(user.getPassword())),user.getName(),user.getNickname(),user.getImage(),user.get_class(),user.getDormitory_id(),user.getRoom()};
             runner.update(sql, params);
         } catch(Exception e){
             throw new RuntimeException(e);
@@ -30,7 +30,7 @@ public class UserDaoIml implements UserDao {
         try{
             QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
             String sql = "update user set password=?,nickname=?,image=?,_class=?,dormitory_id=?,room=? where id=?;";
-            Object params[] = {MD5Utils.md5(user.getPassword()),user.getNickname(),user.getImage(),user.get_class(),user.getDormitory_id(),user.getRoom(),user.getId()};
+            Object params[] = {MD5Utils.md5(MD5Utils.md5(user.getPassword())),user.getNickname(),user.getImage(),user.get_class(),user.getDormitory_id(),user.getRoom(),user.getId()};
             runner.update(sql, params);
         } catch(Exception e){
             throw new RuntimeException(e);
@@ -64,7 +64,7 @@ public class UserDaoIml implements UserDao {
         try{
             QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
             String sql = "select * from user where username=? and password=?";
-            Object params[] = {username, MD5Utils.md5(password)};
+            Object params[] = {username, MD5Utils.md5(MD5Utils.md5(password))};
             return (User) runner.query(sql, params, new BeanHandler(User.class));
         } catch(Exception e){
             throw new RuntimeException(e);
