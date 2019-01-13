@@ -155,7 +155,6 @@ img{
     filter: alpha(Opacity=80);
     -moz-opacity: 0.5;
     opacity: 0.5;
-    width: 100px;
     height: 25px;
     text-align: center;
     display: none;
@@ -168,7 +167,6 @@ img{
     filter: alpha(Opacity=80);
     -moz-opacity: 0.5;
     opacity: 0.5;
-    width: 100px;
     text-align: right;
     height: 18px;
     margin-bottom: -18px;
@@ -187,4 +185,7 @@ img{
     margin: 12px 0 0 15px;
     padding: 1px;
     float: left;
+}
+.repair .layui-table img{
+    max-width: 500px;
 }

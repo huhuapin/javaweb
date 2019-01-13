@@ -15,10 +15,11 @@ import java.io.PrintWriter;
 import java.sql.Timestamp;
 import java.util.Date;
 
-@WebServlet(name = "RepairServlet",urlPatterns = "/user/repair/create")
-public class RepairServlet extends HttpServlet {
+@WebServlet(name = "EditRepairServlet",urlPatterns = "/user/repair/edit")
+public class EditRepairServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //获取参数
+        int id = Integer.parseInt(request.getParameter("id"));
         String reason = request.getParameter("reason");
         String address = request.getParameter("address");
         String image = request.getParameter("image");
@@ -29,28 +30,36 @@ public class RepairServlet extends HttpServlet {
         Date currentTime = new Date();
         //获取当前时间
         Timestamp timestamp = new Timestamp(currentTime.getTime());
-        //创建repair类
-        Repair repair = new Repair();
+        //获取repair类
+        RepairDao repairDao = new RepairDaoIml();
+        Repair repair = repairDao.find(id);
+        //更新类
         repair.setReason(reason);
         repair.setAddress(address);
         repair.setImage(image);
-        repair.setTel(tel);
         repair.setDetail(detail);
-        repair.setUser_id(user.getId());
-        repair.setDormitory_id(user.getDormitory_id());
-        repair.setCreated_at(new Timestamp(currentTime.getTime()));
+        repair.setTel(tel);
+        int bool = repairDao.updateRepair(repair);
         //存入数据库
-        RepairDao repairDao = new RepairDaoIml();
-        repairDao.addRepair(repair);
         PrintWriter printWriter = response.getWriter();
-        printWriter.println("<script>alert('报修成功');location.href='/dormitory/user/index';</script>");
+        printWriter.println("<script>alert('修改报修信息成功');location.href='/dormitory/user/repair/detail?id="+id+"';</script>");
         return;
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.setCharacterEncoding("utf-8");
-        response.setCharacterEncoding("utf-8");
-        response.setContentType("text/html;charset=utf-8");
-        request.getRequestDispatcher("/user/repair.jsp").forward(request,response);
+        if (request.getParameter("id") == null || request.getParameter("id").equals("")) {
+            response.getWriter().println("<script>alert('参数错误');location.href='/dormitory/user/repair';</script>");
+            return;
+        }
+        int id = Integer.parseInt(request.getParameter("id"));
+        RepairDao repairDao = new RepairDaoIml();
+        Repair repair = repairDao.find(id);
+        User user = (User) request.getSession().getAttribute("object");
+        if (repair == null || repair.getUser_id() != user.getId()) {
+            response.getWriter().println("<script>alert('报修不存在或您没有该权限');location.href='/dormitory/user/repair';</script>");
+            return;
+        }
+        request.setAttribute("repair",repair);
+        request.getRequestDispatcher("/user/repair_edit.jsp").forward(request,response);
     }
 }

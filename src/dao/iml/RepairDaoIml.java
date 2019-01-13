@@ -4,12 +4,18 @@ import dao.RepairDao;
 import domain.Repair;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
+import org.apache.commons.dbutils.BasicRowProcessor;
+import org.apache.commons.dbutils.BeanProcessor;
 import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.RowProcessor;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
+import org.apache.commons.dbutils.handlers.MapHandler;
 import utils.JdbcUtils;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class RepairDaoIml implements RepairDao {
 
@@ -41,7 +47,7 @@ public class RepairDaoIml implements RepairDao {
             QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
             String sql = "update repair set reason = ?,address = ?,image = ?,detail = ?,tel = ?,message = ?,status = ?";
             Object[] params = {repair.getReason(),repair.getAddress(), JSONArray.fromObject(repair.getImage()).toString(),repair.getDetail(),repair.getTel(),repair.getMessage(),repair.getStatus()};
-            return runner.update(sql,new BeanListHandler<Repair>(Repair.class),params);
+            return runner.update(sql,params);
         }catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -61,9 +67,13 @@ public class RepairDaoIml implements RepairDao {
     @Override
     public Repair find(int id) {
         try {
+            Map<String, Object> map = new HashMap<String,Object>();
             QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
             String sql = "select * from repair where id = ?";
-            return runner.query(sql,new BeanHandler<Repair>(Repair.class),id);
+            map = runner.query(sql,new MapHandler(),id);
+            Repair repair = runner.query(sql,new BeanHandler<Repair>(Repair.class),id);
+            repair.setImage((String) map.get("image"));
+            return repair;
         }catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -75,7 +85,7 @@ public class RepairDaoIml implements RepairDao {
             QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
             String sql = "insert into repair(reason,address,image,detail,tel,user_id,dormitory_id,status,created_at,updated_at)" +
                     "values(?,?,?,?,?,?,?,?,?,?)";
-            Object[] params = {repair.getReason(),repair.getAddress(), JSONArray.fromObject(repair.getImage()).toString(),repair.getDetail(),repair.getTel(),repair.getUser_id(),repair.getDormotiry_id(),0,repair.getCreated_at(),repair.getCreated_at()};
+            Object[] params = {repair.getReason(),repair.getAddress(), JSONArray.fromObject(repair.getImage()).toString(),repair.getDetail(),repair.getTel(),repair.getUser_id(),repair.getDormitory_id(),0,repair.getCreated_at(),repair.getCreated_at()};
             return runner.update(sql,params);
 
         }catch (Exception e) {

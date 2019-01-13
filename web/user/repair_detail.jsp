@@ -1,3 +1,4 @@
+<%@ page import="domain.Repair" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!Doctype html>
@@ -13,12 +14,19 @@
 <body>
 <%--头部导航栏--%>
 <jsp:include page="layout/header.jsp"/>
-
+<%
+    Repair repair = (Repair) request.getAttribute("repair");
+%>
 <%--主体内容--%>
 <div class="layui-container">
     <div class="layui-row main">
-        <div class="layui-col-md8 mine">
-            <table lay-even lay-skin="line" lay-size="lg">
+        <div class="layui-col-md8 repair">
+            <blockquote class="layui-elem-quote">报修详情</blockquote>
+            <table lay-skin="line" lay-size="lg" class="layui-table">
+                <colgroup>
+                    <col width="150">
+                    <col>
+                </colgroup>
                 <thead>
                     <tr>
                         <td>说明</td>
@@ -35,30 +43,28 @@
                     <td>${repair.address}</td>
                 </tr>
                 <tr>
-                    <td rowspan="${repair.image.length}">照片</td>
-                    <td></td>
+                    <td rowspan="<%=repair.getImage().length %>">照片</td>
+                    <td><img src="${repair.image[0]}" alt=""></td>
                 </tr>
-                <c:forEach items="${repair.image}" var="image">
+                <c:forEach begin="1" end="<%=repair.getImage().length-1 %>"  var="image">
                 <tr>
-                    <td><img src="${image}" alt=""></td>
+                    <td><img src="${repair.image[image]}" alt=""></td>
                 </tr>
                 </c:forEach>
                 <tr>
                     <td>联系方式</td>
-                    <td>${reapair.tel}</td>
+                    <td>${repair.tel}</td>
                 </tr>
                 <tr>
                     <td>管理员原回复</td>
-                    <td>${reapair.tel}</td>
+                    <td>${reapair.message}</td>
                 </tr>
+
                 <tr>
                     <td>报修时间</td>
                     <td><span class="date">${repair.created_at}</span></td>
                 </tr>
-                <tr>
-                    <td>回复时间</td>
-                    <td><span class="date">${repair.updated_at}</span></td>
-                </tr>
+
                 </tbody>
             </table>
         </div>
