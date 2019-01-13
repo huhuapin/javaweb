@@ -1,5 +1,8 @@
 package domain;
 
+import dao.DormitoryDao;
+import dao.iml.DormitoryDaoIml;
+
 import java.sql.Timestamp;
 
 public class Dormitory {

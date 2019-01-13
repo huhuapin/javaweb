@@ -28,6 +28,5 @@ public class DelUserServlet extends HttpServlet {
             userDao.delete(id);
             response.sendRedirect("/dormitory/admin/user_list");
         }
-
     }
 }

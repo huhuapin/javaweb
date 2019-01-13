@@ -11,12 +11,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
-@WebServlet(name = "ShowInfoServlet", urlPatterns = "/admin/showinfo")
-public class ShowInfoServlet extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+@WebServlet(name = "ShowAdminServlet", urlPatterns = "/admin/showadmin")
+public class ShowAdminServlet extends HttpServlet {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
 
@@ -26,7 +26,6 @@ public class ShowInfoServlet extends HttpServlet {
         request.setAttribute("id", request.getParameter("id"));
         request.setAttribute("username", request.getParameter("username"));
         request.setAttribute("name", request.getParameter("name"));
-        request.setAttribute("_class", request.getParameter("_class"));
         //获取宿舍列表
         DormitoryDao dormitoryDao = new DormitoryDaoIml();
         int id = Integer.parseInt(request.getParameter("dormitory_id"));
@@ -34,8 +33,8 @@ public class ShowInfoServlet extends HttpServlet {
         List<Dormitory> list = new ArrayList<>();
         list = dormitoryDao.getAll();
         request.setAttribute("dormitoryList", list);
-        request.setAttribute("room", request.getParameter("room"));
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/user_edit.jsp");
+        request.setAttribute("tel", request.getParameter("tel"));
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/admin/admin_edit.jsp");
         dispatcher.forward(request, response);
     }
 }

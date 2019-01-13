@@ -18,7 +18,10 @@ public class NoticeDaoIml implements NoticeDao {
         try{
             QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
             String sql = "insert into notice(title,content,admin_id,dormitory_id,created_at) values(?,?,?,?,?)";
-            Object params[] = {notice.getTitle(),notice.getContent(),notice.getAdmin_id(),notice.getDormitory_id(),notice.getCreated_at()};
+            Integer dormitory_id = notice.getDormitory_id();
+            if(notice.getDormitory_id() == 0) dormitory_id = null;
+            System.out.println(dormitory_id);
+            Object params[] = {notice.getTitle(),notice.getContent(),notice.getAdmin_id(),dormitory_id,notice.getCreated_at()};
             runner.update(sql, params);
         } catch(Exception e){
             throw new RuntimeException(e);

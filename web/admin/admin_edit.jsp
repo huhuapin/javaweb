@@ -1,9 +1,8 @@
-
 <%--
   Created by IntelliJ IDEA.
-  User: hasee
-  Date: 2019/1/4
-  Time: 9:52
+  User: jiang
+  Date: 19-1-12
+  Time: 下午9:39
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -17,7 +16,7 @@
         <div class="content container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h2 class="page-title"> 学生修改 <small>Edit Student</small></h2>
+                    <h2 class="page-title"> 宿舍管理员修改 <small>Edit Admin</small></h2>
                 </div>
             </div>
             <div class="row">
@@ -27,15 +26,15 @@
                             <h3>Student Info </h3>
                         </div>
                         <div class="widget-content">
-                            <form method="post" action="/dormitory/admin/modifyinfo" class="form-horizontal">
+                            <form method="post" action="/dormitory/admin/modifyadmin" class="form-horizontal">
                                 <fieldset>
                                     <input type="hidden" value="${id}" name="id">
                                     <div class="form-group">
                                         <div class="col-md-3">
-                                            <label for="username" class="control-label">学号</label>
+                                            <label for="username" class="control-label">用户名</label>
                                         </div>
                                         <div class="col-md-6">
-                                                <input type="text" value="${username}" class="form-control" disabled id="username">
+                                            <input type="text" value="${username}" class="form-control" disabled id="username">
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -43,50 +42,35 @@
                                             <label for="name" class="control-label">姓名</label>
                                         </div>
                                         <div class="col-md-6">
-                                            <c:choose>
-                                                <c:when test="${identity == 2}">
-                                                    <input type="text" value="${name}" class="form-control" name="name" id="name">
-                                                </c:when>
-                                                <c:otherwise>
-                                                    <input type="text" value="${name}" class="form-control" disabled id="name">
-                                                </c:otherwise>
-                                            </c:choose>
+                                            <input type="text" value="${name}" class="form-control" name="name" id="name">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="col-md-3">
-                                            <label for="_class" class="control-label">班级</label>
+                                            <label for="dormitory" class="control-label">宿舍楼</label>
                                         </div>
                                         <div class="col-md-6">
-                                                <input type="text" value="${_class}" class="form-control" name="_class" id="_class">
+                                            <select class="form-control" name="dormitory" id="dormitory">
+                                                <%-- <option value="" class="">${description}</option> --%>
+                                                <c:forEach var = "dormitory" items="${dormitoryList}">
+                                                    <option value="${dormitory.getId()}" class="">${dormitory.getDescription()}</option>
+                                                </c:forEach>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="col-md-3">
-                                            <label for="dormitory" class="control-label">宿舍</label>
+                                            <label for="tel" class="control-label">联系方式</label>
                                         </div>
                                         <div class="col-md-6">
-                                                <select class="form-control" name="dormitory" id="dormitory">
-                                                   <%-- <option value="" class="">${description}</option> --%>
-                                                    <c:forEach var = "dormitory" items="${dormitoryList}">
-                                                        <option value="${dormitory.getId()}" class="">${dormitory.getDescription()}</option>
-                                                    </c:forEach>
-                                                </select>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="col-md-3">
-                                            <label for="room" class="control-label">房间号</label>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <input type="text" value="${room}" class="form-control" name="room" id="room">
+                                            <input type="text" value="${tel}" class="form-control" name="tel" id="tel">
                                         </div>
                                     </div>
                                 </fieldset>
                                 <div class="form-actions">
                                     <div>
                                         <button class="btn btn-primary" type="submit">Save Changes</button>
-                                        <a href="/dormitory/admin/user_list"><button class="btn btn-default" type="button">Cancel</button></a>
+                                        <a href="/dormitory/admin/admin_list"><button class="btn btn-default" type="button">Cancel</button></a>
                                     </div>
                                 </div>
                             </form>

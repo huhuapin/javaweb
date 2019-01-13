@@ -40,11 +40,17 @@
                                 <tbody>
                                     <c:forEach var="admin" items="${list_page}">
                                         <tr>
-                                            <td>${admin.getId()}</td>
-                                            <td>${admin.getUsername()}</td>
-                                            <td>${admin.getName()}</td>
-                                            <td>${admin.getDescription()}</td>
-                                            <td>${admin.getTel()}</td>
+                                            <c:if test="${admin.getDormitory_id() != 0}">
+                                                <td>${admin.getId()}</td>
+                                                <td>${admin.getUsername()}</td>
+                                                <td>${admin.getName()}</td>
+                                                <td>${admin.getDescription()}</td>
+                                                <td>${admin.getTel()}</td>
+                                                <td>
+                                                    <a href="/dormitory/admin/showadmin?id=${admin.getId()}&username=${admin.getUsername()}&name=${admin.getName()}&dormitory_id=${admin.getDormitory_id()}&tel=${admin.getTel()}"><button class="btn btn-sm btn-primary"> 编辑 </button></a>
+                                                    <a href="/dormitory/admin/deladmin?id=${admin.getId()}"><button  class="btn btn-sm btn-warning"> 删除 </button></a>
+                                                </td>
+                                            </c:if>
                                         </tr>
                                     </c:forEach>
                                 </tbody>

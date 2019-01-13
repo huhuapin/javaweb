@@ -40,8 +40,8 @@ public class AdminDaoIml implements AdminDao {
     public void update(Admin admin) {
         try{
             QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
-            String sql = "update admin set username=?,password=?,name=?,dormitory_id=?,tel=? where id=?;";
-            Object params[] = {admin.getUsername(),MD5Utils.md5(MD5Utils.md5(admin.getPassword())),admin.getName(),admin.getDormitory_id(),admin.getTel(),admin.getId()};
+            String sql = "update admin set name=?,dormitory_id=?,tel=? where id=?;";
+            Object params[] = {admin.getName(),admin.getDormitory_id(),admin.getTel(),admin.getId()};
             runner.update(sql, params);
         } catch(Exception e){
             throw new RuntimeException(e);

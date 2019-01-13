@@ -34,6 +34,7 @@
                                     <th>#</th>
                                     <th>标题</th>
                                     <th>时间</th>
+                                    <c:if test="${identity == 2}"><th>创建者</th></c:if>
                                     <th>操作</th>
                                 </tr>
                                 </thead>
@@ -43,6 +44,12 @@
                                             <td>${notice.getId()}</td>
                                             <td>${notice.getTitle()}</td>
                                             <td><span class="date">${notice.getCreated_at()}</span></td>
+                                            <c:if test="${identity == 2}">
+                                                <c:choose>
+                                                    <c:when test="${notice.getDormitory_id() == 0}"><td>系统管理员</td></c:when>
+                                                    <c:otherwise><td>${notice.description()}</td></c:otherwise>
+                                                </c:choose>
+                                            </c:if>
                                             <td>
                                                 <a href="/dormitory/admin/shownotice?id=${notice.getId()}"><button class="btn btn-sm btn-primary"> 编辑 </button></a>
                                                 <a href="/dormitory/admin/delnotice?id=${notice.getId()}"><button  class="btn btn-sm btn-warning"> 删除 </button></a>
