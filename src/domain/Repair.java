@@ -1,5 +1,9 @@
 package domain;
 
+import dao.DormitoryDao;
+import dao.UserDao;
+import dao.iml.DormitoryDaoIml;
+import dao.iml.UserDaoIml;
 import utils.JSONUtils;
 
 import java.sql.Timestamp;
@@ -68,12 +72,14 @@ public class Repair {
         this.status = status;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setUser() {
+        UserDao userDao = new UserDaoIml();
+        this.user = userDao.find(this.user_id);
     }
 
-    public void setDormitory(Dormitory dormitory) {
-        this.dormitory = dormitory;
+    public void setDormitory() {
+        DormitoryDao dormitoryDao = new DormitoryDaoIml();
+        this.dormitory = dormitoryDao.find(this.dormitory_id);
     }
 
     public int getId() {
@@ -132,10 +138,16 @@ public class Repair {
     }
 
     public User getUser() {
+        if (user == null) {
+            this.getUser();
+        }
         return user;
     }
 
     public Dormitory getDormitory() {
+        if (dormitory == null) {
+            this.setDormitory();
+        }
         return dormitory;
     }
 }

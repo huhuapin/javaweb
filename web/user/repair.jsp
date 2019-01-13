@@ -18,7 +18,7 @@
 <div class="layui-container">
     <div class="layui-row main">
         <div class="layui-col-md8 mine">
-            <form class="layui-form" action="/dormitory/user/repair" method="POST">
+            <form class="layui-form" action="/dormitory/user/repair/create" method="POST">
                 <div class="layui-form-item">
                     <label class="layui-form-label">报修原因 <span>*</span></label>
                     <div class="layui-input-block">
