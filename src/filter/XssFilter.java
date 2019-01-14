@@ -34,15 +34,15 @@ public class XssFilter implements Filter {
                 sql = sql + value[i];
             }
         }
-
+        chain.doFilter(req, res);
+        return;
         //有xss过滤关键字
-        if (xssValidate(sql)) {
-            PrintWriter printWriter = response.getWriter();
-            printWriter.println("<script>alert('您的输入含有非法字符！');location.href='/dormitory/login';</script>");
-
-        } else {
-            chain.doFilter(req, res);
-        }
+//        if (xssValidate(sql)) {
+//            PrintWriter printWriter = response.getWriter();
+//            printWriter.println("<script>alert('您的输入含有非法字符！');location.href='/dormitory/login';</script>");
+//        } else {
+//            chain.doFilter(req, res);
+//        }
     }
 
     protected static boolean xssValidate(String str) {

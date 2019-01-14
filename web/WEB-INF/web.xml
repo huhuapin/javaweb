@@ -27,10 +27,10 @@
         <filter-name>AdminFilter</filter-name>
         <url-pattern>/admin/*</url-pattern>
     </filter-mapping>
-    <filter-mapping>
-        <filter-name>XssFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>
+    <!--<filter-mapping>-->
+        <!--<filter-name>XssFilter</filter-name>-->
+        <!--<url-pattern>/*</url-pattern>-->
+    <!--</filter-mapping>-->
 
 </web-app>
 
