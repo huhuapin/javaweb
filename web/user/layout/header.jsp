@@ -24,6 +24,7 @@
                     <dd><a href="javascript:;" id="openModal">修改密码</a></dd>
                     <dd><a href="/dormitory/user/edit">个人信息</a></dd>
                     <dd><a href="/dormitory/user/repair">报修记录</a></dd>
+                    <dd><a href="/dormitory/user/funds">舍费记录</a></dd>
                     <dd><a href="/dormitory/logout">登出</a></dd>
                 </dl>
             </li>
@@ -32,8 +33,9 @@
             <li class="layui-nav-item <c:if test="${pageContext.request.getServletPath().equals(\"/user/index.jsp\")}"> layui-this </c:if> "><a href="/dormitory/user/index">首页</a></li>
             <li class="layui-nav-item <c:if test="${pageContext.request.getServletPath().equals(\"/user/notice.jsp\")}"> layui-this </c:if> "><a href="/dormitory/user/notice">公告</a></li>
             <li class="layui-nav-item <c:if test="${pageContext.request.getServletPath().equals(\"/user/service.jsp\")}">layui-this </c:if> "> <a href="/dormitory/user/service">查询</a></li>
-    <li class="layui-nav-item <c:if test="${pageContext.request.getServletPath().equals(\"/user/repair.jsp\")}">layui-this </c:if> "> <a href="/dormitory/user/repair/create">报修</a></li>
-        </ul>
+            <li class="layui-nav-item <c:if test="${pageContext.request.getServletPath().equals(\"/user/repair.jsp\")}">layui-this </c:if> "> <a href="/dormitory/user/repair/create">报修</a></li>
+            <li class="layui-nav-item <c:if test="${pageContext.request.getServletPath().equals(\"/user/funds.jsp\")}">layui-this  </c:if> "><a href="/dormitory/user/funds/create">舍费</a></li>
+    </ul>
     </div>
 </div>
 
