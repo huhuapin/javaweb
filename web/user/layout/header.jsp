@@ -31,7 +31,7 @@
         <ul class="layui-nav">
             <li class="layui-nav-item <c:if test="${pageContext.request.getServletPath().equals(\"/user/index.jsp\")}"> layui-this </c:if> "><a href="/dormitory/user/index">首页</a></li>
             <li class="layui-nav-item <c:if test="${pageContext.request.getServletPath().equals(\"/user/notice.jsp\")}"> layui-this </c:if> "><a href="/dormitory/user/notice">公告</a></li>
-            <li class="layui-nav-item <c:if test="${pageContext.request.getServletPath().equals(\"/user/service.jsp\")}">layui-this </c:if> "> <a href="/dormitory/user/service">功能</a></li>
+            <li class="layui-nav-item <c:if test="${pageContext.request.getServletPath().equals(\"/user/service.jsp\")}">layui-this </c:if> "> <a href="/dormitory/user/service">查询</a></li>
     <li class="layui-nav-item <c:if test="${pageContext.request.getServletPath().equals(\"/user/repair.jsp\")}">layui-this </c:if> "> <a href="/dormitory/user/repair/create">报修</a></li>
         </ul>
     </div>
