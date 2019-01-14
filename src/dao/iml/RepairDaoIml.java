@@ -11,6 +11,7 @@ import org.apache.commons.dbutils.RowProcessor;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 import org.apache.commons.dbutils.handlers.MapHandler;
+import org.apache.commons.dbutils.handlers.ScalarHandler;
 import utils.JdbcUtils;
 
 import java.util.HashMap;
@@ -101,6 +102,28 @@ public class RepairDaoIml implements RepairDao {
             String sql = "select * from repair where user_id = ? order by updated_at desc limit ?,?";
             return runner.query(sql,new BeanListHandler<Repair>(Repair.class),user_id,page,limit);
         }catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public long sum() {
+        try{
+            QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
+            String sql = "select count(*) from repair";
+            return (long) runner.query(sql, new ScalarHandler());
+        } catch(Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
+    public long sum(int dormitory_id) {
+        try{
+            QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
+            String sql = "select count(*) from repair where dormitory_id = ?";
+            return (long) runner.query(sql, dormitory_id, new ScalarHandler());
+        } catch(Exception e){
             throw new RuntimeException(e);
         }
     }
