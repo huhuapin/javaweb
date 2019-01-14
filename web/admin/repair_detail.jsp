@@ -78,7 +78,7 @@
                                                 </c:when>
                                                 <c:when test="${repair.status  == 1}">
                                                     处理中
-                                                    <a href="${pageContext.request.contextPath}/admin/repair_change?id=${repair.id}" class="btn btn-primary">设置已完成</a>
+                                                    <a href="${pageContext.request.contextPath}/admin/repair_change?id=${repair.id}" class="btn btn-success">设置已完成</a>
                                                 </c:when>
                                                 <c:when test="${repair.status == 2}">
                                                     已完成
@@ -86,6 +86,15 @@
                                             </c:choose>
                                         </td>
                                     </tr>
+                                    <c:if test="${repair.status == 2}">
+                                        <tr>
+                                            <td>评分</td>
+                                            <td>
+                                                <c:if test="${repair.rate == 0}">未评分</c:if>
+                                                <c:if test="${repair.rate !=0}">${repair.rate}</c:if>
+                                            </td>
+                                        </tr>
+                                    </c:if>
                                     <form action="${pageContext.request.contextPath}/admin/repair_change" method="post">
                                     <tr>
                                         <td>
@@ -97,7 +106,7 @@
                                         </td>
                                     </tr>
                                         <tr>
-                                            <td><a href="javascript:history.go(-1);" class="btn btn-danger">返回</a></td>
+                                            <td><a href="${pageContext.request.contextPath}/admin/repair_list" class="btn btn-danger">返回</a></td>
                                             <td><button type="submit" class="btn-success btn">回复</button></td>
                                         </tr>
                                     </form>

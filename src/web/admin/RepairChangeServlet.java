@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.Timestamp;
+import java.util.Date;
 
 @WebServlet(name = "RepairChangeServlet",urlPatterns = "/admin/repair_change")
 public class RepairChangeServlet extends HttpServlet {
@@ -34,7 +36,9 @@ public class RepairChangeServlet extends HttpServlet {
             }
         }
         String message = request.getParameter("message");
+        Timestamp timestamp = new Timestamp(new Date().getTime());
         repair.setMessage(message);
+        repair.setUpdated_at(timestamp);
         repairDao.updateRepair(repair);
         response.getWriter().println("<script>alert('回复成功！');location.href='/dormitory/admin/showrepair?id="+ id +"';</script>");
     }
@@ -63,6 +67,7 @@ public class RepairChangeServlet extends HttpServlet {
             repair.setStatus(repair.getStatus() + 1);
         }
         repairDao.updateRepair(repair);
-        response.sendRedirect(request.getContextPath() + "/admin/repair_list");
+        response.getWriter().println("<script>alert('修改成功！');history.go(-1);</script>");
+
     }
 }

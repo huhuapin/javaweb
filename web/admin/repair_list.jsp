@@ -65,18 +65,16 @@
 
                                             <td>
                                             <a href="${pageContext.request.contextPath}/admin/showrepair?id=${repair.id}"><button class="btn btn-sm btn-primary"> 详情 </button></a>
-                                                <a href="${pageContext.request.contextPath}/admin/showrepair?id=${repair.id}">
-                                                    <button class="btn btn-sm btn-warning">
-                                                    设置为
+                                                <a href="${pageContext.request.contextPath}/admin/repair_change?id=${repair.id}">
                                                         <c:choose>
                                                         <c:when test="${repair.status == 0}">
-                                                            处理中
+                                                    <button class="btn btn-sm btn-info">设置为 处理中</button>
                                                         </c:when>
                                                         <c:when test="${repair.status  == 1}">
-                                                            已完成
+                                                            <button class="btn btn-sm btn-success">设置为 已完成</button>
                                                         </c:when>
                                                         </c:choose>
-                                                </button></a>
+                                                </a>
                                             </td>
                                         </tr>
                                     </c:forEach>

@@ -97,18 +97,31 @@
 <jsp:include page="layout/script.jsp"/>
 <c:if test="${repair.status == 2}">
 <script>
-    layui.use('rate', function(){
+    layui.use(['rate','layer'], function(){
+        var $ = layui.$;
         var rate = layui.rate;
-
+        var bool = false;
+        <c:if test="${repair.rate !=0 }">
+        bool = true;
+        </c:if>
         //渲染
         var ins1 = rate.render({
             elem: '.layui-rate',  //绑定元素
             value:${repair.rate},
-            <c:if test="${repair.rate !=0 }">
-            readonly: true,
-            </c:if>
+            readonly: bool,
             choose: function(value){
-                if(value > 4) alert( '么么哒' )
+                var url = "${pageContext.request.contextPath}" + "/user/repair/rate";
+                $.post(url,{
+                    id:${repair.id},
+                    value:value,
+                },function (data) {
+                    var data = JSON.parse(data);
+                    if (data.code == 0) {
+                        layer.msg(data.message,{icon:1});
+                    }else {
+                        layer.msg(data.message,{icon:2});
+                    }
+                })
             }
         });
     });

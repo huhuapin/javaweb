@@ -51,6 +51,10 @@
                                 <i class="layui-icon layui-icon-praise"></i>
                                 <span>${message.praise}</span>
                             </button>
+                            <button class="layui-btn layui-btn-radius btn-reply layui-btn-primary" data-name = "${message.user.nickname}">
+                                <i class="layui-icon layui-icon-reply-fill"></i>
+                                <span>回复</span>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -82,7 +86,7 @@
                     <div class="layui-row">
                         <div class="layui-col-md1 layui-col-sm1 layui-hide-xs">
                             <c:choose>
-                                <c:when test="${user.image!=null}"><img src="${user.image}" alt="" class="layui-nav-img"></c:when>
+                                <c:when test="${object.image!=null}"><img src="${object.image}" alt="" class="layui-nav-img"></c:when>
                                 <c:otherwise><img src="../statics/images/user.jpg" alt="" class="layui-nav-img"></c:otherwise>
                             </c:choose>
                         </div>
@@ -145,10 +149,15 @@
                 }
             })
         });
+        $('.btn-reply').click(function () {
+            var name = $(this).data("name");
+            layedit.setContent(editor,"@"+name+"&nbsp;");
+            $("html,body").finish().animate({"scrollTop":$(".layui-layedit").offset().top},400);
+        })
     });
     layui.use('layedit',function () {
-        var layedit = layui.layedit;
-        layedit.build('message',{
+        layedit = layui.layedit;
+        editor = layedit.build('message',{
             uploadImage : {
                 url:"${pageContext.request.contextPath}/images/upload",
                 type: "POST",
