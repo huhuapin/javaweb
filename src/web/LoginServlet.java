@@ -49,7 +49,11 @@ public class LoginServlet extends HttpServlet {
                     session.setAttribute("identity", 1);
 
                 }else {
-                    session.setAttribute("identity", 2);
+                    if(admin.isRoot()) {
+                        session.setAttribute("identity", 2);
+                    }else {
+                        printWriter.println("<script>alert('用户名密码错误');location.href='/dormitory/login';</script>");
+                    }
                 }
                 session.setAttribute("object", admin);
                 response.sendRedirect("/dormitory/admin/index");
