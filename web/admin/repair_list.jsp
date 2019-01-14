@@ -40,7 +40,7 @@
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    <c:forEach var="repair" items="${repairs}">
+                                    <c:forEach var="repair" items="${list_page}">
                                         <tr>
                                             <td>${repair.id}</td>
                                             <td>${repair.reason}</td>
@@ -84,11 +84,11 @@
                                 </table>
                                 <div class="clearfix">
                                     <ul class="pagination no-margin">
-                                        <li><a href="/dormitory/admin/notice_list?page=1">&lt;&lt; 首页 </a></li>
-                                        <li><a href="/dormitory/admin/notice_list?page=${(page<1)? page:(page-1)}"> &lt; 上一页 </a></li>
+                                        <li><a href="/dormitory/admin/repair_list?page=1">&lt;&lt; 首页 </a></li>
+                                        <li><a href="/dormitory/admin/repair_list?page=${(page<1)? page:(page-1)}"> &lt; 上一页 </a></li>
                                         <li >第${page}页/共${pageSum}页</li>
-                                        <li><a href="/dormitory/admin/notice_list?page=${(page>=pageSum)? pageSum:(page+1)}">下一页 &gt;</a></li>
-                                        <li><a href="/dormitory/admin/notice_list?page=${pageSum}">末页 &gt;&gt;</a></li>
+                                        <li><a href="/dormitory/admin/repair_list?page=${(page>=pageSum)? pageSum:(page+1)}">下一页 &gt;</a></li>
+                                        <li><a href="/dormitory/admin/repair_list?page=${pageSum}">末页 &gt;&gt;</a></li>
                                     </ul>
                                 </div>
                             </div>
