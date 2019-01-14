@@ -20,13 +20,32 @@ public class Repair {
     private int dormitory_id; //报修宿舍
     private String message; //回复消息
     private int status;  //报修状态  0待完成   1正在进行   2 已完成
+    private int rate; //评分
     private Timestamp created_at; //创建时间
     private Timestamp updated_at; //修改时间
     private User user;   //用户
+
+    public int getRate() {
+        return rate;
+    }
+
+    public void setRate(int rate) {
+        this.rate = rate;
+    }
+
     private Dormitory dormitory;  //宿舍
+    private int image_length; //照片的数量
 
+    public int getImage_length() {
+        if (image_length == 0) {
+            this.setImage_length();
+        }
+        return image_length;
+    }
 
-
+    public void setImage_length() {
+        this.image_length = this.image.length;
+    }
 
     public void setId(int id) {
         this.id = id;
@@ -139,7 +158,7 @@ public class Repair {
 
     public User getUser() {
         if (user == null) {
-            this.getUser();
+            this.setUser();
         }
         return user;
     }

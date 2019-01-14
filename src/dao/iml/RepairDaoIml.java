@@ -45,13 +45,14 @@ public class RepairDaoIml implements RepairDao {
     public int updateRepair(Repair repair) {
         try {
             QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
-            String sql = "update repair set reason = ?,address = ?,image = ?,detail = ?,tel = ?,message = ?,status = ?";
-            Object[] params = {repair.getReason(),repair.getAddress(), JSONArray.fromObject(repair.getImage()).toString(),repair.getDetail(),repair.getTel(),repair.getMessage(),repair.getStatus()};
+            String sql = "update repair set reason = ?,address = ?,image = ?,detail = ?,tel = ?,message = ?,status = ?,rate = ? where id = ?";
+            Object[] params = {repair.getReason(),repair.getAddress(), JSONArray.fromObject(repair.getImage()).toString(),repair.getDetail(),repair.getTel(),repair.getMessage(),repair.getStatus(),repair.getRate(),repair.getId()};
             return runner.update(sql,params);
         }catch (Exception e) {
             throw new RuntimeException(e);
         }
-    }
+
+}
 
     @Override
     public int deleteRepair(int id) {

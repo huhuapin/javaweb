@@ -25,7 +25,7 @@ public class RepairServlet extends HttpServlet {
         String detail = request.getParameter("detail");
         String tel = request.getParameter("tel");
         //获取session用户
-        User user = (User)request.getSession().getAttribute("user");
+        User user = (User)request.getSession().getAttribute("object");
         Date currentTime = new Date();
         //获取当前时间
         Timestamp timestamp = new Timestamp(currentTime.getTime());

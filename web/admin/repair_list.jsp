@@ -35,6 +35,7 @@
                                         <th>地点</th>
                                         <c:if test="${identity == 2}"><th>宿舍楼</th></c:if>
                                         <th>时间</th>
+                                        <th>状态</th>
                                         <th>操作</th>
                                     </tr>
                                     </thead>
@@ -43,13 +44,39 @@
                                         <tr>
                                             <td>${repair.id}</td>
                                             <td>${repair.reason}</td>
-                                     d       <td>${repair.address}</td>
+                                            <td>${repair.address}</td>
                                             <c:if test="${identity == 2}">
                                                 <td>${repair.dormitory.description}</td>
                                             </c:if>
                                             <td><span class="date">${repair.created_at}</span></td>
                                             <td>
+                                                <c:choose>
+                                                    <c:when test="${repair.status == 0}">
+                                                        待处理
+                                                    </c:when>
+                                                    <c:when test="${repair.status  == 1}">
+                                                        处理中
+                                                    </c:when>
+                                                    <c:when test="${repair.status == 2}">
+                                                        已完成
+                                                    </c:when>
+                                                </c:choose>
+                                            </td>
+
+                                            <td>
                                             <a href="${pageContext.request.contextPath}/admin/showrepair?id=${repair.id}"><button class="btn btn-sm btn-primary"> 详情 </button></a>
+                                                <a href="${pageContext.request.contextPath}/admin/showrepair?id=${repair.id}">
+                                                    <button class="btn btn-sm btn-warning">
+                                                    设置为
+                                                        <c:choose>
+                                                        <c:when test="${repair.status == 0}">
+                                                            处理中
+                                                        </c:when>
+                                                        <c:when test="${repair.status  == 1}">
+                                                            已完成
+                                                        </c:when>
+                                                        </c:choose>
+                                                </button></a>
                                             </td>
                                         </tr>
                                     </c:forEach>

@@ -51,6 +51,9 @@
                         <li <c:if test="${pageContext.request.getServletPath().equals(\"/admin/admin_list.jsp\")}"> class="current" </c:if> > <a href="/dormitory/admin/admin_list"> <i class="icon-angle-right"></i> 管理员信息 </a> </li>
                     </ul>
                 </li>
+                <li  <c:if test="${pageContext.request.getServletPath().equals(\"/admin/repair_list.jsp\")}"> class="current" </c:if> >
+                    <a href="/dormitory/admin/repair_list"><i class="icon-envelope-alt"></i>报修管理</a>
+                </li>
             </ul>
         </div>
     </div>

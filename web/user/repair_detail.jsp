@@ -1,4 +1,3 @@
-<%@ page import="domain.Repair" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!Doctype html>
@@ -14,9 +13,6 @@
 <body>
 <%--头部导航栏--%>
 <jsp:include page="layout/header.jsp"/>
-<%
-    Repair repair = (Repair) request.getAttribute("repair");
-%>
 <%--主体内容--%>
 <div class="layui-container">
     <div class="layui-row main">
@@ -43,10 +39,10 @@
                     <td>${repair.address}</td>
                 </tr>
                 <tr>
-                    <td rowspan="<%=repair.getImage().length %>">照片</td>
+                    <td rowspan="${repair.image_length}">照片</td>
                     <td><img src="${repair.image[0]}" alt=""></td>
                 </tr>
-                <c:forEach begin="1" end="<%=repair.getImage().length-1 %>"  var="image">
+                <c:forEach begin="1" end="${repair.image_length - 1}"  var="image">
                 <tr>
                     <td><img src="${repair.image[image]}" alt=""></td>
                 </tr>
@@ -56,15 +52,41 @@
                     <td>${repair.tel}</td>
                 </tr>
                 <tr>
-                    <td>管理员原回复</td>
-                    <td>${reapair.message}</td>
+                    <td>管理员回复</td>
+                    <td>${repair.message}</td>
                 </tr>
-
+                <c:if test="${repair.message != null}">
+                    <tr>
+                        <td>回复时间</td>
+                        <td><span class="date">${repair.updated_at}</span></td>
+                    </tr>
+                </c:if>
                 <tr>
                     <td>报修时间</td>
                     <td><span class="date">${repair.created_at}</span></td>
                 </tr>
-
+                <tr>
+                    <td>状态</td>
+                    <td>
+                        <c:choose>
+                            <c:when test="${repair.status == 0}">
+                                待处理
+                            </c:when>
+                            <c:when test="${repair.status  == 1}">
+                                处理中
+                            </c:when>
+                            <c:when test="${repair.status == 2}">
+                                已完成
+                            </c:when>
+                        </c:choose>
+                    </td>
+                </tr>
+                <c:if test="${repair.status == 2}">
+                    <tr>
+                        <td>评分</td>
+                        <td><div class="layui-rate"></div></td>
+                    </tr>
+                </c:if>
                 </tbody>
             </table>
         </div>
@@ -73,6 +95,24 @@
 </div>
 
 <jsp:include page="layout/script.jsp"/>
+<c:if test="${repair.status == 2}">
+<script>
+    layui.use('rate', function(){
+        var rate = layui.rate;
 
+        //渲染
+        var ins1 = rate.render({
+            elem: '.layui-rate',  //绑定元素
+            value:${repair.rate},
+            <c:if test="${repair.rate !=0 }">
+            readonly: true,
+            </c:if>
+            choose: function(value){
+                if(value > 4) alert( '么么哒' )
+            }
+        });
+    });
+</script>
+</c:if>
 </body>
 </html>

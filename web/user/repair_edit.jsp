@@ -38,7 +38,7 @@
                         <div class="layui-upload">
                             <a class="layui-btn" id="test1">上传照片</a>
                             <div class="layui-upload-list">
-                                <input type="hidden" name="image" class="layui-upload-file" value="">
+                                <input type="hidden" name="image" class="layui-upload-file" value="" required  lay-verify="required">
                                 <p id="demoText"></p>
                             </div>
                                 <div class="layui-upload-list uploader-list" style="overflow: auto;" id="uploader-list">
@@ -52,7 +52,7 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">详细描述 <span>*</span></label>
                     <div class="layui-input-block">
-                        <textarea placeholder="请输入内容" class="layui-textarea" name="detail">${repair.detail}</textarea>
+                        <textarea placeholder="请输入内容" required  lay-verify="required" class="layui-textarea" name="detail">${repair.detail}</textarea>
                     </div>
                 </div>
                 <div class="layui-form-item">

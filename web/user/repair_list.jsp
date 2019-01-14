@@ -62,10 +62,7 @@
                             <c:if test="${repair.status ==0}">
                                 <a href="${pageContext.request.contextPath}/user/repair/edit?id=${repair.id}" class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
                             </c:if>
-                            <c:if test="${repair.status == 2}">
-                                <a class="layui-btn layui-btn-xs" lay-event="edit">评分</a>
-                            </c:if>
-                            <c:if test="${repair.status != 1}">
+                            <c:if test="${repair.status == 0}">
                                 <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
                             </c:if>
                         </td>
@@ -99,5 +96,15 @@
     </div>
 </div>
 <jsp:include page="layout/script.jsp"/>
+<script>
+    layui.use('rate', function(){
+        var rate = layui.rate;
+
+        //渲染
+        var ins1 = rate.render({
+            elem: '.layui-rate'  //绑定元素
+        });
+    });
+</script>
 </body>
 </html>
