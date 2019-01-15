@@ -65,9 +65,11 @@ public class RepairChangeServlet extends HttpServlet {
         //如果是待处理或是处理中状态，更新状态
         if (repair.getStatus()<2) {
             repair.setStatus(repair.getStatus() + 1);
+            repairDao.updateRepair(repair);
         }
-        repairDao.updateRepair(repair);
-        response.getWriter().println("<script>alert('修改成功！');history.go(-1);</script>");
+        String refer = request.getHeader("referer");
+        System.out.println(refer);
+        response.getWriter().println("<script>alert('修改成功！');location.href='"+refer+"'</script>");
 
     }
 }

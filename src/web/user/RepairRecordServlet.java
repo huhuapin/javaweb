@@ -47,7 +47,7 @@ public class RepairRecordServlet extends HttpServlet {
             if(page > pageSum) page = pageSum;
         }
         //由(page-1)*limit算出当前页面第一条记录，由limit查询limit条记录，得出当前页面的记录
-        list_page = repairDao.findAll(user.getDormitory_id(), limit * (page - 1), limit);
+        list_page = repairDao.findByUserId(user.getId(), limit * (page - 1), limit);
         request.setAttribute("page", page);
         request.setAttribute("pageSum", pageSum);
         request.setAttribute("list_page", list_page);
