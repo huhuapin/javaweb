@@ -27,7 +27,7 @@
                             <h3>Student Info </h3>
                         </div>
                         <div class="widget-content">
-                            <form method="post" action="/dormitory/admin/modifyinfo" class="form-horizontal">
+                            <form method="post" action="${pageContext.request.contextPath}/admin/modifyinfo" class="form-horizontal">
                                 <fieldset>
                                     <input type="hidden" value="${id}" name="id">
                                     <div class="form-group">
@@ -86,7 +86,7 @@
                                 <div class="form-actions">
                                     <div>
                                         <button class="btn btn-primary" type="submit">Save Changes</button>
-                                        <a href="/dormitory/admin/user_list"><button class="btn btn-default" type="button">Cancel</button></a>
+                                        <a href="${pageContext.request.contextPath}/admin/user_list"><button class="btn btn-default" type="button">Cancel</button></a>
                                     </div>
                                 </div>
                             </form>

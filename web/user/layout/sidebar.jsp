@@ -45,7 +45,7 @@
                 <span class="date">${firstNotice.created_at}</span>
             </div>
             <div class="card-footer-right">
-                <a href="/dormitory/user/notice">查看历史公告 >></a>
+                <a href="${pageContext.request.contextPath}/user/notice">查看历史公告 >></a>
             </div>
         </div>
     </div>

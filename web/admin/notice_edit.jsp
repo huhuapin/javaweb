@@ -24,7 +24,7 @@
                             <h3> Notice</h3>
                         </div>
                         <div class="widget-content">
-                            <form data-validate="parsley" novalidate method="post" action="/dormitory/admin/modifynotice" class="form-horizontal">
+                            <form data-validate="parsley" novalidate method="post" action="${pageContext.request.contextPath}/admin/modifynotice" class="form-horizontal">
                                 <input type="hidden" value="${id}" name="id">
                                 <fieldset>
                                     <div class="control-group">
@@ -53,7 +53,7 @@
                                 </fieldset>
                                 <div class="form-actions">
                                     <button class="btn btn-success" type="submit">Submit</button>
-                                    <a href="/dormitory/admin/notice_list"><button class="btn btn-default" type="button">Cancel</button></a>
+                                    <a href="${pageContext.request.contextPath}/admin/notice_list"><button class="btn btn-default" type="button">Cancel</button></a>
                                 </div>
                             </form>
                         </div>

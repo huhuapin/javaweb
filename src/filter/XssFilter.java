@@ -39,7 +39,7 @@ public class XssFilter implements Filter {
         //有xss过滤关键字
         if (xssValidate(sql)) {
             PrintWriter printWriter = response.getWriter();
-            printWriter.println("<script>alert('您的输入含有非法字符！');location.href='/dormitory/login';</script>");
+            printWriter.println("<script>alert('您的输入含有非法字符！');location.href='"+((HttpServletRequest) request).getContextPath()+"/login';</script>");
         } else {
             chain.doFilter(req, res);
         }
