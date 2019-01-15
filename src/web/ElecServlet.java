@@ -1,5 +1,7 @@
 package web;
 
+import net.sf.json.JSON;
+import net.sf.json.JSONObject;
 import org.apache.commons.httpclient.Cookie;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.NameValuePair;
@@ -14,6 +16,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -27,13 +30,24 @@ public class ElecServlet extends HttpServlet {
         request.setCharacterEncoding("UTF-8");
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html;charset=UTF-8");
-        String loginUrl = "http://hqfw.sdut.edu.cn/login.aspx";
+
+        //获取参数
+        String school = request.getParameter("school");
+        String dormitory = request.getParameter("dormitory");
+        String room = request.getParameter("room");
+
+        String cookieUrl = "http://hqfw.sdut.edu.cn/"; //获取cookie的地址
+        String loginUrl = "http://hqfw.sdut.edu.cn/login.aspx";//登录地址
+        String elecUrl = "http://hqfw.sdut.edu.cn/stu_elc.aspx";//查询地址
+        PrintWriter printWriter = response.getWriter();
+
+        //创建一个HttpClient
         HttpClient httpClient = new HttpClient();
-        GetMethod getMethod = new GetMethod(loginUrl);
+        GetMethod getMethod = new GetMethod(cookieUrl);
         int code = 0;
         // 设置 HttpClient 接收 Cookie,用与浏览器一样的策略
         httpClient.getParams().setCookiePolicy(CookiePolicy.BROWSER_COMPATIBILITY);
-        code = httpClient.executeMethod(getMethod);
+        httpClient.executeMethod(getMethod);
 
         // 获得登陆后的 Cookie
         Cookie[] cookies = httpClient.getState().getCookies();
@@ -43,36 +57,102 @@ public class ElecServlet extends HttpServlet {
             System.out.println("cookies = "+c.toString());
         }
 
+        //获取登录所需参数
+
+        getMethod.setURI(new URI(loginUrl,true));         //重新设置getMethod的地址为登录地址
+        getMethod.setRequestHeader("cookie",tmpcookies.toString());
+        httpClient.executeMethod(getMethod);
         //正则匹配
-        String pattern = "<input type=\"hidden\" name=\"__VIEWSTATE\" id=\"__VIEWSTATE\" value=\"([^<>]+)\" />";
-        Pattern r = Pattern.compile(pattern);
-        Matcher m1 = r.matcher(getMethod.getResponseBodyAsString());
-        if (m1.find()) {
-            System.out.println(m1.group(0));
-        }else {
-            System.out.println("m1未找到");
-        }
+        Matcher m1 = Pattern.compile("<input type=\"hidden\" name=\"__VIEWSTATE\" id=\"__VIEWSTATE\" value=\"([^<>]+)\" />").matcher(getMethod.getResponseBodyAsString());
+        Matcher m2 = Pattern.compile("<input type=\"hidden\" name=\"__EVENTVALIDATION\" id=\"__EVENTVALIDATION\" value=\"([^<>]+)\" />").matcher(getMethod.getResponseBodyAsString());
+        m1.find();
+        m2.find();
 
-        String pattern2 = "<input type=\"hidden\" name=\"__EVENTVALIDATION\" id=\"__EVENTVALIDATION\" value=\"([^<>]+)\" />";
-        r = Pattern.compile(pattern2);
-        Matcher m2 = r.matcher(getMethod.getResponseBodyAsString());
-        if (m2.find()) {
-            System.out.println(m2.group(0));
-        }else {
-            System.out.println("m2未找到");
-        }
-
+        //模拟提交
         PostMethod postMethod = new PostMethod(loginUrl);
         // 设置登陆时要求的信息，用户名和密码
         NameValuePair[] data = { new NameValuePair("__VIEWSTATE", m1.group(1)), new NameValuePair("__EVENTVALIDATION", m2.group(1)),
         new NameValuePair("ctl00$MainContent$txtName","胡华聘"),new NameValuePair("ctl00$MainContent$txtID","16111101135"),new NameValuePair("ctl00$MainContent$btnTijiao","登录")};
+        //设置提交信息
         postMethod.setRequestBody(data);
+        //设置请求头
         postMethod.setRequestHeader("cookie",tmpcookies.toString());
         postMethod.setRequestHeader("Referer", loginUrl);
         postMethod.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=utf-8");
         postMethod.setRequestHeader("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.63 Safari/537.36");
-        //模拟登陆请求
         httpClient.executeMethod(postMethod);
-        response.getWriter().println(postMethod.getResponseBodyAsString());
+
+        //请求查询电费页面，获取提交所需参数
+        getMethod.setURI(new URI(elecUrl,true));
+        getMethod.setRequestHeader("cookie",tmpcookies.toString());
+        System.out.println(tmpcookies.toString());
+        getMethod.setRequestHeader("Referer", loginUrl);
+        getMethod.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=utf-8");
+        getMethod.setRequestHeader("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.63 Safari/537.36");
+        httpClient.executeMethod(getMethod);
+//        printWriter.println(getMethod.getResponseBodyAsString());
+        Matcher matcher1 = Pattern.compile("<input type=\"hidden\" name=\"__VIEWSTATE\" id=\"__VIEWSTATE\" value=\"([^<>]+)\" />").matcher(getMethod.getResponseBodyAsString());
+        Matcher matcher2 = Pattern.compile("<input type=\"hidden\" name=\"__VIEWSTATEGENERATOR\" id=\"__VIEWSTATEGENERATOR\" value=\"([^<>]+)\" />").matcher(getMethod.getResponseBodyAsString());
+        Matcher matcher3 = Pattern.compile("<input type=\"hidden\" name=\"__EVENTVALIDATION\" id=\"__EVENTVALIDATION\" value=\"([^<>]+)\" />").matcher(getMethod.getResponseBodyAsString());
+        matcher1.find();
+        System.out.println(matcher1.group(1));
+        matcher2.find();
+        System.out.println(matcher2.group(1));
+        matcher3.find();
+        System.out.println(matcher3.group(1));
+        String building;
+        String campus;
+        if (school.equals("1")) {
+            building ="ctl00$MainContent$buildingwest";
+            campus = "1";
+        }else {
+            building ="ctl00$MainContent$buildingeast";
+            campus = "0";
+            postMethod.setURI(new URI(elecUrl,true));
+            postMethod.setRequestHeader("cookie","ASP.NET_SessionId=jmg54b0hmfu0i0tgnrl01x2f");
+            NameValuePair[] data1 = {new NameValuePair("__EVENTTARGET","ctl00$MainContent$campus"),new NameValuePair("__EVENTARGUMENT",""),new NameValuePair("__LASTFOCUS",""),
+            new NameValuePair("__VIEWSTATE",matcher1.group(1)),new NameValuePair("__VIEWSTATEGENERATOR",matcher2.group(1)),new NameValuePair("__EVENTVALIDATION",matcher3.group(1)),
+            new NameValuePair("ctl00$MainContent$buildingwest","01#南"),new NameValuePair("ctl00$MainContent$roomnumber","101"),new NameValuePair("ctl00$MainContent$TextBox1","请先登录，再选择楼栋和输入房间号查询!")};
+            postMethod.setRequestBody(data1);
+            httpClient.executeMethod(postMethod);
+            response.getWriter().println(postMethod.getResponseBodyAsString());
+            matcher1 = Pattern.compile("<input type=\"hidden\" name=\"__VIEWSTATE\" id=\"__VIEWSTATE\" value=\"([^<>]+)\" />").matcher(postMethod.getResponseBodyAsString());
+            matcher2 = Pattern.compile("<input type=\"hidden\" name=\"__VIEWSTATEGENERATOR\" id=\"__VIEWSTATEGENERATOR\" value=\"([^<>]+)\" />").matcher(postMethod.getResponseBodyAsString());
+            matcher3 = Pattern.compile("<input type=\"hidden\" name=\"__EVENTVALIDATION\" id=\"__EVENTVALIDATION\" value=\"([^<>]+)\" />").matcher(postMethod.getResponseBodyAsString());
+            matcher1.find();
+            System.out.println(matcher1.group(0));
+            matcher2.find();
+            System.out.println(matcher2.group(0));
+            matcher3.find();
+            System.out.println(matcher3.group(0));
+        }
+        PostMethod postMethod1 = new PostMethod(elecUrl);
+        postMethod1.setRequestHeader("cookie",tmpcookies.toString());
+        //postMethod1.setRequestHeader("Referer", elecUrl);
+       // postMethod1.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=utf-8");
+        //postMethod1.setRequestHeader("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/31.0.1650.63 Safari/537.36");
+        NameValuePair[] data2 = {new NameValuePair("__EVENTTARGET",""),new NameValuePair("__EVENTARGUMENT",""),new NameValuePair("__LASTFOCUS",""),
+                new NameValuePair("__VIEWSTATE",matcher1.group(1)),new NameValuePair("__VIEWSTATEGENERATOR",matcher2.group(1)),new NameValuePair("__EVENTVALIDATION",matcher3.group(1)),
+                new NameValuePair("ctl00$MainContent$campus",campus),
+                new NameValuePair(building,dormitory),new NameValuePair("ctl00$MainContent$roomnumber",room),new NameValuePair("ctl00$MainContent$Button1","查询"),new NameValuePair("ctl00$MainContent$TextBox1","请先登录，再选择楼栋和输入房间号查询!")};
+//        try {
+//            printWriter.println(Pair_2_String(data2));
+//        }catch (Exception e) {
+//            e.printStackTrace();
+//        }
+        postMethod1.setRequestBody(data2);
+        httpClient.executeMethod(postMethod1);
+        response.getWriter().println(postMethod1.getResponseBodyAsString());
+    }
+    public static String Pair_2_String(NameValuePair[] nvp) throws Exception {
+
+        StringBuffer sfb = new StringBuffer();
+
+        for (int i = 0; i < nvp.length; i++) {
+            sfb.append(nvp[i].getName() + "=");
+            sfb.append(nvp[i].getValue() + "<br>");
+        }
+        return sfb.toString();
+
     }
 }
