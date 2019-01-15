@@ -39,17 +39,17 @@ public class PasswordServlet extends HttpServlet {
             map.put("code","-1");
             map.put("status","VALIDATE_ERR");
             map.put("message","两次密码输入不一致");
-        }else if (session.getAttribute("admin") != null) {
+        }else if (session.getAttribute("identity") != null) {
             //已登录
-            int admin = (int) session.getAttribute("admin");
+            int admin = (int) session.getAttribute("identity");
             if (admin == 1) {
                 //管理员
-                Admin user = (Admin) session.getAttribute("user");
+                Admin user = (Admin) session.getAttribute("object");
                 if (user.getPassword().equals(old_password)) {
                     //密码正确
                     AdminDao adminDao = new AdminDaoIml();
                     adminDao.modify(user.getId(),new_password);
-                    session.setAttribute("user",user);
+                    session.setAttribute("object",user);
                     map.put("code","0");
                     map.put("status","OK");
                     map.put("message","修改成功");
@@ -61,14 +61,14 @@ public class PasswordServlet extends HttpServlet {
                 }
             }else {
                 //用户
-                User user = (User)session.getAttribute("user");
+                User user = (User)session.getAttribute("object");
                 if (user.getPassword().equals(old_password)) {
                     //密码正确
                     System.out.println(user.getNickname());
                     user.setPassword(new_password);
                     UserDao userDao = new UserDaoIml();
                     userDao.update(user);
-                    session.setAttribute("user",user);
+                    session.setAttribute("object",user);
                     map.put("code","0");
                     map.put("status","OK");
                     map.put("message","修改成功");

@@ -50,8 +50,9 @@ public class ImageUploadServlet extends HttpServlet {
                 //处理上传文件
                 if (filename != null && !filename.equals("")) {
                     //文件不为空
-                    System.out.println(filename);
+
                     //新建唯一名称
+                    String filename1 = filename;
                     filename = UUID.randomUUID().toString() + "_" + filename;
                     File file1 = new File(savePath+filename);
                     file1.getParentFile().mkdirs();
@@ -77,6 +78,7 @@ public class ImageUploadServlet extends HttpServlet {
                     map.put("message","上传成功");
                     Map<String,String> data = new HashMap<>();
                     data.put("src",request.getContextPath()+"/uploads/"+filename);
+                    data.put("name",filename1);
                     map.put("data", data);
                     response.getWriter().println(JSONObject.fromObject(map));
                 }

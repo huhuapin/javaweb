@@ -34,8 +34,8 @@
     </div>
     </div>
     </div>
-    <script src="../statics/layui.js"></script>
-    <script type="text/javascript">
+    <script src="../statics/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" charset="utf-8">
     //注意：导航 依赖 element 模块，否则无法进行功能性操作
 
     layui.use(['layer','element'],function () {
