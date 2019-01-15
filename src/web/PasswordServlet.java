@@ -64,9 +64,8 @@ public class PasswordServlet extends HttpServlet {
                 User user = (User)session.getAttribute("object");
                 if (user.getPassword().equals(MD5Utils.md5(MD5Utils.md5(old_password)))) {
                     //密码正确
-                    user.setPassword(new_password);
                     UserDao userDao = new UserDaoIml();
-                    userDao.update(user);
+                    userDao.modify(user.getId(), new_password);
                     session.setAttribute("object",user);
                     map.put("code","0");
                     map.put("status","OK");

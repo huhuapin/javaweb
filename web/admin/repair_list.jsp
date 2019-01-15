@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>通知公告</title>
+    <title>报修列表</title>
     <jsp:include page="header.jsp"/>
     <div class="page-content">
         <div class="content container">

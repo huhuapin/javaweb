@@ -10,7 +10,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Thin Admin</title>
+    <title>宿舍管理系统--后台</title>
     <jsp:include page="header.jsp"/>
     <div class="page-content">
         <div class="content container">

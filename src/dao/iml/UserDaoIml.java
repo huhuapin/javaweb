@@ -26,6 +26,17 @@ public class UserDaoIml implements UserDao {
     }
 
     @Override
+    public void modify(int id, String password) {
+        try{
+            QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
+            String sql = "update user set password=? where id=?";
+            runner.update(sql, MD5Utils.md5(MD5Utils.md5(password)), id);
+        } catch(Exception e){
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
     public void update(User user) {
         try{
             QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());

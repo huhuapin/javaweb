@@ -10,7 +10,7 @@
 <!Doctype html>
 <html>
 <head>
-    <title>管理员审核</title>
+    <title>管理员管理</title>
 <jsp:include page="header.jsp"/>
     <div class="page-content">
         <div class="content container">
@@ -24,6 +24,9 @@
                     <div class="widget">
                         <div class="widget-header"> <i class="icon-user"></i>
                             <h3>Administrators</h3>
+                            <c:if test="${identity == 2}">
+                                <a href="${pageContext.request.contextPath}/admin/dormitory_list"><button  class="btn  btn-success"> 添加管理员 </button></a>
+                            </c:if>
                         </div>
                         <div class="widget-content">
                             <table class="table table-hover">

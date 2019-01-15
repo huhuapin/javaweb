@@ -29,8 +29,6 @@ public class ShowUserServlet extends HttpServlet {
         request.setAttribute("_class", request.getParameter("_class"));
         //获取宿舍列表
         DormitoryDao dormitoryDao = new DormitoryDaoIml();
-        int id = Integer.parseInt(request.getParameter("dormitory_id"));
-        request.setAttribute("description", dormitoryDao.find(id).getDescription());
         List<Dormitory> list = new ArrayList<>();
         list = dormitoryDao.getAll();
         request.setAttribute("dormitoryList", list);
