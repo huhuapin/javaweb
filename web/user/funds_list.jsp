@@ -36,7 +36,7 @@
                 </thead>
                 <tbody>
                 <%--<c:set var="balance" value="0" />--%>
-                <c:forEach items="${allfunds}" var="allfunds">
+                <c:forEach items="${list_page}" var="allfunds">
                     <%--<c:set var="balance" value="${balance+allfunds.money}" />--%>
                     <tr>
                         <td>${allfunds.created_at}</td>
@@ -53,18 +53,22 @@
                 <div>
                     <div class="layui-box layui-laypage layui-laypage-default">
                         <%--上一页--%>
-                        <a href="/dormitory/user/notice?page=${page.page-1}" class="layui-laypage-prev <c:if test="${page.page <=0}"> layui-disabled  </c:if>">
+<<<<<<< HEAD
+                        <a href="${pageContext.request.contextPath}/user/notice?page=${page.page-1}" class="layui-laypage-prev <c:if test="${page.page <=0}"> layui-disabled  </c:if>">
+=======
+                        <a href="/dormitory/user/funds?page=${(page<1)? page:(page-1)}" class="layui-laypage-prev <c:if test="${page <= 1}"> layui-disabled  </c:if>">
+>>>>>>> ac82c9466716295b307aaaf2d9ac1c5642585ce3
                             <i class="layui-icon"></i>
                         </a>
                         <%--当前页--%>
                         <span class="layui-laypage-curr">
                                 <em class="layui-laypage-em">
                                 </em>
-                                <em>${page.page+1}</em>
+                                <em>${page}</em>
                             </span>
 
                         <%--下一页--%>
-                        <a href="/dormitory/user/index?page=${page.page+1}" class="layui-laypage-next <c:if test="${page.page+1 >= page.pageNum}"> layui-disabled  </c:if>">
+                        <a href="/dormitory/user/funds?page=${(page>=pageSum)? pageSum:(page+1)}" class="layui-laypage-next <c:if test="${page >= pageSum}"> layui-disabled  </c:if>">
                             <i class="layui-icon"></i>
                         </a>
                     </div>

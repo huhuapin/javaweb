@@ -25,7 +25,7 @@ public class DelNoticeServlet extends HttpServlet {
             int id = Integer.parseInt(temp);
             NoticeDao noticeDao = new NoticeDaoIml();
             noticeDao.delete(id);
-            response.sendRedirect("/dormitory/admin/notice_list");
+            response.sendRedirect(""+request.getContextPath()+"/admin/notice_list");
         }
     }
 }

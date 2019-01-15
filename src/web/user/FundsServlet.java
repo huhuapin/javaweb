@@ -20,10 +20,11 @@ public class FundsServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //获取参数
         String title = request.getParameter("title");
-        String type = request.getParameter("type");
+        String type1 = request.getParameter("type");
+        int type = (Integer) Integer.parseInt(type1);
         String money1 = request.getParameter("money");
         double money = Double.parseDouble(money1);
-        if("支出".equals(type)){
+        if(type == 0){
             money = money*(-1);
         }
         String description = request.getParameter("description");
@@ -48,7 +49,7 @@ public class FundsServlet extends HttpServlet {
         double balance = fundsdao1.sumBalance(user.getDormitory_id(),user.getRoom());
         if(balance+money < 0){
             PrintWriter printWriter = response.getWriter();
-            printWriter.println("<script>alert('舍费不足');location.href='/dormitory/user/funds';</script>");
+            printWriter.println("<script>alert('舍费不足');location.href='"+request.getContextPath()+"/user/funds';</script>");
             return;
         }
         funds.setBalance(balance+money);
@@ -56,7 +57,7 @@ public class FundsServlet extends HttpServlet {
         FundsDao fundsdao = new FundsDaolml();
         fundsdao.addFunds(funds);
         PrintWriter printWriter = response.getWriter();
-        printWriter.println("<script>alert('记录成功');location.href='/dormitory/user/funds';</script>");
+        printWriter.println("<script>alert('记录成功');location.href='"+request.getContextPath()+"/user/funds';</script>");
         return;
     }
 

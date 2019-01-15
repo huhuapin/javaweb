@@ -18,7 +18,7 @@
 <div class="layui-container">
     <div class="layui-row main">
         <div class="layui-col-md8 mine">
-            <form class="layui-form" action="/dormitory/user/repair/create" method="POST">
+            <form class="layui-form" action="${pageContext.request.contextPath}/user/repair/create" method="POST">
                 <div class="layui-form-item">
                     <label class="layui-form-label">报修原因 <span>*</span></label>
                     <div class="layui-input-block">
@@ -79,7 +79,7 @@
         var index = 1;
         var uploadInst = upload.render({
             elem: '#test1' //绑定元素
-            ,url: '/dormitory/images/upload' //上传接口
+            ,url: '${pageContext.request.contextPath}/images/upload' //上传接口
             ,multiple: true
             ,number: 3
             ,done: function(data){

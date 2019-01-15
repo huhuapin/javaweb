@@ -22,7 +22,7 @@ public class DelAdminServlet extends HttpServlet {
             int id = Integer.parseInt(temp);
             AdminDao adminDao = new AdminDaoIml();
             adminDao.delete(id);
-            response.sendRedirect("/dormitory/admin/admin_list");
+            response.sendRedirect(""+request.getContextPath()+"/admin/admin_list");
         }
     }
 }

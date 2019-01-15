@@ -43,7 +43,7 @@ public class RepairServlet extends HttpServlet {
         RepairDao repairDao = new RepairDaoIml();
         repairDao.addRepair(repair);
         PrintWriter printWriter = response.getWriter();
-        printWriter.println("<script>alert('报修成功');location.href='/dormitory/user/index';</script>");
+        printWriter.println("<script>alert('报修成功');location.href='"+request.getContextPath()+"/user/index';</script>");
         return;
     }
 

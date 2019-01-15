@@ -20,7 +20,7 @@ public class RepairDetailServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (request.getParameter("id") == null || request.getParameter("id").equals("")) {
-            response.getWriter().println("<script>alert('参数错误');location.href='/dormitory/user/repair';</script>");
+            response.getWriter().println("<script>alert('参数错误');location.href='"+request.getContextPath()+"/user/repair';</script>");
             return;
         }
         int id = Integer.parseInt(request.getParameter("id"));
@@ -28,7 +28,7 @@ public class RepairDetailServlet extends HttpServlet {
         Repair repair = repairDao.find(id);
         User user = (User) request.getSession().getAttribute("object");
         if (repair == null || repair.getUser_id() != user.getId()) {
-            response.getWriter().println("<script>alert('报修不存在或您没有该权限');location.href='/dormitory/user/repair';</script>");
+            response.getWriter().println("<script>alert('报修不存在或您没有该权限');location.href='"+request.getContextPath()+"/user/repair';</script>");
             return;
         }
         request.setAttribute("repair",repair);

@@ -24,7 +24,7 @@ public class ShowNoticeServlet extends HttpServlet {
         PrintWriter printWriter = response.getWriter();
         //获取参数
         if (request.getParameter("id") ==null ){
-            printWriter.println("<script>alert('您访问的公告不存在或已删除');location.href='/dormitory/admin/notice_list';</script>");
+            printWriter.println("<script>alert('您访问的公告不存在或已删除');location.href='"+request.getContextPath()+"/admin/notice_list';</script>");
             return;
         }
         int id = Integer.parseInt(request.getParameter("id"));
@@ -32,7 +32,7 @@ public class ShowNoticeServlet extends HttpServlet {
         Notice notice = noticeDao.find(id);
         //如果公告未找到
         if (notice == null) {
-            printWriter.println("<script>alert('您访问的公告不存在或已删除');location.href='/dormitory/admin/notice_list';</script>");
+            printWriter.println("<script>alert('您访问的公告不存在或已删除');location.href='"+request.getContextPath()+"/admin/notice_list';</script>");
             return;
         }
         request.setAttribute("id", notice.getId());

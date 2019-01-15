@@ -47,4 +47,16 @@ public class FundsDaolml implements FundsDao {
             throw new RuntimeException(e);
         }
     }
+
+    @Override
+    public long sum(int dormitory_id, int room) {
+        try{
+            QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
+            String sql = "select count(*) from funds where dormitory_id = ? and room = ?";
+            Object[] params = {dormitory_id, room};
+            return (long) runner.query(sql, params, new ScalarHandler());
+        } catch(Exception e){
+            throw new RuntimeException(e);
+        }
+    }
 }

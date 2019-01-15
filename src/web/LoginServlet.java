@@ -41,15 +41,18 @@ public class LoginServlet extends HttpServlet {
         }else {
             AdminDao adminDao = new AdminDaoIml();
             Admin admin = adminDao.find(username,password);
-            if (admin == null || (identity.equals("2") && !admin.isRoot())) {
+            if (admin == null) {
                 //登录失败
                 printWriter.println("<script>alert('用户名密码错误');location.href='/dormitory/login';</script>");
             }else {
-                if(identity.equals("1")) {
+                if(identity.equals("1") && !admin.isRoot()) {
                     session.setAttribute("identity", 1);
 
-                }else {
+                }else if(identity.equals("2") && admin.isRoot()){
                     session.setAttribute("identity", 2);
+                }else {
+                    printWriter.println("<script>alert('用户名密码错误');location.href='/dormitory/login';</script>");
+                    return;
                 }
                 session.setAttribute("object", admin);
                 response.sendRedirect("/dormitory/admin/index");
