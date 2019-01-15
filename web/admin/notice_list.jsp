@@ -24,7 +24,7 @@
                 <div class="widget">
                     <div class="widget-header"> <i class="icon-table"></i>
                         <h3>公告 </h3>
-                        <a href="${pageContext.request.contextPath}/admin/notice_create"><button  class="btn  btn-success"> 发布公告 </button></a>
+                        <a href="${pageContext.request.contextPath}/admin/notice_create.jsp"><button  class="btn  btn-success"> 发布公告 </button></a>
                     </div>
                     <div class="widget-content">
                         <div class="body">
