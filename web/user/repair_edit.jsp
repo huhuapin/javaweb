@@ -96,9 +96,8 @@
                 if (data.code == 0) {
                     $('#uploader-list').append(
                         '<div id="" class="file-iteme">' +
-                        '<div class="handle"><span class="glyphicon glyphicon-trash">删除</span></div>' +
+                        '<div class="handle"><span class="glyphicon glyphicon-trash"><a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a></span></div>' +
                         '<img style="max-width: 100%" src='+ data.data.src +'>' +
-                        '<div class="info">' + '</div>' +
                         '</div>'
                     );
                     //获取到上传图片的输入框

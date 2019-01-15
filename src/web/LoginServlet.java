@@ -32,18 +32,19 @@ public class LoginServlet extends HttpServlet {
             User user = userDao.find(username,password);
             if(user == null) {
                 //登录失败
-                printWriter.println("<script>alert('用户名密码错误');location.href='"+request.getContextPath()+"/login';</script>");
+                printWriter.println("<script>alert('用户名密码错误');location.href='"+ request.getContextPath()+"/login';</script>");
             }else {
                 session.setAttribute("identity", 0);
                 session.setAttribute("object", user);
-                response.sendRedirect(""+request.getContextPath()+"/user/index");
+                response.sendRedirect(request.getContextPath()+"/user/index");
             }
         }else {
             AdminDao adminDao = new AdminDaoIml();
             Admin admin = adminDao.find(username,password);
             if (admin == null) {
                 //登录失败
-                printWriter.println("<script>alert('用户名密码错误');location.href='"+request.getContextPath()+"/login';</script>");
+                printWriter.println("<script>alert('用户名密码错误');location.href='"+ request.getContextPath()+"/login';</script>");
+
             }else {
                 if(identity.equals("1") && !admin.isRoot()) {
                     session.setAttribute("identity", 1);
@@ -51,11 +52,11 @@ public class LoginServlet extends HttpServlet {
                 }else if(identity.equals("2") && admin.isRoot()){
                     session.setAttribute("identity", 2);
                 }else {
-                    printWriter.println("<script>alert('用户名密码错误');location.href='"+request.getContextPath()+"/login';</script>");
+                    printWriter.println("<script>alert('用户名密码错误');location.href='"+ request.getContextPath()+"/login';</script>");
                     return;
                 }
                 session.setAttribute("object", admin);
-                response.sendRedirect(""+request.getContextPath()+"/admin/index");
+                response.sendRedirect(request.getContextPath()+"/admin/index");
             }
         }
     }

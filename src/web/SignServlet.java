@@ -28,12 +28,12 @@ public class SignServlet extends HttpServlet {
         String password = request.getParameter("password");
         String password_confirmed = request.getParameter("password_confirmed");
         if (!password.equals(password_confirmed)) {
-            printWriter.println("<script>alert('两次密码输入不一致');location.href='"+request.getContextPath()+"/sign';</script>");
+            printWriter.println("<script>alert('两次密码输入不一致');location.href='"+ request.getContextPath() +"/sign';</script>");
             return;
         }
         UserDaoIml userDaoIml  = new UserDaoIml();
         if (userDaoIml.existUser(username)) {
-            printWriter.println("<script>alert('该用户已存在');location.href='"+request.getContextPath()+"/sign';</script>");
+            printWriter.println("<script>alert('该用户已存在');location.href='"+ request.getContextPath() +"/sign';</script>");
             return;
         }
         String nickname = request.getParameter("nickname");
@@ -50,7 +50,7 @@ public class SignServlet extends HttpServlet {
         user.setDormitory_id(Integer.parseInt(dormitory_id));
         user.setRoom(Integer.parseInt(room));
         userDaoIml.add(user);
-        printWriter.println("<script>alert('注册成功，请登录！');location.href='"+request.getContextPath()+"/login';</script>");
+        printWriter.println("<script>alert('注册成功，请登录！');location.href='"+ request.getContextPath() +"/login';</script>");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

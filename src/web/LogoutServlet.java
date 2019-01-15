@@ -20,7 +20,7 @@ public class LogoutServlet extends HttpServlet {
             throws ServletException, IOException {
         HttpSession session = request.getSession(false);
         if(session == null){
-            response.sendRedirect(""+request.getContextPath()+"/login");
+            response.sendRedirect(request.getContextPath()+"/login");
             return;
         }
         //获取session name
@@ -28,6 +28,6 @@ public class LogoutServlet extends HttpServlet {
         while(em.hasMoreElements()){
             request.getSession().removeAttribute(em.nextElement().toString());
         }
-        response.sendRedirect(""+request.getContextPath()+"/login");
+        response.sendRedirect(request.getContextPath() + "/login");
     }
 }

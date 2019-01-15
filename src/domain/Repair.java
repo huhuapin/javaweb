@@ -24,6 +24,9 @@ public class Repair {
     private Timestamp created_at; //创建时间
     private Timestamp updated_at; //修改时间
     private User user;   //用户
+    private Dormitory dormitory;  //宿舍
+    private int image_length; //照片的数量
+
 
     public int getRate() {
         return rate;
@@ -33,8 +36,7 @@ public class Repair {
         this.rate = rate;
     }
 
-    private Dormitory dormitory;  //宿舍
-    private int image_length; //照片的数量
+
 
     public int getImage_length() {
         if (image_length == 0) {
@@ -56,14 +58,11 @@ public class Repair {
     }
 
     public void setAddress(String address) {
-        System.out.println("Set Address:" + address);
         this.address = address;
     }
 
     public void setImage(String image) {
-        System.out.println("String image:" + image);
         this.image = JSONUtils.toStringArray(image);
-        System.out.println("String[] image:" + Arrays.toString(this.image));
     }
 
     public void setDetail(String detail) {
@@ -71,7 +70,6 @@ public class Repair {
     }
 
     public void setTel(String tel) {
-        System.out.println("setTel:" + tel);
         this.tel = tel;
     }
 

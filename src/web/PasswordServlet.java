@@ -45,7 +45,6 @@ public class PasswordServlet extends HttpServlet {
             if ((int) session.getAttribute("identity") != 0) {
                 //管理员
                 Admin admin = (Admin) session.getAttribute("object");
-                System.out.println(admin.getPassword() + "  " + old_password);
                 if (admin.getPassword().equals(MD5Utils.md5(MD5Utils.md5(old_password)))) {
                     //密码正确
                     AdminDao adminDao = new AdminDaoIml();

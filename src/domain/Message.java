@@ -71,7 +71,6 @@ public class Message {
 
     public User setUser() {
         UserDaoIml userDaoIml = new UserDaoIml();
-        System.out.println("dao/MessageDao:56          getUserById: " + this.user_id);
         return userDaoIml.find(this.user_id);
     }
 }
