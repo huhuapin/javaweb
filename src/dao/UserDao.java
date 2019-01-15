@@ -7,6 +7,7 @@ import java.util.List;
 public interface UserDao {
 
     public void add(User user);      //添加新用户
+    public void modify(int id, String password);        //修改密码
     public void update(User user);   //更新用户信息
     public void delete(int id);      //删除一个用户
     public User find(int id);        //根据用户id找到用户
