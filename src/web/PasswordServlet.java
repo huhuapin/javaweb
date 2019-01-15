@@ -7,6 +7,7 @@ import dao.iml.UserDaoIml;
 import domain.Admin;
 import domain.User;
 import net.sf.json.JSONObject;
+import utils.MD5Utils;
 
 
 import javax.servlet.ServletException;
@@ -39,17 +40,17 @@ public class PasswordServlet extends HttpServlet {
             map.put("code","-1");
             map.put("status","VALIDATE_ERR");
             map.put("message","两次密码输入不一致");
-        }else if (session.getAttribute("admin") != null) {
+        }else if (session.getAttribute("identity") != null) {
             //已登录
-            int admin = (int) session.getAttribute("admin");
-            if (admin == 1) {
+            if ((int) session.getAttribute("identity") != 0) {
                 //管理员
-                Admin user = (Admin) session.getAttribute("user");
-                if (user.getPassword().equals(old_password)) {
+                Admin admin = (Admin) session.getAttribute("object");
+                System.out.println(admin.getPassword() + "  " + old_password);
+                if (admin.getPassword().equals(MD5Utils.md5(MD5Utils.md5(old_password)))) {
                     //密码正确
                     AdminDao adminDao = new AdminDaoIml();
-                    adminDao.modify(user.getId(),new_password);
-                    session.setAttribute("user",user);
+                    adminDao.modify(admin.getId(),new_password);
+                    session.setAttribute("object", admin);
                     map.put("code","0");
                     map.put("status","OK");
                     map.put("message","修改成功");
@@ -61,14 +62,13 @@ public class PasswordServlet extends HttpServlet {
                 }
             }else {
                 //用户
-                User user = (User)session.getAttribute("user");
-                if (user.getPassword().equals(old_password)) {
+                User user = (User)session.getAttribute("object");
+                if (user.getPassword().equals(MD5Utils.md5(MD5Utils.md5(old_password)))) {
                     //密码正确
-                    System.out.println(user.getNickname());
                     user.setPassword(new_password);
                     UserDao userDao = new UserDaoIml();
                     userDao.update(user);
-                    session.setAttribute("user",user);
+                    session.setAttribute("object",user);
                     map.put("code","0");
                     map.put("status","OK");
                     map.put("message","修改成功");

@@ -35,13 +35,4 @@ public class MD5Utils {
         }
         return md5code;
     }
-
-    public static void main(String[] args) {
-        AdminDao adminDao = new AdminDaoIml();
-        List<Admin> users = adminDao.findAll(0,100);
-        for (Admin user:users) {
-            adminDao.modify(user.getId(),user.getPassword());
-        }
-    }
-
 }

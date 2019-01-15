@@ -23,7 +23,7 @@
                 <div class="col-lg-12">
                     <div class="widget">
                         <div class="widget-header"> <i class="icon-align-left"></i>
-                            <h3>Student Info </h3>
+                            <h3>Admin Info </h3>
                         </div>
                         <div class="widget-content">
                             <form method="post" action="${pageContext.request.contextPath}/admin/modifyadmin" class="form-horizontal">
