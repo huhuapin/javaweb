@@ -44,6 +44,7 @@ public class LoginServlet extends HttpServlet {
             if (admin == null) {
                 //登录失败
                 printWriter.println("<script>alert('用户名密码错误');location.href='"+ request.getContextPath()+"/login';</script>");
+
             }else {
                 if(identity.equals("1") && !admin.isRoot()) {
                     session.setAttribute("identity", 1);

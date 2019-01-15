@@ -10,11 +10,11 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <!-- Bootstrap -->
-<link href="/dormitory/admin/css/bootstrap.css" rel="stylesheet" media="screen">
-<link href="/dormitory/admin/css/thin-admin.css" rel="stylesheet" media="screen">
-<link href="/dormitory/admin/css/font-awesome.css" rel="stylesheet" media="screen">
-<link href="/dormitory/admin/style/style.css" rel="stylesheet">
-<link href="/dormitory/admin/style/dashboard.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/admin/css/bootstrap.css" rel="stylesheet" media="screen">
+<link href="${pageContext.request.contextPath}/admin/css/thin-admin.css" rel="stylesheet" media="screen">
+<link href="${pageContext.request.contextPath}/admin/css/font-awesome.css" rel="stylesheet" media="screen">
+<link href="${pageContext.request.contextPath}/admin/style/style.css" rel="stylesheet">
+<link href="${pageContext.request.contextPath}/admin/style/dashboard.css" rel="stylesheet">
 <style>
     .pagination > li {
         display: inline;
@@ -26,14 +26,14 @@
 <div class="container">
     <div class="top-navbar header b-b"> <a data-original-title="Toggle navigation" class="toggle-side-nav pull-left" href="#"><i class="icon-reorder"></i> </a>
         <div class="brand pull-left">
-            <a href="/dormitory/admin/index.jsp">宿舍管理系统</a>
+            <a href="${pageContext.request.contextPath}/admin/index.jsp">宿舍管理系统</a>
         </div>
         <ul class="nav navbar-nav navbar-right  hidden-xs">
             <li class="dropdown user  hidden-xs"> <a data-toggle="dropdown" class="dropdown-toggle" href="#"> <i class="icon-male"></i> <span class="username">${sessionScope.object.getName()}</span> <i class="icon-caret-down small"></i> </a>
                 <ul class="dropdown-menu">
                     <li><a href= "#" data-target="#myModal" data-toggle="modal"><i class="icon-user"></i> 修改密码</a></li>
                     <li class="divider"></li>
-                    <li><a href="/dormitory/logout"><i class="icon-key"></i> 登出</a></li>
+                    <li><a href="${pageContext.request.contextPath}/logout"><i class="icon-key"></i> 登出</a></li>
                 </ul>
             </li>
         </ul>
@@ -43,16 +43,16 @@
     <div class="left-nav">
         <div id="side-nav">
             <ul id="nav">
-                <li <c:if test="${pageContext.request.getServletPath().equals(\"/admin/index.jsp\")}"> class="current" </c:if> > <a href="/dormitory/admin/index"> <i class="icon-desktop"></i> 首页</a></li>
-                <li <c:if test="${pageContext.request.getServletPath().equals(\"/admin/notice_list.jsp\")}"> class="current" </c:if> ><a href="/dormitory/admin/notice_list"> <i class="icon-edit"></i> 公告管理 </a></li>
+                <li <c:if test="${pageContext.request.getServletPath().equals(\"/admin/index.jsp\")}"> class="current" </c:if> > <a href="${pageContext.request.contextPath}/admin/index"> <i class="icon-desktop"></i> 首页</a></li>
+                <li <c:if test="${pageContext.request.getServletPath().equals(\"/admin/notice_list.jsp\")}"> class="current" </c:if> ><a href="${pageContext.request.contextPath}/admin/notice_list"> <i class="icon-edit"></i> 公告管理 </a></li>
                 <li> <a href="#"> <i class="icon-table"></i> 人员管理 <i class="arrow <c:choose><c:when test="${pageContext.request.getServletPath().equals(\"/admin/user_list.jsp\") || pageContext.request.getServletPath().equals(\"/admin/admin_list.jsp\")}">icon-angle-down</c:when><c:otherwise>icon-angle-left</c:otherwise></c:choose>"></i></a>
                     <ul class="sub-menu" style="display: <c:choose><c:when test="${pageContext.request.getServletPath().equals(\"/admin/user_list.jsp\") || pageContext.request.getServletPath().equals(\"/admin/admin_list.jsp\")}">block</c:when><c:otherwise>none</c:otherwise></c:choose>">
-                        <li <c:if test="${pageContext.request.getServletPath().equals(\"/admin/user_list.jsp\")}"> class="current" </c:if> > <a href="/dormitory/admin/user_list"> <i class="icon-angle-right"></i> 学生信息 </a> </li>
-                        <li <c:if test="${pageContext.request.getServletPath().equals(\"/admin/admin_list.jsp\")}"> class="current" </c:if> > <a href="/dormitory/admin/admin_list"> <i class="icon-angle-right"></i> 管理员信息 </a> </li>
+                        <li <c:if test="${pageContext.request.getServletPath().equals(\"/admin/user_list.jsp\")}"> class="current" </c:if> > <a href="${pageContext.request.contextPath}/admin/user_list"> <i class="icon-angle-right"></i> 学生信息 </a> </li>
+                        <li <c:if test="${pageContext.request.getServletPath().equals(\"/admin/admin_list.jsp\")}"> class="current" </c:if> > <a href="${pageContext.request.contextPath}/admin/admin_list"> <i class="icon-angle-right"></i> 管理员信息 </a> </li>
                     </ul>
                 </li>
                 <li  <c:if test="${pageContext.request.getServletPath().equals(\"/admin/repair_list.jsp\")}"> class="current" </c:if> >
-                    <a href="/dormitory/admin/repair_list"><i class="icon-envelope-alt"></i>报修管理</a>
+                    <a href="${pageContext.request.contextPath}/admin/repair_list"><i class="icon-envelope-alt"></i>报修管理</a>
                 </li>
             </ul>
         </div>

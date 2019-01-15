@@ -20,7 +20,7 @@
     </ul>
     <div class="tab-content">
         <div class="tab-pane fade in active" id="login">
-            <form action="/dormitory/login" method="post">
+            <form action="${pageContext.request.contextPath}/login" method="post">
                 <div class="form-group username">
                     <input type="text" name="username" class="form-control">
                 </div>
@@ -46,7 +46,7 @@
             </form>
         </div>
         <div class="tab-pane fade" id="register">
-            <form action="/dormitory/sign" class="form-horizontal" method="post">
+            <form action="${pageContext.request.contextPath}/sign" class="form-horizontal" method="post">
                 <div class="form-group">
                     <label for="nickname" class="label-control col-md-4">昵称</label>
                     <div class="col-md-8">

@@ -18,7 +18,7 @@ public class UserFilter implements Filter {
         HttpSession session = request.getSession();
         if(session.getAttribute("identity") == null || (int)session.getAttribute("identity") != 0) {
             //未登录，跳转到登录页面
-            response.sendRedirect("/dormitory/login");
+            response.sendRedirect(""+request.getContextPath()+"/login");
         }else {
             //已经登陆,继续此次请求
             chain.doFilter(request, response);
