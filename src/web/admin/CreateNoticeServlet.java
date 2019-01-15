@@ -24,7 +24,7 @@ public class CreateNoticeServlet extends HttpServlet {
         PrintWriter printWriter = response.getWriter();
         if (title ==null || content == null) {
             //信息不完整
-            printWriter.println("<script>alert('添加失败！内容必须全部填写！');location.href='/dormitory/admin/notice_create';</script>");
+            printWriter.println("<script>alert('添加失败！内容必须全部填写！');location.href='"+request.getContextPath()+"/admin/notice_create';</script>");
         }
         Admin admin = (Admin)request.getSession().getAttribute("object");
         Notice notice  = new Notice();
@@ -35,7 +35,7 @@ public class CreateNoticeServlet extends HttpServlet {
         notice.setDormitory_id(admin.getDormitory_id());
         NoticeDao noticeDao = new NoticeDaoIml();
         noticeDao.add(notice);
-        response.sendRedirect("/dormitory/admin/notice_list");
+        response.sendRedirect(""+request.getContextPath()+"/admin/notice_list");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

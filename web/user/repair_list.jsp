@@ -74,7 +74,7 @@
                 <div>
                     <div class="layui-box layui-laypage layui-laypage-default">
                         <%--上一页--%>
-                        <a href="/dormitory/user/repair?page=${(page<1)? page:(page-1)}" class="layui-laypage-prev <c:if test="${page <= 1}"> layui-disabled  </c:if>">
+                        <a href="${pageContext.request.contextPath}/user/repair?page=${(page<1)? page:(page-1)}" class="layui-laypage-prev <c:if test="${page <= 1}"> layui-disabled  </c:if>">
                             <i class="layui-icon"></i>
                         </a>
                         <%--当前页--%>
@@ -85,7 +85,7 @@
                             </span>
 
                         <%--下一页--%>
-                        <a href="/dormitory/user/repair?page=${(page>=pageSum)? pageSum:(page+1)}" class="layui-laypage-next <c:if test="${page >= pageSum}"> layui-disabled  </c:if>">
+                        <a href="${pageContext.request.contextPath}/user/repair?page=${(page>=pageSum)? pageSum:(page+1)}" class="layui-laypage-next <c:if test="${page >= pageSum}"> layui-disabled  </c:if>">
                             <i class="layui-icon"></i>
                         </a>
                     </div>

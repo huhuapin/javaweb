@@ -18,7 +18,7 @@
 <div class="layui-container">
     <div class="layui-row main">
         <div class="layui-col-md8 funds">
-            <form class="layui-form" action="/dormitory/user/funds/create" method="post">
+            <form class="layui-form" action="${pageContext.request.contextPath}/user/funds/create" method="post">
 
                 <div class="layui-form-item">
                     <label class="layui-form-label">标题<span>*</span></label>
@@ -30,8 +30,8 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">类型<span>*</span></label>
                     <div class="layui-input-block">
-                        <input type="radio" name="type" value="收入" title="收入">
-                        <input type="radio" name="type" value="支出" title="支出" checked>
+                        <input type="radio" name="type" value="1" title="收入">
+                        <input type="radio" name="type" value="0" title="支出" checked>
                     </div>
                 </div>
 

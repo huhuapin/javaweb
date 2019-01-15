@@ -48,8 +48,8 @@
                                                 <td>${admin.getTel()}</td>
                                                 <c:if test="${identity == 2}">
                                                     <td>
-                                                        <a href="/dormitory/admin/showadmin?id=${admin.getId()}&username=${admin.getUsername()}&name=${admin.getName()}&dormitory_id=${admin.getDormitory_id()}&tel=${admin.getTel()}"><button class="btn btn-sm btn-primary"> 编辑 </button></a>
-                                                        <a href="/dormitory/admin/deladmin?id=${admin.getId()}"><button  class="btn btn-sm btn-warning"> 删除 </button></a>
+                                                        <a href="${pageContext.request.contextPath}/admin/showadmin?id=${admin.getId()}&username=${admin.getUsername()}&name=${admin.getName()}&dormitory_id=${admin.getDormitory_id()}&tel=${admin.getTel()}"><button class="btn btn-sm btn-primary"> 编辑 </button></a>
+                                                        <a href="${pageContext.request.contextPath}/admin/deladmin?id=${admin.getId()}"><button  class="btn btn-sm btn-warning"> 删除 </button></a>
                                                     </td>
                                                 </c:if>
                                             </c:if>
@@ -59,11 +59,11 @@
                             </table>
                             <div class="clearfix">
                                 <ul class="pagination no-margin">
-                                    <li><a href="/dormitory/admin/admin_list?page=1">&lt;&lt; 首页 </a></li>
-                                    <li><a href="/dormitory/admin/admin_list?page=${(page<1)? page:(page-1)}"> &lt; 上一页 </a></li>
+                                    <li><a href="${pageContext.request.contextPath}/admin/admin_list?page=1">&lt;&lt; 首页 </a></li>
+                                    <li><a href="${pageContext.request.contextPath}/admin/admin_list?page=${(page<1)? page:(page-1)}"> &lt; 上一页 </a></li>
                                     <li >第${page}页/共${pageSum}页</li>
-                                    <li><a href="/dormitory/admin/admin_list?page=${(page>=pageSum)? pageSum:(page+1)}">下一页 &gt;</a></li>
-                                    <li><a href="/dormitory/admin/admin_list?page=${pageSum}">末页 &gt;&gt;</a></li>
+                                    <li><a href="${pageContext.request.contextPath}/admin/admin_list?page=${(page>=pageSum)? pageSum:(page+1)}">下一页 &gt;</a></li>
+                                    <li><a href="${pageContext.request.contextPath}/admin/admin_list?page=${pageSum}">末页 &gt;&gt;</a></li>
                                 </ul>
                             </div>
                         </div>

@@ -24,8 +24,8 @@
         <div class="layui-col-md8 message">
             <div class="layui-carousel" id="test1">
                 <div carousel-item>
-                    <div><img src="/dormitory/user/statics/images/1.png" alt=""></div>
-                    <div><img src="/dormitory/user/statics/images/2.png" alt=""></div>
+                    <div><img src="${pageContext.request.contextPath}/user/statics/images/1.png" alt=""></div>
+                    <div><img src="${pageContext.request.contextPath}/user/statics/images/2.png" alt=""></div>
                 </div>
             </div>
             <div class="message-content">
@@ -38,7 +38,7 @@
                         </c:choose>
                         ${message.getUser().nickname}
                         <c:if test="${message.user_id == object.id}">
-                        <a href="/dormitory/user/message/delete?id=${message.id}" class="close"><i class="layui-icon layui-icon-close"></i></a>
+                        <a href="${pageContext.request.contextPath}/user/message/delete?id=${message.id}" class="close"><i class="layui-icon layui-icon-close"></i></a>
                         </c:if>
                     </div>
                     <div class="layui-card-body">
@@ -65,7 +65,7 @@
                     <div class="layui-box layui-laypage layui-laypage-default">
                         <%--上一页--%>
 
-                        <a href="/dormitory/user/index?page=${(page<1)? page:(page-1)}" class="layui-laypage-prev <c:if test="${page <= 1}"> layui-disabled  </c:if>">
+                        <a href="${pageContext.request.contextPath}/user/index?page=${(page<1)? page:(page-1)}" class="layui-laypage-prev <c:if test="${page <= 1}"> layui-disabled  </c:if>">
                             <i class="layui-icon"><</i>
                         </a>
                             <%--当前页--%>
@@ -75,14 +75,14 @@
                                 <em>${page}</em>
                             </span>
                             <%--下一页--%>
-                            <a href="/dormitory/user/index?page=${(page>=pageSum)? pageSum:(page+1)}" class="layui-laypage-next <c:if test="${page >= pageSum}"> layui-disabled  </c:if>">
+                            <a href="${pageContext.request.contextPath}/user/index?page=${(page>=pageSum)? pageSum:(page+1)}" class="layui-laypage-next <c:if test="${page >= pageSum}"> layui-disabled  </c:if>">
                                 <i class="layui-icon"></i>
                             </a>
                     </div>
                 </div>
             </div>
             <div class="new-message">
-                <form action="/dormitory/user/message/create" class="layui-form" method="POST">
+                <form action="${pageContext.request.contextPath}/user/message/create" class="layui-form" method="POST">
                     <div class="layui-row">
                         <div class="layui-col-md1 layui-col-sm1 layui-hide-xs">
                             <c:choose>

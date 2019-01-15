@@ -25,7 +25,7 @@ public class ModifyNoticeServlet extends HttpServlet {
             notice.setCreated_at(new Timestamp(System.currentTimeMillis()));
             noticeDao.modify(notice);
         }
-        response.sendRedirect("/dormitory/admin/notice_list");
+        response.sendRedirect(""+request.getContextPath()+"/admin/notice_list");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

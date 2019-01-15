@@ -27,7 +27,7 @@ public class ModifyUserServlet extends HttpServlet {
             user.setRoom(Integer.parseInt(request.getParameter("room")));
             userDao.update(user);
         }
-        response.sendRedirect("/dormitory/admin/user_list");
+        response.sendRedirect(""+request.getContextPath()+"/admin/user_list");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

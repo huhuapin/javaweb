@@ -26,7 +26,7 @@ public class ModifyAdminServlet extends HttpServlet {
             admin.setTel(request.getParameter("tel"));
             adminDao.update(admin);
         }
-        response.sendRedirect("/dormitory/admin/admin_list");
+        response.sendRedirect(""+request.getContextPath()+"/admin/admin_list");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

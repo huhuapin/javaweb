@@ -26,7 +26,7 @@ public class DelUserServlet extends HttpServlet {
             int id = Integer.parseInt(temp);
             UserDao userDao = new UserDaoIml();
             userDao.delete(id);
-            response.sendRedirect("/dormitory/admin/user_list");
+            response.sendRedirect(""+request.getContextPath()+"/admin/user_list");
         }
     }
 }

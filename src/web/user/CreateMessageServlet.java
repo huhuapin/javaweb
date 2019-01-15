@@ -35,7 +35,7 @@ public class CreateMessageServlet extends HttpServlet {
         message.setUser_id(user.getId());
         MessageDao messageDao = new MessageDaoIml();
         messageDao.add(message);
-        response.getWriter().println("<script>location.href = '/dormitory/user/index';</script>");
+        response.getWriter().println("<script>location.href = '"+request.getContextPath()+"/user/index';</script>");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

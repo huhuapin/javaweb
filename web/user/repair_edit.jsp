@@ -87,7 +87,7 @@
         var index = 1;
         var uploadInst = upload.render({
             elem: '#test1' //绑定元素
-            ,url: '/dormitory/images/upload' //上传接口
+            ,url: '${pageContext.request.contextPath}/images/upload' //上传接口
             ,multiple: true
             ,number: 3
             ,done: function(data){

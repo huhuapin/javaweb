@@ -18,7 +18,7 @@
 <div class="layui-container">
     <div class="layui-row main">
         <div class="layui-col-md8 mine">
-            <form class="layui-form" action="/dormitory/user/edit" method="POST">
+            <form class="layui-form" action="${pageContext.request.contextPath}/user/edit" method="POST">
                 <div class="layui-form-item">
                     <label class="layui-form-label">学号</label>
                     <div class="layui-input-block">
@@ -49,8 +49,8 @@
                                         <img class="layui-upload-img" id="demo1" src="${object.image}">
                                     </c:when>
                                     <c:otherwise>
-                                        <input type="hidden" name="image" class="layui-upload-file" value="/dormitory/user/statics/images/user.jpg">
-                                        <img class="layui-upload-img" id="demo1" src="/dormitory/user/statics/images/user.jpg">
+                                        <input type="hidden" name="image" class="layui-upload-file" value="/${pageContext.request.contextPath}/user/statics/images/user.jpg">
+                                        <img class="layui-upload-img" id="demo1" src="/${pageContext.request.contextPath}/user/statics/images/user.jpg">
                                     </c:otherwise>
                                 </c:choose>
                                 <p id="demoText"></p>
@@ -99,7 +99,7 @@
         var upload = layui.upload;
         var uploadInst = upload.render({
             elem: '#test1' //绑定元素
-            ,url: '/dormitory/images/upload' //上传接口
+            ,url: '${pageContext.request.contextPath}/images/upload' //上传接口
             ,done: function(data){
                 //上传完毕回调
                 console.log(data);
