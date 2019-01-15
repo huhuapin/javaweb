@@ -36,8 +36,6 @@ public class FundsDaolml implements FundsDao {
         try{
             QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
             String sql = "select sum(money) from funds where dormitory_id = ? and room = ?";
-            System.out.println(dormitory_id);
-            System.out.println(room);
             Object object = runner.query(sql, new ScalarHandler(), dormitory_id,room);
             if(object == null){
                 return 0;
@@ -54,7 +52,7 @@ public class FundsDaolml implements FundsDao {
             QueryRunner runner = new QueryRunner(JdbcUtils.getDataSource());
             String sql = "select count(*) from funds where dormitory_id = ? and room = ?";
             Object[] params = {dormitory_id, room};
-            return (long) runner.query(sql, params, new ScalarHandler());
+            return (long) runner.query(sql, new ScalarHandler(),params);
         } catch(Exception e){
             throw new RuntimeException(e);
         }

@@ -25,24 +25,6 @@
     <div class="layui-row main">
         <div class="layui-col-md8 grade">
             <fieldset class="layui-elem-field layui-field-title site-title">
-                <legend><a name="grade">卫生成绩</a></legend>
-            </fieldset>
-            <table class="layui-table">
-                <thead>
-                <tr>
-                    <th>录入日期</th>
-                    <th>周次</th>
-                    <th>公寓楼</th>
-                    <th>房间号</th>
-                    <th>得分</th>
-                    <th>加减分</th>
-                </tr>
-                </thead>
-                <tbody id="view">
-                                    
-                </tbody>
-            </table>
-            <fieldset class="layui-elem-field layui-field-title site-title">
                 <legend><a name="elec">电费信息</a></legend>
             </fieldset>
             <div class="site-block">
@@ -67,6 +49,24 @@
                     <div class="layui-input-block">查询中...</div>
                 </div>
             </div>
+            <fieldset class="layui-elem-field layui-field-title site-title">
+                <legend><a name="grade">卫生成绩</a></legend>
+            </fieldset>
+            <table class="layui-table">
+                <thead>
+                <tr>
+                    <th>录入日期</th>
+                    <th>周次</th>
+                    <th>公寓楼</th>
+                    <th>房间号</th>
+                    <th>得分</th>
+                    <th>加减分</th>
+                </tr>
+                </thead>
+                <tbody id="view">
+
+                </tbody>
+            </table>
         </div>
 
 
@@ -150,28 +150,33 @@
                 }
             })//查询卫生结束
             //查询电费
-            var url = "https://api.youthol.cn/api/service/elec";
+            var url = "${pageContext.request.contextPath}/elec";
             $.ajax({
                 url: url,
-                type: 'GET',
+                type: 'POST',
                 data: {
                     school: '${dormitory.school}',
                     dormitory: '${dormitory.elec_name}',
                     room: '${object.room}',
                 },
                 success: function (data,status) {
+                    var data = JSON.parse(data);
                     console.log(data);
-                    var inp = $('.layui-input-block');
-                    inp[0].innerHTML = (data.data.room);
-                    inp[1].innerHTML = (data.data.elec);
-                    inp[2].innerHTML = (data.data.status);
-                    inp[3].innerHTML = (data.data.remain);
-                    inp[4].innerHTML = (data.data.time);
-                    layer.close(index1);
+                    if (data.code == 0) {
+                        var inp = $('.layui-input-block');
+                        inp[0].innerHTML = (data.data.room);
+                        inp[1].innerHTML = (data.data.elec);
+                        inp[2].innerHTML = (data.data.status);
+                        inp[3].innerHTML = (data.data.remain);
+                        inp[4].innerHTML = (data.data.time);
+                        layer.close(index1);
+                    }else {
+                        Message(宿舍信息错误或服务器错误);
+                    }
+
                 },
                 error: function (data,status) {
                     var message = data.responseJSON.message;
-                    Message(message);
                 },
                 complete: function () {
                     layer.close(index1);

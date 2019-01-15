@@ -23,7 +23,7 @@
                 <div class="col-lg-12">
                     <div class="widget">
                         <div class="widget-header"> <i class="icon-table"></i>
-                            <h3>报修 </h3>
+                            <h3>Repair List </h3>
                         </div>
                         <div class="widget-content">
                             <div class="body">

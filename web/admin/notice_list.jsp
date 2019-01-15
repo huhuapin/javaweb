@@ -23,7 +23,7 @@
             <div class="col-lg-12">
                 <div class="widget">
                     <div class="widget-header"> <i class="icon-table"></i>
-                        <h3>公告 </h3>
+                        <h3>Notice </h3>
                         <a href="${pageContext.request.contextPath}/admin/notice_create"><button  class="btn  btn-success"> 发布公告 </button></a>
                     </div>
                     <div class="widget-content">

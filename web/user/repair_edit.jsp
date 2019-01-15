@@ -43,7 +43,7 @@
                             </div>
                                 <div class="layui-upload-list uploader-list" style="overflow: auto;" id="uploader-list">
                                     <c:forEach var="image" items="${repair.image}">
-                                        <div id="" class="file-iteme"><div class="handle"><span class="glyphicon glyphicon-trash">删除</span></div><img style="max-width: 100%" src="${image}"><div class="info"></div></div>
+                                        <div id="" class="file-iteme"><div class="handle"><a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a></div><img style="max-width: 100%" src="${image}"></div>
                                     </c:forEach>
                                 </div>
                         </div>

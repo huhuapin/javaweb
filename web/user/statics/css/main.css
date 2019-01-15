@@ -98,6 +98,7 @@
 .site-block {
     border: 1px solid #eee;
     background: #fff;
+    margin-bottom: 30px;
 }
 .site-block .layui-input-block {
     text-align: right;
@@ -112,9 +113,7 @@
     font-size: 16px;
     line-height: 55px;
 }
-.layui-table {
-    margin-bottom: 30px;
-}
+
 .password {
     margin-top: 40px;
     padding: 0 30px;
@@ -168,9 +167,12 @@ img{
     -moz-opacity: 0.5;
     opacity: 0.5;
     text-align: right;
-    height: 18px;
-    margin-bottom: -18px;
+    height: 22px;
+    margin-bottom: -22px;
     display: none;
+}
+.uploader-list .handle a{
+    opacity: 1;
 }
 
 .uploader-list .handle span {

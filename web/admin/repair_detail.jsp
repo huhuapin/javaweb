@@ -17,7 +17,7 @@
                 <div class="col-lg-12">
                     <div class="widget">
                         <div class="widget-header"> <i class="icon-table"></i>
-                            <h3>报修详情</h3>
+                            <h3>Repair Detail</h3>
                         </div>
                         <div class="widget-content">
                             <div class="body">

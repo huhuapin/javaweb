@@ -68,7 +68,6 @@ public class RepairChangeServlet extends HttpServlet {
             repairDao.updateRepair(repair);
         }
         String refer = request.getHeader("referer");
-        System.out.println(refer);
         response.getWriter().println("<script>alert('修改成功！');location.href='"+refer+"'</script>");
 
     }

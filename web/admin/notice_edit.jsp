@@ -21,7 +21,7 @@
                 <div class="col-lg-7">
                     <div class="widget">
                         <div class="widget-header"> <i class="icon-file-alt"></i>
-                            <h3> Notice</h3>
+                            <h3>Edit Notice</h3>
                         </div>
                         <div class="widget-content">
                             <form data-validate="parsley" novalidate method="post" action="${pageContext.request.contextPath}/admin/modifynotice" class="form-horizontal">
