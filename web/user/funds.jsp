@@ -38,7 +38,7 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">金额<span>*</span></label>
                     <div class="layui-input-block">
-                        <input type="text" name="money" required  lay-verify="required" placeholder="请输入金额" autocomplete="off" class="layui-input">
+                        <input type="text" name="money" required  lay-verify="required" placeholder="请输入金额(元）" autocomplete="off" class="layui-input" oninput = "value=value.replace(/[^\d.]/g,'')">
                     </div>
                 </div>
 

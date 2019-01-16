@@ -60,13 +60,13 @@
             <div class="row">
                 <div class="col-lg-6">
                     <div class="widget-container">
-                        <div class="padded"> <a href="#" class="pull-right"><i class="icon-map-marker"></i></a> <span class="h4">McLean, VA</span>
-                            <div class="text-center padder m-t"> <span class="h1"><i class="icon-cloud text-muted"></i> 68A</span> </div>
+                        <div class="padded"> <a href="#" class="pull-right"><i class="icon-map-marker"></i></a> <span class="h4">张店区</span>
+                            <div class="text-center padder m-t"> <span class="h1"><i class="icon-cloud text-muted"></i> 72A</span> </div>
                         </div>
                         <div class="widget-footer lt">
                             <div class="row">
                                 <div class="col-xs-4"> <small class="text-muted block">Humidity</small> <span>56 %</span> </div>
-                                <div class="col-xs-4"> <small class="text-muted block">Precip.</small> <span>0.00 in</span> </div>
+                                <div class="col-xs-4"> <small class="text-muted block">Precip</small> <span>0.00 in</span> </div>
                                 <div class="col-xs-4"> <small class="text-muted block">Winds</small> <span>7 mp</span> </div>
                             </div>
                         </div>
