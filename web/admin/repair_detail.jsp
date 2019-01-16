@@ -5,6 +5,12 @@
 <html>
 <head>
     <title>报修详情</title>
+    <style>
+        .table img{
+            max-width: 500px;
+            max-height: 300px;
+        }
+    </style>
     <jsp:include page="header.jsp"/>
     <div class="page-content">
         <div class="content container">

@@ -18,6 +18,8 @@ import java.util.Date;
 @WebServlet(name = "EditRepairServlet",urlPatterns = "/user/repair/edit")
 public class EditRepairServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        PrintWriter printWriter = response.getWriter();
+
         //获取参数
         int id = Integer.parseInt(request.getParameter("id"));
         String reason = request.getParameter("reason");
@@ -25,6 +27,9 @@ public class EditRepairServlet extends HttpServlet {
         String image = request.getParameter("image");
         String detail = request.getParameter("detail");
         String tel = request.getParameter("tel");
+        if (image == null || image.equals("")){
+            printWriter.println("<script>alert('必须上传照片');location.href='"+request.getContextPath()+"/user/repair/detail?id="+id+"';</script>");
+        }
         //获取session用户
         User user = (User)request.getSession().getAttribute("user");
         Date currentTime = new Date();
@@ -41,7 +46,6 @@ public class EditRepairServlet extends HttpServlet {
         repair.setTel(tel);
         int bool = repairDao.updateRepair(repair);
         //存入数据库
-        PrintWriter printWriter = response.getWriter();
         printWriter.println("<script>alert('修改报修信息成功');location.href='"+request.getContextPath()+"/user/repair/detail?id="+id+"';</script>");
         return;
     }

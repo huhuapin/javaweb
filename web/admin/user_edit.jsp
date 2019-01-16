@@ -68,7 +68,7 @@
                                         <div class="col-md-6">
                                                 <select class="form-control" name="dormitory" id="dormitory">
                                                     <c:forEach var = "dormitory" items="${dormitoryList}">
-                                                        <option value="${dormitory.getId()}" class="">${dormitory.getDescription()}</option>
+                                                        <option value="${dormitory.getId()}" class=""  <c:if test="${dormitory.getId() == dormitory_id}"> selected </c:if> >${dormitory.getDescription()}</option>
                                                     </c:forEach>
                                                 </select>
                                         </div>

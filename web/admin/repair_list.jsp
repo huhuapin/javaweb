@@ -27,7 +27,7 @@
                         </div>
                         <div class="widget-content">
                             <div class="body">
-                                <table class="table table-striped table-images">
+                                <table class="table table-images">
                                     <thead>
                                     <tr>
                                         <th>#</th>

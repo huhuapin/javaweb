@@ -26,6 +26,7 @@ public class ShowAdminServlet extends HttpServlet {
         request.setAttribute("id", request.getParameter("id"));
         request.setAttribute("username", request.getParameter("username"));
         request.setAttribute("name", request.getParameter("name"));
+        request.setAttribute("dormitory_id",request.getParameter("dormitory_id"));
         //获取宿舍列表
         DormitoryDao dormitoryDao = new DormitoryDaoIml();
         int id = Integer.parseInt(request.getParameter("dormitory_id"));

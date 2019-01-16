@@ -25,7 +25,7 @@
                         <div class="widget-header"> <i class="icon-user"></i>
                             <h3>Administrators</h3>
                             <c:if test="${identity == 2}">
-                                <a href="${pageContext.request.contextPath}/admin/dormitory_list"><button  class="btn  btn-success"> 添加管理员 </button></a>
+                                <a href="${pageContext.request.contextPath}/admin/admin_list"><button  class="btn  btn-success"> 添加管理员 </button></a>
                             </c:if>
                         </div>
                         <div class="widget-content">
